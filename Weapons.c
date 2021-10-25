@@ -29,6 +29,8 @@ void printWeapon(WEAPON w) {
     printf("Required Strength: \t%d\n", w.required_STR);
     printf("+ Strength: \t\t%d\n\n", w.add_STR);
     printf("***************************\n");
+
+    // Need to dynamically print the required stat (DEX / STR / INT) depending on the classes, and additional stats too.
 }
 
 int main() {
