@@ -11,11 +11,6 @@ typedef struct WEAPON_STRUCT {
     int add_STR;
 } WEAPON;
 
-// WEAPON setClass(WEAPON w, char *class) {
-//     strcpy(w.class, class);
-//     return w;
-// }
-
 WEAPON initWeapon(char *name, char *class, char *type, int required_STR, int add_STR) {
     WEAPON w;
     strcpy(w.name, name);
@@ -34,12 +29,13 @@ void printWeapon(WEAPON w) {
     printf("Required Strength: \t%d\n", w.required_STR);
     printf("+ Strength: \t\t%d\n\n", w.add_STR);
     printf("***************************\n");
-
 }
+
 int main() {
     WEAPON GodButcher = initWeapon("God Butcher", "Warrior", "Sword", 50, 15);
     WEAPON LumberAxe = initWeapon("Lumber Axe", "Warrior", "Axe", 100, 25);
     printWeapon(GodButcher);
     printWeapon(LumberAxe);
-
 }
+
+// Once player character wears a certain weapons or armors, implement the function to add corresponding additional stats to the character.
