@@ -16,6 +16,6 @@ void printArmor(ARMOR w);
 void wearArmor(ARMOR *w, Stats *s);
 void swapArmor(ARMOR *w1, ARMOR *w2, Stats *s);
 void detachArmor(ARMOR *a, Stats *s);
-void checkArmorRequirement(ARMOR *a, Stats *s);
+int checkArmorRequirement(ARMOR *a, Stats *s);
 
 #endif
