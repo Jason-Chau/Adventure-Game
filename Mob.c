@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "Mob.h"
-#include "Inventory.c"
+#include "Inventory.h"
 
 Mob CreateMob(char name[50], int hitPoints, int armorClass, int hit, int damage, int currentHP, INVENTORY* inventory) {
     //read in data to create mob
@@ -17,27 +17,33 @@ Mob CreateMob(char name[50], int hitPoints, int armorClass, int hit, int damage,
     return m;
 }
 
-void DropLoot(Mob m, INVENTORY* inventory) {
+void DropLoot(Mob m, INVENTORY* loot, INVENTORY* inventory) {
     int i = 0;
     printf("Loot dropped! You got: \n");
     //weapons
-    while(strcmp(m.loot->invWeapon[i]->name) != 0) {
-        AddWeapon(m.loot->invWeapon[i], inventory);
-        printf("%s\n", m.loot->invWeapon[i]->name);
+    WEAPON* w = loot->invWeapon[0];
+    while(strcmp(w->name, "") != 0) {
+        AddWeapon(w, inventory);
+        printf("%s\n", w->name);
         ++i;
+        w = loot->invWeapon[i];
     }
     i = 0;
     //armor
-    while(strcmp(m.loot->invArmor[i]->name) != 0) {
-        AddArmor(m.loot->invArmor[i], inventory);
-        printf("%s\n", m.loot->invArmor[i]->name);
+    ARMOR* a = loot->invArmor[0];
+    while(strcmp(a->name, "") != 0) {
+        AddArmor(a, inventory);
+        printf("%s\n", a->name);
         ++i;
+        a = loot->invArmor[i];
     }
     i = 0;
     //consumables
-    while(strcmp(m.loot->invConsumable[i]->name) != 0) {
-        AddConsumable(m.loot->invConsumable[i], inventory);
-        printf("%s\n", m.loot->invConsumable[i]->name);
+    CONSUMABLE* c = loot->invConsumable[0];
+    while(strcmp(c->name, "") != 0) {
+        AddConsumable(c, inventory);
+        printf("%s\n", c->name);
         ++i;
+        c = loot->invConsumable[i];
     }
 }

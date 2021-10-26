@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "Weapons.c"
-#include "Armors.c"
-//#include "Consumables.c"
+#include "Weapons.h"
+#include "Armors.h"
+#include "Consumables.h"
 
 #include "Inventory.h"
 
@@ -14,28 +14,39 @@ void CreateInventory(INVENTORY* inventory, WEAPON* weapons[50], ARMOR* armors[50
 
 
 void DisplayInventory(INVENTORY* inventory) {
-    //if the errors can be fixed, can change function to pass in the
+    //if the errors cant be fixed, can change function to pass in the
     //three arrays instead of inventory
     int i=0;
     printf("Weapons:\n");
-    while(strcmp(inventory->invWeapon[i]->name, "")!=0) {
-        printf("%s\n", inventory->invWeapon[i]->name);
+    WEAPON* w = inventory->invWeapon[0]; 
+    while(strcmp(w->name, "")!=0) {
+        printf("%s\n", w->name);
+        ++i;
+        w = inventory->invWeapon[i];
     }
     i=0;
+    ARMOR* a = inventory->invArmor[0];
     printf("Armor:\n");
-    while(strcmp(inventory->invArmor[i]->name, "")!=0) {
-        printf("%s\n", inventory->invArmor[i]->name);
+    while(strcmp(a->name, "")!=0) {
+        printf("%s\n", a->name);
+        ++i;
+        a = inventory->invArmor[i];
     }
     i=0;
+    CONSUMABLE* c = inventory->invConsumable[0];
     printf("Consumables:\n");
-    while(strcmp(inventory->invConsumable[i]->name, "")!=0) {
-        printf("%s\n", inventory->invConsumable[i]->name);
+    while(strcmp(c->name, "")!=0) {
+        printf("%s\n", c->name);
+        ++i;
+        c = inventory->invConsumable[i];
     }
 }
 
 void AddWeapon(WEAPON* w, INVENTORY* inventory) {
+    WEAPON* wep;
     for(int i = 0; i<50; ++i) {
-        if (strcmp(inventory->invWeapon[i]->name, "") == 0) {
+        wep = inventory->invWeapon[i];
+        if (strcmp(wep->name, "") == 0) {
             inventory->invWeapon[i] = w;
             break;
         }
@@ -43,8 +54,10 @@ void AddWeapon(WEAPON* w, INVENTORY* inventory) {
 }
 
 void AddArmor(ARMOR* a, INVENTORY* inventory) {
+    ARMOR* arm;
     for(int i = 0; i<50; ++i) {
-        if (strcmp(inventory->invArmor[i]->name, "") == 0) {
+        arm = inventory->invArmor[i];
+        if (strcmp(arm->name, "") == 0) {
             inventory->invArmor[i] = a;
             break;
         }
@@ -52,8 +65,10 @@ void AddArmor(ARMOR* a, INVENTORY* inventory) {
 }
 
 void AddConsumable(CONSUMABLE* c, INVENTORY* inventory) {
+    CONSUMABLE* cons;
     for(int i = 0; i<50; ++i) {
-        if (strcmp(inventory->invConsumable[i]->name, "") == 0) {
+        cons = inventory->invConsumable[i];
+        if (strcmp(cons->name, "") == 0) {
             inventory->invConsumable[i] = c;
             break;
         }
@@ -63,22 +78,28 @@ void AddConsumable(CONSUMABLE* c, INVENTORY* inventory) {
 void RemoveItem(char itemName[50], int itemType, INVENTORY* inventory){
     //itemType 0=weapon, 1=armor, 2=consumable
     if (itemType == 0) {
+        WEAPON* w;
         for(int i = 0; i<50; ++i) {
-            if(strcmp(inventory->invWeapon[i]->name, itemName)==0) {
+            w = inventory->invWeapon[i];
+            if(strcmp(w->name, itemName)==0) {
                 RemoveWeapon(inventory->invWeapon, i);
             }
         }
     }
     else if(itemType == 1) {
+        ARMOR* a;
         for(int i = 0; i<50; ++i) {
-            if(strcmp(inventory->invArmor[i]->name, itemName)==0) {
+            a = inventory->invArmor[i];
+            if(strcmp(a->name, itemName)==0) {
                 RemoveWeapon(inventory->invArmor, i);
             }
         }
     }
     else if (itemType == 2){
+        CONSUMABLE* c;
         for(int i = 0; i<50; ++i) {
-            if(strcmp(inventory->invConsumable[i]->name, itemName)==0) {
+            c = inventory->invConsumable[i];
+            if(strcmp(c->name, itemName)==0) {
                 RemoveWeapon(inventory->invConsumable, i);
             }
         }

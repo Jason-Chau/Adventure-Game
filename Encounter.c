@@ -3,7 +3,7 @@
 #include <string.h>
 
 #include "Encounter.h"
-#include "Mob.c"
+#include "Mob.h"
 
 void CreateEncounter() {
 
