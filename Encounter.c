@@ -9,7 +9,7 @@ void CreateEncounter() {
 }
 
 void Combat(Player* p, Mob* m) {
-    printf("Combat begins! Enemies: %s\n", m->NAME);
+    printf("Combat begins! Enemies: %s\n", m->name);
 
     while(p->CURRENT_HP > 0) {
         printf("Player turn. Choose an action (attack)\n");
@@ -17,22 +17,22 @@ void Combat(Player* p, Mob* m) {
         scanf("%s", pAction);
         if(strcmp(pAction, "attack") = 0) {
         // player attacking
-            if(((rand()%20)+p->HIT) > m->AC-1) {
+            if(((rand()%20)+p->HIT) > m->armorClass-1) {
                 m->CURRENT_HP -= p->DAMAGE;
-                printf("You hit %s for %d damage!\n", m->NAME, p->DAMAGE);
+                printf("You hit %s for %d damage!\n", m->name, p->DAMAGE);
                 if (m->CURRENT_HP <= 0) {
                     break;
                 }
             }
             else {
-                printf("You miss %s!\n", m->NAME);
+                printf("You miss %s!\n", m->name);
             }
         }
 
         // monster attacking
-        if(((rand()%20)+m->HIT) > p->AC-1) {
+        if(((rand()%20)+m->HIT) > p->armorClass-1) {
             p->CURRENT_HP -= m->DAMAGE;
-            printf("%s hits you for %d damage! You have %d hp left.\n", m->NAME, m->DAMAGE, p->CURRENT_HP);
+            printf("%s hits you for %d damage! You have %d hp left.\n", m->name, m->DAMAGE, p->CURRENT_HP);
         }
         else {
             printf("You avoid %s's attack!\n");
@@ -72,6 +72,11 @@ void Loot(Player* p, char lootTable[50], int numDrops) {
         //needs to add item in loot to inventory based on the name of the item
         p->INVENTORY += loot[i];
     }
+}
+
+void Exit() {
+    // Player escapes the dungeon and wins or moves onto next floor
+    printf("You found the exit door and escape the dungeon!\n");
 }
 
 
