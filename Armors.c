@@ -62,6 +62,7 @@ Stats detachArmor(ARMOR a, Stats s) {
 
         return s;
     }
+    armorAttached = 0;
     printf("****************************\n");
     printf("Detaching \"%s\"...\n", a.name);
     printf("****************************\n");

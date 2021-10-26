@@ -65,6 +65,7 @@ Stats detachWeapon(WEAPON w, Stats s) {
 
         exit(0);
     }
+    weaponAttached = 0;
     printf("****************************\n");
     printf("Detaching \"%s\"...\n", w.name);
     printf("****************************\n");
