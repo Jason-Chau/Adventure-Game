@@ -6,6 +6,7 @@
 
  
 typedef struct Room_Struct{ 
+    //struct Encounters* encounters[random_num];
     bool explored; 
     struct Room_Struct* N_Room;
     struct Room_Struct* W_Room;

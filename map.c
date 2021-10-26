@@ -17,9 +17,9 @@ void CreateRandomMap(Map* m){
     room = m->rooms[0];     
     int count = 0;
 
-    while(i != num_rooms) //only makes number of rooms in num_rooms
+    while(i < num_rooms-1) //only makes number of rooms in num_rooms
     {
-        room = m->rooms[i - (rand() % (count+1))]; //chooses the new room based off of the last created rooms
+        //Room* room = m->rooms[i]; //adds on to the last added room
         count = 0;
         for(int j = 0; j < 4; j++)
         {
@@ -28,11 +28,11 @@ void CreateRandomMap(Map* m){
                 case 0: //North
                     if(room->N_Room == NULL) 
                     {
-                        if(i != num_rooms) 
+                        if(i < num_rooms-1) 
                         {
                             Room* room1 = CreateRoom(); //creates new room
-                            m->rooms[i] = room1;
-                            Connect_Rooms(room, room1,x);
+                            m->rooms[i] = room1; 
+                            Connect_Rooms(room, room1,x); 
                             i++; //increases current room count expidite exiting loop
                             count++; //counts the number of side rooms
                         }
@@ -41,7 +41,7 @@ void CreateRandomMap(Map* m){
                 case 1: //West
                     if(room->W_Room == NULL)
                     {
-                        if(i != num_rooms)
+                        if(i < num_rooms-1)
                         {
                             Room* room1 = CreateRoom();
                             m->rooms[i] = room1;
@@ -54,7 +54,7 @@ void CreateRandomMap(Map* m){
                 case 2: //East
                     if(room->E_Room == NULL)
                     {
-                        if(i != num_rooms)
+                        if(i < num_rooms-1)
                         {
                             Room* room1 = CreateRoom();
                             m->rooms[i] = room1;
@@ -67,7 +67,7 @@ void CreateRandomMap(Map* m){
                 case 3: //South
                     if(room->S_Room == NULL)
                     {
-                        if(i != num_rooms)
+                        if(i < num_rooms-1)
                         {
                             Room* room1 = CreateRoom();
                             m->rooms[i] = room1;
@@ -79,8 +79,10 @@ void CreateRandomMap(Map* m){
                     break;
             }
         }
+        room = m->rooms[rand() % i];//chooses the new room based off of the last created rooms
     }
 }
+
 
 //function to construct test map
 void CreateTestMap(Map* m){
@@ -102,7 +104,7 @@ void CreateTestMap(Map* m){
 
 
     /*      
-            r3------>r4
+            r3----->r4
             ^         |
             |         |
             |         v
@@ -115,8 +117,20 @@ void CreateTestMap(Map* m){
 //creates room with all the potential paths as null
 Room* CreateRoom()
 {
+    time_t t;
+    srand((unsigned) time(&t));  
     Room* r;
     r = (Room*)malloc(sizeof(Room));
+
+    //for adding encounters to  a room
+    /*
+    int x = rand() % 3;
+    encounters = (Encounters*)malloc(x * sizeof(Encounter*)); // assigning random number of encounters
+    for(int i = 0; i < x; i++)
+    {
+        r->encounters[i] = createRandomEncounter();
+    } */
+
     r->explored = false;
     r->N_Room = NULL;
     r->W_Room = NULL;
