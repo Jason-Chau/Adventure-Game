@@ -6,11 +6,11 @@
 
 int armorAttached = 0;
 
-ARMOR initArmor(char *name, char *required_Class, char *type, int required_STR, int add_AC) {
+ARMOR initArmor(char *name, char *required_Class, int type, int required_STR, int add_AC) {
     ARMOR a;
     strcpy(a.name, name);
     strcpy(a.required_Class, required_Class);
-    strcpy(a.type, type);
+    a.type = type;
     a.required_STR = required_STR;
     a.add_AC = add_AC;
     return a;
@@ -62,6 +62,7 @@ Stats detachArmor(ARMOR a, Stats s) {
 
         return s;
     }
+    armorAttached = 0;
     printf("****************************\n");
     printf("Detaching \"%s\"...\n", a.name);
     printf("****************************\n");
