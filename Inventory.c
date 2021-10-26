@@ -2,7 +2,7 @@
 #include <string.h>
 
 #include "Weapons.c"
-//#include "Armors.c"
+#include "Armors.c"
 //#include "Consumables.c"
 
 #include "Inventory.h"
@@ -37,6 +37,25 @@ void AddWeapon(WEAPON* w, INVENTORY* inventory) {
     for(int i = 0; i<50; ++i) {
         if (strcmp(inventory->invWeapon[i]->name, "") == 0) {
             inventory->invWeapon[i] = w;
+            break;
+        }
+    }
+}
+
+void AddArmor(ARMOR* a, INVENTORY* inventory) {
+    for(int i = 0; i<50; ++i) {
+        if (strcmp(inventory->invArmor[i]->name, "") == 0) {
+            inventory->invArmor[i] = a;
+            break;
+        }
+    }
+}
+
+void AddConsumable(CONSUMABLE* c, INVENTORY* inventory) {
+    for(int i = 0; i<50; ++i) {
+        if (strcmp(inventory->invConsumable[i]->name, "") == 0) {
+            inventory->invConsumable[i] = c;
+            break;
         }
     }
 }
