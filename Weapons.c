@@ -14,6 +14,7 @@ WEAPON initWeapon(char *name, char *required_Class, int type, int required_STR, 
     w.required_STR = required_STR;
     w.add_STR = add_STR;
     return w;
+
 }
 
 void printWeapon(WEAPON w) {
@@ -28,55 +29,53 @@ void printWeapon(WEAPON w) {
     // Need to dynamically print the required stat (DEX / STR / INT) depending on the classes, and additional stats too.
 }
 
-Stats wearWeapon(WEAPON w, Stats s) {
+void wearWeapon(WEAPON *w, Stats *s) {
     checkWeaponRequirement(w, s);
     printf("********************************\n");
-    printf("Putting on \"%s\"...\n", w.name);
+    printf("Putting on \"%s\"...\n", w->name);
     printf("********************************\n");
 
     weaponAttached = 1;
-    s.strength += w.add_STR;
-    return s;
+    s->strength += w->add_STR;
+
 }
 
-Stats swapWeapon(WEAPON old, WEAPON new, Stats s) {
+void swapWeapon(WEAPON *old, WEAPON *new, Stats *s) {
     if(!weaponAttached) {
         printf("****************************************\n");
-        printf("You don't have \"%s\" on !\n", old.name);
+        printf("You don't have \"%s\" on !\n", old->name);
         printf("****************************************\n");
 
-        exit(0);
+        return ;
     }
     checkWeaponRequirement(new, s);
     printf("**************************************************\n");
-    printf("Swapping from \"%s\" to \"%s\"...\n", old.name, new.name);
+    printf("Swapping from \"%s\" to \"%s\"...\n", old->name, new->name);
     printf("**************************************************\n");
 
-    s.strength -= old.add_STR;
-    s.strength += new.add_STR;
-    return s;
+    s->strength -= old->add_STR;
+    s->strength += new->add_STR;
 }
 
-Stats detachWeapon(WEAPON w, Stats s) {
+void detachWeapon(WEAPON *w, Stats *s) {
     if(!weaponAttached) {
         printf("****************************************\n");
-        printf("You don't have \"%s\" on !\n", w.name);
+        printf("You don't have \"%s\" on !\n", w->name);
         printf("****************************************\n");
 
-        exit(0);
+        return ;
     }
     weaponAttached = 0;
     printf("****************************\n");
-    printf("Detaching \"%s\"...\n", w.name);
+    printf("Detaching \"%s\"...\n", w->name);
     printf("****************************\n");
-    s.strength -= w.add_STR;
-    return s;
+    s->strength -= w->add_STR;
 }
 
-void checkWeaponRequirement(WEAPON w, Stats s) {
-    if(s.strength < w.required_STR) {
+void checkWeaponRequirement(WEAPON *w, Stats *s) {
+    if(s->strength < w->required_STR) {
         printf("****************************************\n");
-        printf("!!! YOU ARE TOO WEAK FOR \"%s\" !!!\n", w.name);
+        printf("!!! YOU ARE TOO WEAK FOR \"%s\" !!!\n", w->name);
         printf("****************************************\n");
 
         exit(0);
