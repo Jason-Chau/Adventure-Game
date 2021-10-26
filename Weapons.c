@@ -48,13 +48,14 @@ void swapWeapon(WEAPON *old, WEAPON *new, Stats *s) {
 
         return ;
     }
-    checkWeaponRequirement(new, s);
-    printf("**************************************************\n");
-    printf("Swapping from \"%s\" to \"%s\"...\n", old->name, new->name);
-    printf("**************************************************\n");
+    if(checkWeaponRequirement(new, s) == 1) {
+        printf("**************************************************\n");
+        printf("Swapping from \"%s\" to \"%s\"...\n", old->name, new->name);
+        printf("**************************************************\n");
 
-    s->strength -= old->add_STR;
-    s->strength += new->add_STR;
+        s->strength -= old->add_STR;
+        s->strength += new->add_STR;
+    }
 }
 
 void detachWeapon(WEAPON *w, Stats *s) {
@@ -72,13 +73,14 @@ void detachWeapon(WEAPON *w, Stats *s) {
     s->strength -= w->add_STR;
 }
 
-void checkWeaponRequirement(WEAPON *w, Stats *s) {
+int checkWeaponRequirement(WEAPON *w, Stats *s) {
     if(s->strength < w->required_STR) {
         printf("****************************************\n");
         printf("!!! YOU ARE TOO WEAK FOR \"%s\" !!!\n", w->name);
         printf("****************************************\n");
 
-        exit(0);
+        return 0;
     }
+    else return 1;
 }
 // Once player character wears a certain weapons or armors, implement the function to add corresponding additional stats to the character.

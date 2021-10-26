@@ -16,5 +16,5 @@ void printWeapon(WEAPON w);
 void wearWeapon(WEAPON *w, Stats *s);
 void swapWeapon(WEAPON *w1, WEAPON *w2, Stats *s);
 void detachWeapon(WEAPON *w, Stats *s);
-void checkWeaponRequirement(WEAPON *w, Stats *s);
+int checkWeaponRequirement(WEAPON *w, Stats *s);
 #endif

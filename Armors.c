@@ -44,12 +44,14 @@ void swapArmor(ARMOR *old, ARMOR *new, Stats *s) {
 
         return ;
     }
-    checkArmorRequirement(new, s);
-    printf("**************************************************\n");
-    printf("Swapping from \"%s\" to \"%s\"...\n", old->name, new->name);
-    printf("**************************************************\n");
-    s->armorClass -= old->add_AC;
-    s->armorClass += new->add_AC;
+    if(checkArmorRequirement(new, s)) {
+        printf("**************************************************\n");
+        printf("Swapping from \"%s\" to \"%s\"...\n", old->name, new->name);
+        printf("**************************************************\n");
+
+        s->armorClass -= old->add_AC;
+        s->armorClass += new->add_AC;
+    }
 }
 
 void detachArmor(ARMOR *a, Stats *s) {
@@ -68,12 +70,13 @@ void detachArmor(ARMOR *a, Stats *s) {
     s->armorClass -= a->add_AC;
 }
 
-void checkArmorRequirement(ARMOR *a, Stats *s) {
+int checkArmorRequirement(ARMOR *a, Stats *s) {
     if(s->strength < a->required_STR) {
         printf("****************************************\n");
         printf("!!! YOU ARE TOO WEAK FOR \"%s\" !!!\n", a->name);
         printf("****************************************\n");
 
-        return ;
+        return 0;
     }
+    else return 1;
 }
