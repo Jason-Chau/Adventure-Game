@@ -12,6 +12,7 @@ CONSUMABLE initConsumables(char *name, int type, int amountHPHeal) {
 }
 
 // Heal HP when item is consumed
+
 Stats consumeItem(Stats s, CONSUMABLE c) {
 
     if(s.currentHitPoints == s.hitPoints) {

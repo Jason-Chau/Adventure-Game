@@ -6,13 +6,13 @@
 
 int armorAttached = 0;
 
-ARMOR initArmor(char *name, char *required_Class, int type, int required_STR, int add_AC) {
-    ARMOR a;
-    strcpy(a.name, name);
-    strcpy(a.required_Class, required_Class);
-    a.type = type;
-    a.required_STR = required_STR;
-    a.add_AC = add_AC;
+ARMOR* initArmor(char *name, char *required_Class, int type, int required_STR, int add_AC) {
+    ARMOR* a;
+    strcpy(a->name, name);
+    strcpy(a->required_Class, required_Class);
+    a->type = type;
+    a->required_STR = required_STR;
+    a->add_AC = add_AC;
     return a;
 }
 

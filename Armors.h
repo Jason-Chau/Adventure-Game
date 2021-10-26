@@ -11,7 +11,7 @@ typedef struct ARMOR_STRUCT {
     int add_AC;
 } ARMOR;
 
-ARMOR initArmor(char *name, char *required_Class, int type, int required_STR, int add_AC);
+ARMOR* initArmor(char *name, char *required_Class, int type, int required_STR, int add_AC);
 void printArmor(ARMOR w);
 void wearArmor(ARMOR *w, Stats *s);
 void swapArmor(ARMOR *w1, ARMOR *w2, Stats *s);

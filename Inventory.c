@@ -3,16 +3,26 @@
 
 #include "Weapons.h"
 #include "Armors.h"
-#include "Consumables.h"
+//#include "Consumables.h"
 
 #include "Inventory.h"
 
 void CreateInventory(INVENTORY* inventory, WEAPON* weapons[50], ARMOR* armors[50], CONSUMABLE* consumables[50]) {
     //need to either read in inventory from save file or hard code items to be in inventory and
     //pass those items in through the arrays above
+    WEAPON* w;
+    w = inventory->invWeapon[0];
+    printf("TEST %s\n", inventory->invWeapon[0]);
+    for(int i=0; i<50; ++i) {
+        inventory->invWeapon[i] = weapons[i];
+        inventory->invArmor[i] = armors[i];
+
+        //inventory->invConsumable[i] = consumables[i];
+    }
+    
+
 }
-
-
+/*
 void DisplayInventory(INVENTORY* inventory) {
     //if the errors cant be fixed, can change function to pass in the
     //three arrays instead of inventory
@@ -125,3 +135,4 @@ void RemoveConsumable(CONSUMABLE* consumables[50], int target) {
         consumables[i] = consumables[i+1];
     }
 }
+*/
