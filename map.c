@@ -2,33 +2,39 @@
 #include <string.h>
 #include <stdlib.h>
 #include <stdbool.h>
+#include <time.h>
 #include "map.h"
 
-int counter = 1;
+
 
 //function to construct map randomly
 void CreateRandomMap(Map* m){
     time_t t;
-    srand((unsigned) time(&t));
-
+    srand((unsigned) time(&t));  
     Room* room = CreateRoom(); 
-    m->rooms[0] = room;  
+    m->rooms[0] = room;  //starting room  
+    int i = 0;
+    room = m->rooms[0];     
+    int count = 0;
 
-    for(int i = 1; i < num_rooms; i++)  
+    while(i != num_rooms) //only makes number of rooms in num_rooms
     {
-        for(int j = 0; j < 4; j++) 
+        room = m->rooms[i - (rand() % (count+1))]; //chooses the new room based off of the last created rooms
+        count = 0;
+        for(int j = 0; j < 4; j++)
         {
             int x = rand() % 4;
             switch(x){
                 case 0: //North
-                    if(room->N_Room == NULL)
+                    if(room->N_Room == NULL) 
                     {
-                        if(i != num_rooms)
+                        if(i != num_rooms) 
                         {
                             Room* room1 = CreateRoom(); //creates new room
                             m->rooms[i] = room1;
                             Connect_Rooms(room, room1,x);
                             i++; //increases current room count expidite exiting loop
+                            count++; //counts the number of side rooms
                         }
                     }
                     break;
@@ -41,6 +47,7 @@ void CreateRandomMap(Map* m){
                             m->rooms[i] = room1;
                             Connect_Rooms(room, room1,x);
                             i++;
+                            count++;
                         }
                     }
                     break;
@@ -53,6 +60,7 @@ void CreateRandomMap(Map* m){
                             m->rooms[i] = room1;
                             Connect_Rooms(room, room1,x);
                             i++;
+                            count++;
                         }
                     }
                     break;
@@ -65,6 +73,7 @@ void CreateRandomMap(Map* m){
                             m->rooms[i] = room1;
                             Connect_Rooms(room, room1,x);
                             i++;
+                            count++;
                         }
                     }
                     break;
@@ -80,7 +89,7 @@ void CreateTestMap(Map* m){
     Room* r3 = CreateRoom();
     Room* r4 = CreateRoom();
     Room* r5 = CreateRoom();
-    m->rooms[0] = r1;
+    m->rooms[0] = r1; 
     m->rooms[1] = r2;
     m->rooms[2] = r3;
     m->rooms[3] = r4;
@@ -107,6 +116,7 @@ void CreateTestMap(Map* m){
 Room* CreateRoom()
 {
     Room* r;
+    r = (Room*)malloc(sizeof(Room));
     r->explored = false;
     r->N_Room = NULL;
     r->W_Room = NULL;
@@ -140,6 +150,16 @@ void Connect_Rooms(Room* r1, Room* r2, int direction){
 void Print_Full_Map(Map* m){
     for(int i = 0; i < num_rooms; i++)
     {
-        //will implemtent in the future, print out room layout based on NULL rooms going from to base room
-    } 
+        printf("In room %d you can go ", i);
+        Room* r = m->rooms[i];
+        if(r->N_Room != NULL)
+            printf("North ");
+        if(r->E_Room != NULL)
+            printf("East ");
+        if(r->W_Room != NULL)
+            printf("West ");
+        if(r->S_Room != NULL)
+            printf("South ");
+        printf("\n\n");
+    }
 }
