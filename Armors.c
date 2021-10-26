@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "characterStats.h"
-#include "Armor.h"
+#include "Armors.h"
 
 int armorAttached = 0;
 
