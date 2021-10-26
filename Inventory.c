@@ -33,6 +33,14 @@ void DisplayInventory(INVENTORY* inventory) {
     }
 }
 
+void AddWeapon(WEAPON* w, INVENTORY* inventory) {
+    for(int i = 0; i<50; ++i) {
+        if (strcmp(inventory->invWeapon[i]->name, "") == 0) {
+            inventory->invWeapon[i] = w;
+        }
+    }
+}
+
 void RemoveItem(char itemName[50], int itemType, INVENTORY* inventory){
     //itemType 0=weapon, 1=armor, 2=consumable
     if (itemType == 0) {
