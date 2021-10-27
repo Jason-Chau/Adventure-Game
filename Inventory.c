@@ -124,17 +124,17 @@ void RemoveItem(char itemName[50], int itemType, INVENTORY* inventory){
             }
         }
     }
-    /*
+    
     else if (itemType == 2){
         CONSUMABLE* c;
         for(int i = 0; i<50; ++i) {
             c = inventory->invConsumable[i];
             if(strcmp(c->name, itemName)==0) {
-                RemoveWeapon(inventory->invConsumable, i);
+                RemoveConsumable(inventory->invConsumable, i);
             }
         }
     }
-    */
+    
     else {
         printf("Error, invalid item type!");
     }
