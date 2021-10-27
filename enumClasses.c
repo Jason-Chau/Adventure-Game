@@ -67,10 +67,13 @@ int SetName(Stats* target, char name[50]) {
 }
 
 void DisplayStats(Stats* target)  {
-    printf("\nName: %s\n", target->name);
-    printf("HP: %d / %d\n", target->currentHP, target->hitPoints);
-    printf("AC: %d\n", target->armorClass);
-    printf("STR: %d\n", target->strength);
-    printf("DEX: %d\n", target->dexterity);
-    printf("INT: %d\n\n", target->intelligence);
+  printf("\n");
+  printf("Name: %s\n", target->name);
+  printf("HP: %d / %d\n", target->currentHP, target->hitPoints);
+  printf("AC: %d\n", target->armorClass);
+  printf("STR: %d\n", target->strength);
+  printf("DEX: %d\n", target->dexterity);
+  printf("INT: %d\n", target->intelligence);
+  printf("Trap Detection Level: %.1lf\n", target->trapDetection);
+  printf("\n");
 }
