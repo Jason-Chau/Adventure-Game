@@ -1,15 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "enumClasses.h"
 #include <time.h> 
-//#include "characterStats.h"
-#include "map.h"
+#include "enumClasses.h"
+//#include "map.h"
 
-Room* current_room = NULL; 
+//Room* current_room = NULL; 
 
 //menu function for executing commands, will add more later
-void menu(char c){
+/*void menu(char c){
     if(c == 'm')
     {
         char direction;
@@ -17,11 +16,17 @@ void menu(char c){
         scanf(" %c",&direction);
         current_room = Move_Rooms(current_room,direction); // changes current_room to the new room you moved into
     }
-} 
+}
+*/
 
 int main() {
-    Stats *Test = newCharacter(Warrior, "First Character");
-    DisplayStats(Test);
+    Stats* Test1 = newCharacter(Warrior, "First Character");
+    DisplayStats(Test1);
+    Stats* Test2 = newCharacter(Mage, "Second Character");
+    DisplayStats(Test2);
+    Stats* Test3 = newCharacter(Thief, "Third Character");
+    DisplayStats(Test3);
+    /*
     char c;
     Map* map; 
     map = (Map*)malloc(num_rooms * sizeof(Room*)); //allocating memory for all the rooms
@@ -39,5 +44,5 @@ int main() {
         printf("Enter your new choice: \n");
         scanf(" %c",&c);
     } 
-
+    */
 }
