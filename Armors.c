@@ -8,6 +8,7 @@ int armorAttached = 0;
 
 ARMOR* initArmor(char *name, char *required_Class, int type, int required_STR, int add_AC) {
     ARMOR* a;
+    a = (ARMOR*)malloc(sizeof(ARMOR));
     strcpy(a->name, name);
     strcpy(a->required_Class, required_Class);
     a->type = type;

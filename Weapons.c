@@ -7,7 +7,9 @@
 int weaponAttached = 0;
 
 WEAPON* initWeapon(char *name, char *required_Class, int type, int required_STR, int add_STR) {
+    
     WEAPON* w;
+    w = (WEAPON*)malloc(sizeof(WEAPON));
     strcpy(w->name, name);
     strcpy(w->required_Class, required_Class);
     w->type = type;

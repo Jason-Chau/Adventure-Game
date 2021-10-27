@@ -1,18 +1,20 @@
 #include <string.h>
+#include <stdlib.h>
 #include "Consumables.h"
 #include "characterStats.h"
-//#include "Inventory.h"
+#include "Inventory.h"
 
-CONSUMABLE initConsumables(char *name, int type, int amountHPHeal) {
-    CONSUMABLE c;
-    strcpy(c.name, name);
-    c.type = type;
-    c.amountHPHeal = amountHPHeal;
+CONSUMABLE* initConsumables(char *name, int type, int amountHPHeal) {
+    CONSUMABLE* c;
+    c = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
+    strcpy(c->name, name);
+    c->type = type;
+    c->amountHPHeal = amountHPHeal;
     return c;
 }
 
 // Heal HP when item is consumed
-
+/*
 Stats consumeItem(Stats s, CONSUMABLE c) {
 
     if(s.currentHP == s.hitPoints) {
@@ -29,7 +31,7 @@ Stats consumeItem(Stats s, CONSUMABLE c) {
 
     //RemoveItem(c.name, c.type, inventory);
 }
-
+*/
 // Inventory updateInven() {
     // need a function to keep updating inventory whenever character consumes items
     // or loot items 

@@ -7,24 +7,37 @@
 #include "Consumables.h"
 #include "Inventory.h"
 #include "Mob.h"
-
+#include "Map.h"
 
 int main() {
-    WEAPON* w = initWeapon("Test Weapon", "Warrior", 1, 4, 3);
-    ARMOR* a = initArmor("Test Armor", "Warrior", 1, 4, 10);
-    //CONSUMABLE c = initConsumables("Test Consumable", 1, 5);
+    printf("test\n");
+    WEAPON* w = (WEAPON*)malloc(sizeof(WEAPON));
+    w = initWeapon("Test Weapon", "Warrior", 0, 4, 3);
+    WEAPON* w2 = (WEAPON*)malloc(sizeof(WEAPON));
+    w2 = initWeapon("Test Weapon 2", "Warrior", 0, 4, 3);
+    WEAPON* w3 = (WEAPON*)malloc(sizeof(WEAPON));
+    w3 = initWeapon("Test Weapon 3", "Warrior", 0, 4, 3);
 
-    WEAPON* wI[50];
-    wI[0] = w;
+    ARMOR* a = (ARMOR*)malloc(sizeof(ARMOR));
+    a = initArmor("Test Armor", "Warrior", 1, 4, 10);
 
-    ARMOR* aI[50];
-    aI[0] = a;
-    printf("hello\n");
+    CONSUMABLE* c = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
+    c = initConsumables("Test Consumable", 2, 5);
+
     INVENTORY* inv;
-    CreateInventory(inv, wI, aI, NULL);
-
-    //WEAPON* w2 = inv->invWeapon[0];
-    //printf("%s", w2->name);
-
+    inv = (INVENTORY*)malloc(sizeof(INVENTORY));
+    CreateInventory(inv);
+    
+    WEAPON* wTest = inv->invWeapon[1];
+    printf("TEST 2 %s\n", wTest->name);
+    DisplayInventory(inv);
+    AddWeapon(w, inv);
+    AddWeapon(w2, inv);
+    AddWeapon(w3, inv);
+    AddArmor(a, inv);
+    AddConsumable(c, inv);
+    DisplayInventory(inv);
+    RemoveItem("Test Weapon 2", 0, inv);
+    DisplayInventory(inv);
     
 }
