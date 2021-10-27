@@ -23,8 +23,12 @@ typedef struct characterStats {
   double trapDetection;
 } Stats;
 
-void DisplayStats(Stats *target);
-int SetName(Stats *target, char name[50]);
 Stats* newCharacter(Classes class, char name[50]);
+
+Stats initHitDamage(int hit, int damage);
+
+void DisplayStats(Stats *target);
+
+int SetName(Stats *target, char name[50]);
 
 #endif
