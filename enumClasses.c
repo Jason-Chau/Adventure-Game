@@ -6,9 +6,9 @@
 // Creates player and sets class.
 Stats* newCharacter(Classes class, char name[50]) {
   // Allocate memory to player pointer.
-  Stats* newCharacter = malloc(sizeof(Stats));
-  SetName(newCharacter, name);
   Stats s;
+  Stats* newCharacter;
+  SetName(newCharacter, name);
 
   // Assign stats based on the given class.
   switch(class) {
