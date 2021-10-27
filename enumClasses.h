@@ -14,6 +14,7 @@ typedef struct characterStats {
   int health;
   int mana;
   int hitPoints;
+  int currentHP;
   int armorClass;
   int strength;
   int dexterity;

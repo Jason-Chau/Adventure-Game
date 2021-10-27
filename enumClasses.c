@@ -13,6 +13,7 @@ Stats* newCharacter(Classes class, char name[50]) {
   switch(class) {
     case Warrior:
     newCharacter->hitPoints = 100;
+    newCharacter->currentHP = 100;
     newCharacter->armorClass = 20;
     newCharacter->strength = 15;
     newCharacter->dexterity = 10;
@@ -21,6 +22,7 @@ Stats* newCharacter(Classes class, char name[50]) {
     break;
   case Mage:
     newCharacter->hitPoints = 100;
+    newCharacter->currentHP = 100;
     newCharacter->armorClass = 5;
     newCharacter->strength = 5;
     newCharacter->dexterity = 10;
@@ -29,6 +31,7 @@ Stats* newCharacter(Classes class, char name[50]) {
     break;
   case Thief:
     newCharacter->hitPoints = 100;
+    newCharacter->currentHP = 100;
     newCharacter->armorClass = 10;
     newCharacter->strength = 10;
     newCharacter->dexterity = 15;
@@ -37,6 +40,8 @@ Stats* newCharacter(Classes class, char name[50]) {
     break;
   default:
     newCharacter->hitPoints = 10;
+    newCharacter->currentHP = 10;
+
     newCharacter->mana = 0;
     break;
   }
@@ -49,7 +54,7 @@ int SetName(Stats *target, char name[50]) {
 
 void DisplayStats(Stats *target)  {
     printf("\nName: %s\n", target->name);
-    printf("HP: %d\n", target->hitPoints);
+    printf("HP: %d / %d\n", target->currentHP, target->hitPoints);
     printf("AC: %d\n", target->armorClass);
     printf("STR: %d\n", target->strength);
     printf("DEX: %d\n", target->dexterity);

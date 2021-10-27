@@ -6,6 +6,7 @@ typedef struct characterStats {
     char race[50];
     char class[50];
     int hitPoints;
+    int currentHP;
     int armorClass;
     int strength;
     int dexterity;

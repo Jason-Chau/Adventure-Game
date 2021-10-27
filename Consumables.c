@@ -15,16 +15,16 @@ CONSUMABLE initConsumables(char *name, int type, int amountHPHeal) {
 
 Stats consumeItem(Stats s, CONSUMABLE c) {
 
-    if(s.currentHitPoints == s.hitPoints) {
+    if(s.currentHP == s.hitPoints) {
         printf("You already have full HP\n");
     }
     // When current HP + amount HP heals is greater than max of character's HP, then it will just heal up to character's max HP.
-    else if(s.currentHitPoints + c.amountHPHeal > s.hitPoints) {
+    else if(s.currentHP + c.amountHPHeal > s.hitPoints) {
         printf("Consuming potion \"%s\"..\nCurrent HP: %d\n", c.name, s.hitPoints);
-        s.currentHitPoints = s.hitPoints;
+        s.currentHP = s.hitPoints;
     }
     else {
-        s.currentHitPoints += s.currentHitPoints + c.amountHPHeal;
+        s.currentHP += s.currentHP + c.amountHPHeal;
     }
 
     //RemoveItem(c.name, c.type, inventory);
