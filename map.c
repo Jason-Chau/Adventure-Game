@@ -13,14 +13,14 @@ void CreateRandomMap(Map* m){
     srand((unsigned) time(&t));  
     Room* room = CreateRoom(); 
     m->rooms[0] = room;  //starting room  
-    int i = 0;
+    int current_room = 1;
     room = m->rooms[0];     
-    int count = 0;
 
-    while(i < num_rooms-1) //only makes number of rooms in num_rooms
+    while(current_room < num_rooms) //only makes number of rooms in num_rooms
     {
         //Room* room = m->rooms[i]; //adds on to the last added room
-        count = 0;
+
+        //beginning room has 4 others have 3 FIX ME
         for(int j = 0; j < 4; j++)
         {
             int x = rand() % 4;
@@ -28,58 +28,54 @@ void CreateRandomMap(Map* m){
                 case 0: //North
                     if(room->N_Room == NULL) 
                     {
-                        if(i < num_rooms-1) 
+                        if(current_room < num_rooms) 
                         {
                             Room* room1 = CreateRoom(); //creates new room
-                            m->rooms[i] = room1; 
+                            m->rooms[current_room] = room1; 
                             Connect_Rooms(room, room1,x); 
-                            i++; //increases current room count expidite exiting loop
-                            count++; //counts the number of side rooms
+                            current_room++; //increases current room count expidite exiting loop
                         }
                     }
                     break;
                 case 1: //West
                     if(room->W_Room == NULL)
                     {
-                        if(i < num_rooms-1)
+                        if(current_room < num_rooms)
                         {
                             Room* room1 = CreateRoom();
-                            m->rooms[i] = room1;
+                            m->rooms[current_room] = room1;
                             Connect_Rooms(room, room1,x);
-                            i++;
-                            count++;
+                            current_room++;
                         }
                     }
                     break;
                 case 2: //East
                     if(room->E_Room == NULL)
                     {
-                        if(i < num_rooms-1)
+                        if(current_room < num_rooms)
                         {
                             Room* room1 = CreateRoom();
-                            m->rooms[i] = room1;
+                            m->rooms[current_room] = room1;
                             Connect_Rooms(room, room1,x);
-                            i++;
-                            count++;
+                            current_room++;
                         }
                     }
                     break;
                 case 3: //South
                     if(room->S_Room == NULL)
                     {
-                        if(i < num_rooms-1)
+                        if(current_room < num_rooms)
                         {
                             Room* room1 = CreateRoom();
-                            m->rooms[i] = room1;
+                            m->rooms[current_room] = room1;
                             Connect_Rooms(room, room1,x);
-                            i++;
-                            count++;
+                            current_room++;
                         }
                     }
                     break;
             }
         }
-        room = m->rooms[rand() % i];//chooses the new room based off of the last created rooms
+        room = m->rooms[rand() % current_room];//chooses the new room based off of the last created rooms
     }
 }
 
@@ -139,7 +135,7 @@ Room* CreateRoom()
     return r;
 }
 
-//connects 2 rooms based on int direction entered
+//connects 2 rooms directions based on int direction entered
 void Connect_Rooms(Room* r1, Room* r2, int direction){
     switch(direction){
         case 0: //North
@@ -161,6 +157,7 @@ void Connect_Rooms(Room* r1, Room* r2, int direction){
     }
 }
 
+//print full map based of off array of pointers to room structs
 void Print_Full_Map(Map* m){
     for(int i = 0; i < num_rooms; i++)
     {
@@ -176,4 +173,56 @@ void Print_Full_Map(Map* m){
             printf("South ");
         printf("\n\n");
     }
+}
+
+//changes current room in main to room based off of available directions in current room
+Room* Move_Rooms(Room* r, char c){ 
+    if(c == 'n')
+        if(r->N_Room != NULL) //if room is available
+        {
+            r = r->N_Room; //change current room
+            return r;
+        }
+        else
+            return r; //does nothing if room doesnt exist that you are trying to go to
+    else if(c == 'w')
+        if(r->W_Room != NULL)
+        {
+            r = r->W_Room;
+            return r;
+        }
+        else
+            return r;
+    else if(c == 's')
+        if(r->S_Room != NULL)
+        {
+            r = r->S_Room;
+            return r;
+        }
+        else
+            return r;
+    else if(c == 'e')
+        if(r->E_Room != NULL)
+        {
+            r = r->E_Room;
+            return r;
+        }
+        else
+            return r;
+    else
+    {
+        return r;
+    }
+}
+
+//displays ways you can go from current room
+void Look_Around(Room *r){ 
+    if(r->N_Room)
+        printf("There is a passage to the North.\n");
+    if(r->W_Room)
+        printf("There is a passage to the West.\n");
+    if(r->E_Room)
+        printf("There is a passage to the East.\n");
+    if(r->S_Room)
+        printf("There is a passage to the South.\n");
 }
