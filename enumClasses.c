@@ -45,7 +45,7 @@ Stats* newCharacter(Classes class, char name[50]) {
     newCharacter->mana = 0;
     break;
   }
-  return(newCharacter); // Return memory address of player.
+  return(newCharacter);
 }
 int SetName(Stats *target, char name[50]) {
     strcpy(target->name, name);
