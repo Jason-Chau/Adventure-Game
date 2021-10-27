@@ -10,12 +10,13 @@ typedef struct characterStats {
     int strength;
     int dexterity;
     int intelligence;
+    int damage;
+    int hit;
     //Declaring the variables necessary for a character's stats
 } Stats;
 
 Stats initCharacterStats(char* name, char* race, char* class, int hitPoints, int armorClass, int strength, int dexterity, int intelligence);
 //Initializing the character's stats
-
 void printCharacter();
 //Prints out the result of the newly created character
 
