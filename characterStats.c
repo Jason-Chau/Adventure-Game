@@ -9,7 +9,6 @@ Stats initCharacterStats(char* name, char* race, char* class, int hitPoints, int
     strcpy(s.race, race);
     strcpy(s.class, class);
     s.hitPoints = hitPoints;
-    s.currentHP = hitPoints;
     s.armorClass = armorClass;
     s.strength = strength;
     s.dexterity = dexterity;
@@ -21,7 +20,7 @@ void printCharacter(Stats s) {
     printf("Name: %s\n", s.name);
     printf("Race: %s\n", s.race);
     printf("Class: %s\n", s.class);
-    printf("HP: %d / %d\n", s.currentHP, s.hitPoints);
+    printf("HP: %d\n", s.hitPoints);
     printf("AC: %d\n", s.armorClass);
     printf("STR: %d\n", s.strength);
     printf("DEX: %d\n", s.dexterity);

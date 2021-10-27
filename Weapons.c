@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include "Weapons.h"
 #include "enumClasses.h"
-#include "Inventory.h"
+//#include "Inventory.h"
 
 int weaponAttached = 0;
 
@@ -31,19 +31,19 @@ void printWeapon(WEAPON *w) {
     // Need to dynamically print the required stat (DEX / STR / INT) depending on the classes, and additional stats too.
 }
 
-void wearWeapon(WEAPON *w, Stats *s, INVENTORY *inv) {
+void wearWeapon(WEAPON *w, Stats *s) {
     checkWeaponRequirement(w, s);
     printf("********************************\n");
     printf("Putting on \"%s\"...\n", w->name);
     printf("********************************\n");
 
-    RemoveItem(w->name, w->type, inv);
+    //RemoveItem(w->name, w->type, inv);
     weaponAttached = 1;
     s->strength += w->add_STR;
 
 }
 
-void swapWeapon(WEAPON *old, WEAPON *new, Stats *s, INVENTORY *inv) {
+void swapWeapon(WEAPON *old, WEAPON *new, Stats *s) {
     if(!weaponAttached) {
         printf("****************************************\n");
         printf("You don't have \"%s\" on !\n", old->name);
@@ -56,14 +56,14 @@ void swapWeapon(WEAPON *old, WEAPON *new, Stats *s, INVENTORY *inv) {
         printf("Swapping from \"%s\" to \"%s\"...\n", old->name, new->name);
         printf("**************************************************\n");
 
-        RemoveItem(new->name, new->type, inv);
-        AddWeapon(old, inv);
+        //RemoveItem(new->name, new->type, inv);
+        //AddWeapon(old, inv);
         s->strength -= old->add_STR;
         s->strength += new->add_STR;
     }
 }
 
-void detachWeapon(WEAPON *w, Stats *s,  INVENTORY *inv) {
+void detachWeapon(WEAPON *w, Stats *s) {
     if(!weaponAttached) {
         printf("****************************************\n");
         printf("You don't have \"%s\" on !\n", w->name);
@@ -72,7 +72,7 @@ void detachWeapon(WEAPON *w, Stats *s,  INVENTORY *inv) {
         return ;
     }
     weaponAttached = 0;
-    AddWeapon(w, inv);
+    //AddWeapon(w, inv);
     printf("****************************\n");
     printf("Detaching \"%s\"...\n", w->name);
     printf("****************************\n");
