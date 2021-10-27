@@ -1,12 +1,11 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-//#include "characterStats.h"
 #include "Armors.h"
 #include "enumClasses.h"
+#include "Inventory.h"
 
 int armorAttached = 0;
-
 
 ARMOR* initArmor(char *name, char *class, int type, int required_STR, int add_AC) {
     ARMOR* a = malloc(sizeof(ARMOR));
@@ -22,23 +21,24 @@ void printArmor(ARMOR *a) {
     printf("********************************\n");
     printf("Name: \t\t\t%s\n", a->name);
     printf("Class: \t\t\t%s\n", a->class);
-    printf("Type: \t\t\t%s\n", a->type);
+    printf("Type: \t\t\t%d\n", a->type);
     printf("Required Strength: \t%d\n", a->required_STR);
     printf("+ Armor Class: \t\t%d\n\n", a->add_AC);
     printf("********************************\n");
 }
 
-void wearArmor(ARMOR *a, Stats *s) {
+void wearArmor(ARMOR *a, Stats *s, INVENTORY *inv) {
     checkArmorRequirement(a, s);
     printf("********************************\n");
     printf("Putting on \"%s\"...\n", a->name);
     printf("********************************\n");
 
+    RemoveItem(a->name, a->type, inv);
     armorAttached = 1;
     s->armorClass += a->add_AC;
 }
 
-void swapArmor(ARMOR *old, ARMOR *new, Stats *s) {
+void swapArmor(ARMOR *old, ARMOR *new, Stats *s,  INVENTORY *inv) {
     if(!armorAttached) {
         printf("****************************************\n");
         printf("You don't have \"%s\" on !\n", old->name);
@@ -51,12 +51,14 @@ void swapArmor(ARMOR *old, ARMOR *new, Stats *s) {
         printf("Swapping from \"%s\" to \"%s\"...\n", old->name, new->name);
         printf("**************************************************\n");
 
+        RemoveItem(new->name, new->type, inv);
+        AddArmor(old, inv);
         s->armorClass -= old->add_AC;
         s->armorClass += new->add_AC;
     }
 }
 
-void detachArmor(ARMOR *a, Stats *s) {
+void detachArmor(ARMOR *a, Stats *s,  INVENTORY *inv) {
     if(!armorAttached) {
         printf("****************************************\n");
         printf("You don't have \"%s\" on !\n", a->name);
@@ -65,6 +67,7 @@ void detachArmor(ARMOR *a, Stats *s) {
         return ;
     }
     armorAttached = 0;
+    AddArmor(a, inv);
     printf("****************************\n");
     printf("Detaching \"%s\"...\n", a->name);
     printf("****************************\n");
