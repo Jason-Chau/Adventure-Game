@@ -8,6 +8,6 @@ typedef struct CONSUMABLE_STRUCT {
     int amountHPHeal;
 } CONSUMABLE;
 
-CONSUMABLE* initConsumables(char *name, int type, int amountHPHeal);
-//Stats consumeItem(Stats s, CONSUMABLE c);
+CONSUMABLE initConsumables(char *name, int type, int amountHPHeal);
+Stats consumeItem(Stats s, CONSUMABLE c);
 #endif
