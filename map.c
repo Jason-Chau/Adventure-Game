@@ -180,6 +180,7 @@ Room* Move_Rooms(Room* r, char c){
     if(c == 'n')
         if(r->N_Room != NULL) //if room is available
         {
+            r->explored = true;
             r = r->N_Room; //change current room
             return r;
         }
@@ -188,6 +189,7 @@ Room* Move_Rooms(Room* r, char c){
     else if(c == 'w')
         if(r->W_Room != NULL)
         {
+            r->explored = true;
             r = r->W_Room;
             return r;
         }
@@ -196,6 +198,7 @@ Room* Move_Rooms(Room* r, char c){
     else if(c == 's')
         if(r->S_Room != NULL)
         {
+            r->explored = true;
             r = r->S_Room;
             return r;
         }
@@ -204,6 +207,7 @@ Room* Move_Rooms(Room* r, char c){
     else if(c == 'e')
         if(r->E_Room != NULL)
         {
+            r->explored = true;
             r = r->E_Room;
             return r;
         }
