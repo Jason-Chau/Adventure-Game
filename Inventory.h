@@ -5,7 +5,7 @@
 #include "Armors.h"
 #include "Consumables.h"
 
-typedef struct Inventory_struct {
+typedef struct INVENTORY_STRUCT {
     struct WEAPON_STRUCT* invWeapon[50];
     struct ARMOR_STRUCT* invArmor[50];
     struct CONSUMABLE_STRUCT* invConsumable[50];

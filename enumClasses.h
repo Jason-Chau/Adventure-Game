@@ -1,6 +1,9 @@
 #ifndef ENUM_CLASSES_H
 #define ENUM_CLASSES_H
 
+//#include "Inventory.h"
+
+
 typedef enum Classes  {
   Warrior,
   Mage,
@@ -18,6 +21,7 @@ typedef struct characterStats {
   int strength;
   int dexterity;
   int intelligence;
+  //struct INVENTORY_STRUCT* inventory;
 } Stats;
 
 void DisplayStats(Stats *target);

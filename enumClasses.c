@@ -8,7 +8,12 @@ Stats* newCharacter(Classes class, char name[50]) {
   // Allocate memory to player pointer.
   Stats *newCharacter = malloc(sizeof(Stats));
   SetName(newCharacter, name);
-
+  /*
+  INVENTORY* inv;
+  inv = (INVENTORY*)malloc(sizeof(INVENTORY));
+  newCharacter->inventory = inv;
+  CreateInventory(inv);
+  */
   // Assign stats based on the given class.
   switch(class) {
     case Warrior:

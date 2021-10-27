@@ -1,8 +1,9 @@
 #include <string.h>
 #include <stdlib.h>
 #include "Consumables.h"
-#include "characterStats.h"
+//#include "characterStats.h"
 #include "Inventory.h"
+#include "enumClasses.h"
 
 CONSUMABLE* initConsumables(char *name, int type, int amountHPHeal) {
     CONSUMABLE* c;
