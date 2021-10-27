@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "enumClasses.h"
 #include <time.h> 
 //#include "characterStats.h"
 #include "map.h"
@@ -19,10 +20,10 @@ void menu(char c){
 } 
 
 int main() {
-    //Stats Test = initCharacterStats("First Character", "Human", "Warrior", 20, 10, 15, 14, 13);
-    //printCharacter(Test);
+    Stats *Test = newCharacter(Warrior, "First Character");
+    DisplayStats(Test);
     char c;
-    Map* map;
+    Map* map; 
     map = (Map*)malloc(num_rooms * sizeof(Room*)); //allocating memory for all the rooms
     CreateRandomMap(map); //creates a random map
     Print_Full_Map(map); //prints it, will comment out for real version
