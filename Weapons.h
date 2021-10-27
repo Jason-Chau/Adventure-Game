@@ -6,13 +6,13 @@
 
 typedef struct WEAPON_STRUCT {
     char name[30];
-    char type[30];
+    int type;
     char class[30];
     int required_STR;
     int add_STR;
 } WEAPON;
 
-WEAPON* initWeapon(char *name,  char *class, char *type, int required_STR, int add_STR);
+WEAPON* initWeapon(char *name,  char *class, int type, int required_STR, int add_STR);
 void printWeapon(WEAPON *w);
 void wearWeapon(WEAPON *w, Stats *s);
 void swapWeapon(WEAPON *w1, WEAPON *w2, Stats *s);

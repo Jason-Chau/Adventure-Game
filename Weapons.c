@@ -6,18 +6,12 @@
 
 int weaponAttached = 0;
 
-<<<<<<< HEAD
-WEAPON* initWeapon(char *name, char *class, char *type, int required_STR, int add_STR) {
+
+WEAPON* initWeapon(char *name, char *class,int type, int required_STR, int add_STR) {
     WEAPON* w = malloc(sizeof(WEAPON));
-=======
-WEAPON* initWeapon(char *name, char *required_Class, int type, int required_STR, int add_STR) {
-    
-    WEAPON* w;
-    w = (WEAPON*)malloc(sizeof(WEAPON));
->>>>>>> 1787576bff9f657ece75421cf03693b575796f81
     strcpy(w->name, name);
     strcpy(w->class, class);
-    strcpy(w->type,type);
+    w->type = type;
     w->required_STR = required_STR;
     w->add_STR = add_STR;
     return w;
