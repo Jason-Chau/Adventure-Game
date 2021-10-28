@@ -25,7 +25,8 @@ Stats* newCharacter(Classes class, char name[50]) {
       newCharacter->dexterity = 10;
       newCharacter->intelligence = 5;
       newCharacter->class = Warrior;
-      newCharacter->trapDetection = 0.5 * newCharacter->dexterity;
+      newCharacter->trapDetection = 0.5 * newCharacter->intelligence;
+      newCharacter->dodgeChance = 0.5 * newCharacter->dexterity;
       strcpy(newCharacter->className, "Warrior");
       break;
     }
@@ -37,7 +38,8 @@ Stats* newCharacter(Classes class, char name[50]) {
       newCharacter->dexterity = 5;
       newCharacter->intelligence = 20;
       newCharacter->class = Mage;
-      newCharacter->trapDetection = 0.5 * newCharacter->dexterity;
+      newCharacter->trapDetection = 0.5 * newCharacter->intelligence;
+      newCharacter->dodgeChance = 0.5 * newCharacter->dexterity;
       strcpy(newCharacter->className, "Mage");
       break;
     }
@@ -49,15 +51,14 @@ Stats* newCharacter(Classes class, char name[50]) {
       newCharacter->dexterity = 15;
       newCharacter->intelligence = 10;
       newCharacter->class = Thief;
-      newCharacter->trapDetection = 0.5 * newCharacter->dexterity;
+      newCharacter->trapDetection = 0.5 * newCharacter->intelligence;
+      newCharacter->dodgeChance = 0.5 * newCharacter->dexterity;
       strcpy(newCharacter->className, "Thief");
       break;
     }
     default: {
       newCharacter->hitPoints = 10;
       newCharacter->currentHP = 10;
-
-      newCharacter->mana = 0;
       break;
     }
   }
@@ -85,5 +86,6 @@ void DisplayStats(Stats* target)  {
   printf("DEX: %d\n", target->dexterity);
   printf("INT: %d\n", target->intelligence);
   printf("Trap Detection Level: %.1lf\n", target->trapDetection);
+  printf ("Dodge Chance: %.1lf\n", target->dodgeChance);
   printf("\n");
 }

@@ -3,7 +3,7 @@
 
 //#include "Inventory.h"
 
-
+//Enumerated classes that is called
 typedef enum Classes  {
   Warrior,
   Mage,
@@ -25,6 +25,7 @@ typedef struct characterStats {
   int damage;
   int hit;
   double trapDetection;
+  double dodgeChance;
 } Stats;
 
 Stats* newCharacter(Classes class, char name[50]);
