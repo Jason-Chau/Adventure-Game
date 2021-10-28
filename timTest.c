@@ -53,6 +53,21 @@ void Combat(Stats* p, Mob* m) {
 }
 
 int main() {
+    
+    Stats *Test1 = newCharacter(Warrior, "First Character");
+    DisplayStats(Test1);
+
+    INVENTORY *inv = (INVENTORY*) malloc(sizeof(INVENTORY));
+    
+    CreateInventory(inv);
+    WEAPON *LumberAxe = initWeapon("Lumber Axe", "Warriors", 0, 10, 20);
+    AddWeapon(LumberAxe, inv);
+    wearWeapon(LumberAxe, Test1, inv);
+    DisplayInventory(inv);
+
+    
+    
+    /*
     INVENTORY* mInv;
     mInv = (INVENTORY*)malloc(sizeof(INVENTORY));
     Mob* m;
@@ -74,6 +89,7 @@ int main() {
     AddWeapon(GodButcher, inv);
     DisplayInventory(inv);
     Combat(Test, m);
+    */
 
     /*
     printf("test\n");
