@@ -17,7 +17,7 @@ typedef struct WEAPON_STRUCT {
 } WEAPON;
 
 WEAPON* initWeapon(char *name, int type, int required_STR, int add_STR);
-void printWeapon(WEAPON *w);
+void printWeapon(WEAPON *w, Stats *s);
 void wearWeapon(WEAPON *w, Stats *s, INVENTORY *inv);
 void swapWeapon(WEAPON *w1, WEAPON *w2, Stats *s, INVENTORY *inv);
 void detachWeapon(WEAPON *w, Stats *s, INVENTORY *inv);

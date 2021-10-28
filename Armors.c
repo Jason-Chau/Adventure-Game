@@ -39,16 +39,15 @@ void printArmor(ARMOR *a) {
 }
 
 void wearArmor(ARMOR *a, Stats *s, INVENTORY *inv) {
-    if(checkArmorRequirement(a, s))
-    {
-    printf("********************************\n");
-    printf("Putting on \"%s\"...\n", a->name);
-    printf("********************************\n");
+    if(checkArmorRequirement(a, s)) {
+        printf("********************************\n");
+        printf("Putting on \"%s\"...\n", a->name);
+        printf("********************************\n");
 
-    strcpy(s->currentArmor, a->name);
-    RemoveItem(a->name, a->type, inv);
-    armorAttached = 1;
-    s->armorClass += a->add_AC;
+        strcpy(s->currentArmor, a->name);
+        RemoveItem(a->name, a->type, inv);
+        armorAttached = 1;
+        s->armorClass += a->add_AC;
     }
 }
 
@@ -74,7 +73,7 @@ void swapArmor(ARMOR *old, ARMOR *new, Stats *s, INVENTORY *inv) {
 }
 
 void detachArmor(ARMOR *a, Stats *s, INVENTORY *inv) {
-    if(!armorAttached) {
+    if(!armorAttached || !checkArmorRequirement(a, s)) {
         printf("****************************************\n");
         printf("You don't have \"%s\" on !\n", a->name);
         printf("****************************************\n");

@@ -22,10 +22,10 @@ int main() {
     
     CreateInventory(inv);
     WEAPON *LumberAxe = initWeapon("Lumber Axe", 0, 10, 5);
-    WEAPON *GodButcher = initWeapon("God Butcher", 0, 10, 15);
+    WEAPON *GodButcher = initWeapon("God Butcher", 0, 100, 15);
 
     ARMOR *BabySuit = initArmor("Baby Suit",  1, 10, 5);
-    ARMOR *CaptainSuit = initArmor("Captain Suit", 1, 20, 10);
+    ARMOR *CaptainSuit = initArmor("Captain Suit", 1, 100, 10);
 
     // CONSUMABLE *c = initConsumables("Fairy's Elixir", 2, 10);
     // AddConsumable(c, inv);
@@ -37,20 +37,28 @@ int main() {
     AddArmor(BabySuit, inv);
     DisplayInventory(inv);
 
-    wearWeapon(LumberAxe, Test1, inv);
+    // printWeapon(LumberAxe, Test1);
+    // wearWeapon(LumberAxe, Test1, inv);
+
+    // swapWeapon(LumberAxe, GodButcher, Test1, inv);
+    // detachWeapon(GodButcher, Test1, inv);
+    //wearArmor(BabySuit, Test1, inv);
     wearArmor(BabySuit, Test1, inv);
+    swapArmor(BabySuit,CaptainSuit,Test1, inv);
     DisplayStats(Test1);
-    DisplayInventory(inv);
-
-    swapWeapon(LumberAxe, GodButcher, Test1, inv);
-    swapArmor(BabySuit, CaptainSuit, Test1, inv);
-    DisplayStats(Test1);
-    DisplayInventory(inv);
-
-    detachWeapon(GodButcher, Test1, inv);
     detachArmor(CaptainSuit, Test1, inv);
     DisplayStats(Test1);
-    DisplayInventory(inv);
+    // DisplayInventory(inv);
+
+    // swapWeapon(LumberAxe, GodButcher, Test1, inv);
+    // swapArmor(BabySuit, CaptainSuit, Test1, inv);
+    // DisplayStats(Test1);
+    // DisplayInventory(inv);
+
+    // detachWeapon(GodButcher, Test1, inv);
+    // detachArmor(CaptainSuit, Test1, inv);
+    // DisplayStats(Test1);
+    // DisplayInventory(inv);
     // wearWeapon(LumberAxe, Test1, inv);
     // DisplayInventory(inv);
 
