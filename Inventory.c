@@ -23,6 +23,7 @@ void CreateInventory(INVENTORY* inventory) {
         inventory->invConsumable[i] = c;
     }
     //adding hardcoded inventory items
+    /*
     WEAPON* bow = (WEAPON*)malloc(sizeof(WEAPON));
     bow = initWeapon("Bow", 0, 7, 8);
     ARMOR* leather = (ARMOR*)malloc(sizeof(ARMOR));
@@ -52,6 +53,7 @@ void CreateInventory(INVENTORY* inventory) {
     inventory->invWeapon[2] = sword;
     inventory->invArmor[2] = Platemail;
     inventory->invConsumable[2] = steak;
+    */
     /*
     for(int i=0; i<50; ++i) {
         inventory->invWeapon[i] = weapons[i];
