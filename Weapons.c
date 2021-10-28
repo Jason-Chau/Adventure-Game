@@ -18,10 +18,9 @@ void AddConsumable(CONSUMABLE* c, INVENTORY* inventory);
 
 int weaponAttached = 0;
 
-WEAPON* initWeapon(char *name, char *class,int type, int required_STR, int add_STR) {
+WEAPON* initWeapon(char *name, int type, int required_STR, int add_STR) {
     WEAPON* w = malloc(sizeof(WEAPON));
     strcpy(w->name, name);
-    strcpy(w->class, class);
     w->type = type;
     w->required_STR = required_STR;
     w->add_STR = add_STR;

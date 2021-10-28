@@ -12,9 +12,9 @@ void CreateInventory(INVENTORY* inventory) {
     //need to either read in inventory from save file or hard code items to be in inventory and
     //pass those items in through the arrays above
     WEAPON* w = (WEAPON*)malloc(sizeof(WEAPON));
-    w = initWeapon("", "", 0, -1, -1);
+    w = initWeapon("", 0, -1, -1);
     ARMOR* a = (ARMOR*)malloc(sizeof(ARMOR));
-    a = initArmor("", "", 1, -1, -1);
+    a = initArmor("", 1, -1, -1);
     CONSUMABLE* c = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
     c = initConsumables("", 2, 0);
     for(int i=0; i<50; ++i) {
@@ -146,7 +146,7 @@ void RemoveWeapon(WEAPON* weapons[50], int target) {
         weapons[i] = weapons[i+1];
     }
     WEAPON* w = (WEAPON*)malloc(sizeof(WEAPON));
-    w = initWeapon("", "", -1, -1, -1);
+    w = initWeapon("", -1, -1, -1);
     weapons[49] = w;
 }
 void RemoveArmor(ARMOR* armors[50], int target) {
@@ -154,7 +154,7 @@ void RemoveArmor(ARMOR* armors[50], int target) {
         armors[i] = armors[i+1];
     }
     ARMOR* a = (ARMOR*)malloc(sizeof(ARMOR));
-    a = initArmor("", "", -1, -1, -1);
+    a = initArmor("", -1, -1, -1);
     armors[49] = a;
 }
 void RemoveConsumable(CONSUMABLE* consumables[50], int target) {
