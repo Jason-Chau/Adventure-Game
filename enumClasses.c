@@ -26,6 +26,7 @@ Stats* newCharacter(Classes class, char name[50]) {
       newCharacter->intelligence = 5;
       newCharacter->class = Warrior;
       newCharacter->trapDetection = 0.5 * newCharacter->dexterity;
+      strcpy(newCharacter->className, "Warrior");
       break;
     }
     case Mage: {
@@ -37,6 +38,7 @@ Stats* newCharacter(Classes class, char name[50]) {
       newCharacter->intelligence = 20;
       newCharacter->class = Mage;
       newCharacter->trapDetection = 0.5 * newCharacter->dexterity;
+      strcpy(newCharacter->className, "Mage");
       break;
     }
     case Thief: {
@@ -48,6 +50,7 @@ Stats* newCharacter(Classes class, char name[50]) {
       newCharacter->intelligence = 10;
       newCharacter->class = Thief;
       newCharacter->trapDetection = 0.5 * newCharacter->dexterity;
+      strcpy(newCharacter->className, "Thief");
       break;
     }
     default: {
@@ -75,6 +78,7 @@ int SetName(Stats* target, char name[50]) {
 
 void DisplayStats(Stats* target)  {
   printf("\nName: %s\n", target->name);
+  printf("Class: %s\n", target->className);
   printf("HP: %d / %d\n", target->currentHP, target->hitPoints);
   printf("AC: %d\n", target->armorClass);
   printf("STR: %d\n", target->strength);
