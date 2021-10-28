@@ -8,6 +8,7 @@
 
 struct INVENTORY_STRUCT;
 typedef struct INVENTORY_STRUCT INVENTORY;
+
 void RemoveItem(char *name, int type, INVENTORY *inv);
 void RemoveWeapon(WEAPON* weapons[50], int target);
 void RemoveWeapon(WEAPON* weapons[50], int target);
@@ -44,6 +45,7 @@ void wearArmor(ARMOR *a, Stats *s, INVENTORY *inv) {
     printf("Putting on \"%s\"...\n", a->name);
     printf("********************************\n");
 
+    strcpy(s->currentArmor, a->name);
     RemoveItem(a->name, a->type, inv);
     armorAttached = 1;
     s->armorClass += a->add_AC;
@@ -62,6 +64,7 @@ void swapArmor(ARMOR *old, ARMOR *new, Stats *s, INVENTORY *inv) {
         printf("Swapping from \"%s\" to \"%s\"...\n", old->name, new->name);
         printf("**************************************************\n");
 
+        strcpy(s->currentArmor, new->name);
         RemoveItem(new->name, new->type, inv);
         AddArmor(old, inv);
         s->armorClass -= old->add_AC;
@@ -78,6 +81,7 @@ void detachArmor(ARMOR *a, Stats *s, INVENTORY *inv) {
         return ;
     }
     armorAttached = 0;
+    strcpy(s->currentArmor, "");
     AddArmor(a, inv);
     printf("****************************\n");
     printf("Detaching \"%s\"...\n", a->name);

@@ -73,7 +73,7 @@ void DisplayInventory(INVENTORY* inventory) {
 void AddWeapon(WEAPON* w, INVENTORY* inventory) {
     WEAPON* wep = (WEAPON*)malloc(sizeof(WEAPON));
     for(int i = 0; i<50; ++i) {
-        wep = inventory->invWeapon[i];
+        wep = inventory->invWeapon[i];    
         if (strcmp(wep->name, "") == 0) {
             inventory->invWeapon[i] = w;
             break;
