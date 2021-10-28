@@ -26,7 +26,7 @@ void CreateInventory(INVENTORY* inventory) {
     WEAPON* bow = (WEAPON*)malloc(sizeof(WEAPON));
     bow = initWeapon("Bow", 0, 7, 8);
     ARMOR* leather = (ARMOR*)malloc(sizeof(ARMOR));
-    leather = initArmor("Leather Armor", 1, 11, 11);
+    leather = initArmor("Leather", 1, 11, 11);
     CONSUMABLE* bread = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
     bread = initConsumables("Bread", 2, 5);
     inventory->invWeapon[0] = bow;
