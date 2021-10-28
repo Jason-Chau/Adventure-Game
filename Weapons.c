@@ -44,6 +44,7 @@ void wearWeapon(WEAPON *w, Stats *s, INVENTORY* inv) {
     printf("Putting on \"%s\"...\n", w->name);
     printf("********************************\n");
 
+    //RemoveItem(w->name, w->type, inv);
     weaponAttached = 1;
     s->strength += w->add_STR;
 
@@ -62,6 +63,8 @@ void swapWeapon(WEAPON *old, WEAPON *new, Stats *s) {
         printf("Swapping from \"%s\" to \"%s\"...\n", old->name, new->name);
         printf("**************************************************\n");
 
+        //RemoveItem(new->name, new->type, inv);
+        //AddWeapon(old, inv);
         s->strength -= old->add_STR;
         s->strength += new->add_STR;
     }
@@ -76,6 +79,7 @@ void detachWeapon(WEAPON *w, Stats *s) {
         return ;
     }
     weaponAttached = 0;
+    //AddWeapon(w, inv);
     printf("****************************\n");
     printf("Detaching \"%s\"...\n", w->name);
     printf("****************************\n");

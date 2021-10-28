@@ -5,8 +5,7 @@
 #define WEAPONS_H
 
 #include "enumClasses.h"
-#include "Inventory.h"
-
+//#include "Inventory.h"
 
 typedef struct WEAPON_STRUCT {
     char name[30];
@@ -22,4 +21,7 @@ void wearWeapon(WEAPON *w, Stats *s, INVENTORY* inv);
 void swapWeapon(WEAPON *w1, WEAPON *w2, Stats *s);
 void detachWeapon(WEAPON *w, Stats *s);
 int checkWeaponRequirement(WEAPON *w, Stats *s);
+
+
+
 #endif

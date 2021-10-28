@@ -13,6 +13,7 @@ typedef enum Classes  {
 typedef struct characterStats {
   char name[50];
   Classes class;
+  char className[50];
   int health;
   int mana;
   int hitPoints;
@@ -21,11 +22,19 @@ typedef struct characterStats {
   int strength;
   int dexterity;
   int intelligence;
-  //struct INVENTORY_STRUCT* inventory;
+  int damage;
+  int hit;
+  double trapDetection;
 } Stats;
 
-void DisplayStats(Stats *target);
-int SetName(Stats *target, char name[50]);
 Stats* newCharacter(Classes class, char name[50]);
+
+Stats initHitDamage(int hit, int damage);
+
+void DisplayStats(Stats *target);
+
+int SetName(Stats *target, char name[50]);
+
+int GetName(Stats * target, char name[50]);
 
 #endif
