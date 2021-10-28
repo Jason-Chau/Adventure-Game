@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include "characterStats.h"
+#include "characterStats.h"
 #include "enumClasses.h"
 #include "Weapons.h"
 #include "Inventory.h"
