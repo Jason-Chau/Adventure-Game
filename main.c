@@ -5,11 +5,28 @@
 #include "enumClasses.h"
 #include "Weapons.h"
 #include "Inventory.h"
+//#include "Encounter.c"
+
+void print_menu(){
+    printf("Press (m) for Movement || ");
+    printf("Press (s) for Stats || ");
+    printf("Press (i) to display inventory||\n");
+    printf("Press (e) to equip a weapon|| ");
+    printf("Press (a) to equip armor|| ");
+    printf("Press (h) to swap weapon||\n");
+    printf("Press (n) to swap armor|| ");
+    printf("Press (u) to unequip weapon|| ");
+    printf("Press (o) to unequip armor||\n");
+    printf("Press (c) to use consumable|| ");
+    printf("Press (t) to detect traps");
+}
 
 int main() {
 
     Stats *Test1 = newCharacter(Warrior, "First Character");
-    DisplayStats(Test1);
+    //DisplayStats(Test1);
+
+    print_menu();
 
     // Stats *Test2 = newCharacter(Mage, "Second Character");
     // DisplayStats(Test2);
