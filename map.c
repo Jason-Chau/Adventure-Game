@@ -81,6 +81,7 @@ void CreateRandomMap(Map* m){
         }
         room = m->rooms[rand() % i];//chooses the new room based off of the last created rooms
     }
+    m->rooms[i-1]->final = true;
 }
 
 
@@ -91,6 +92,7 @@ void CreateTestMap(Map* m){
     Room* r3 = CreateRoom();
     Room* r4 = CreateRoom();
     Room* r5 = CreateRoom();
+    r5->final = true;
     m->rooms[0] = r1; 
     m->rooms[1] = r2;
     m->rooms[2] = r3;
@@ -136,6 +138,7 @@ Room* CreateRoom()
     r->W_Room = NULL;
     r->E_Room = NULL;
     r->S_Room = NULL;
+    r->final = false;
     return r;
 }
 
@@ -176,4 +179,15 @@ void Print_Full_Map(Map* m){
             printf("South ");
         printf("\n\n");
     }
+}
+
+void Look_Around(Room* r){
+    if(r->N_Room != NULL)
+        printf("There is a path to the North\n");
+    if(r->E_Room != NULL)
+        printf("There is a path to the East\n");
+    if(r->W_Room != NULL)
+        printf("There is a path to the West\n");
+    if(r->S_Room != NULL)
+        printf("There is a path to the South\n"); 
 }
