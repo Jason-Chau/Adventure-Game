@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "enumClasses.h"
+//#include "enumClasses.h"
 #include <time.h> 
 //#include "characterStats.h"
 #include "map.h"
@@ -20,8 +20,8 @@ void menu(char c){
 } 
 
 int main() {
-    Stats *Test = newCharacter(Warrior, "First Character");
-    DisplayStats(Test);
+    //Stats *Test = newCharacter(Warrior, "First Character");
+    //DisplayStats(Test);
     char c;
     Map* map; 
     map = (Map*)malloc(num_rooms * sizeof(Room*)); //allocating memory for all the rooms
