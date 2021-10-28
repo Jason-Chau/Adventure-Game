@@ -10,6 +10,27 @@
 //#include "Map.h"
 #include "enumClasses.h"
 
+
+void Trap(Stats* p) {
+    //its harder to spot traps than to dodge them once set off
+    int trapDetectionDC = 12 + rand()%8 + 1;
+    int trapDodgeDC = 6 + rand()%10 + 1;
+    //trap spotted?
+    if ((rand()%20)+p->trapDetection+1 >= trapDetectionDC) {
+        printf("You've spotted a trap! You avoid it with ease.\n");
+        //add experience?
+    }
+    else if ((rand()%20)+10 >= trapDodgeDC){
+        printf("You set off a trap but quickly dodge, avoiding harm!\n");
+    }
+    else {
+        //can change the way trap damage is calculated later (probably based on level), for now its 1-10 damage
+        int d = (rand() % 9) + 1;
+        p->currentHP -= d;
+        printf("You set off a trap and take %d damage. Ouch!\n", d);
+    }
+}
+
 void Combat(Stats* p, Mob* m) {
     printf("Combat begins! Enemies: %s\n", m->name);
 
@@ -53,7 +74,7 @@ void Combat(Stats* p, Mob* m) {
 }
 
 int main() {
-    
+
     Stats *Test1 = newCharacter(Warrior, "First Character");
     DisplayStats(Test1);
 
@@ -62,10 +83,11 @@ int main() {
     CreateInventory(inv);
     WEAPON *LumberAxe = initWeapon("Lumber Axe", "Warriors", 0, 10, 20);
     AddWeapon(LumberAxe, inv);
+    DisplayInventory(inv);
     wearWeapon(LumberAxe, Test1, inv);
     DisplayInventory(inv);
-
-    
+    DisplayStats(Test1);
+    Trap(Test1);
     
     /*
     INVENTORY* mInv;

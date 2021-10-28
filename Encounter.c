@@ -17,9 +17,9 @@ void Combat(Stats* p, Mob* m) {
         scanf("%s", pAction);
         if(strcmp(pAction, "attack") == 0) {
         // player attacking
-            if(((rand()%20)+6) > m->armorClass-1) {
-                m->currentHP -= p->strength;
-                printf("You hit %s for %d damage!\n", m->name, p->strength);
+            if(((rand()%20)+p->hit) > m->armorClass-1) {
+                m->currentHP -= p->damage;
+                printf("You hit %s for %d damage!\n", m->name, p->damage);
                 if (m->currentHP <= 0) {
                     break;
                 }
@@ -50,16 +50,16 @@ void Combat(Stats* p, Mob* m) {
     
 }
 
-void Trap(Player* p) {
+void Trap(Stats* p) {
     //its harder to spot traps than to dodge them once set off
     int trapDetectionDC = 12 + rand()%8 + 1;
     int trapDodgeDC = 6 + rand()%10 + 1;
     //trap spotted?
-    if ((rand()%20)+p->perception+1 >= trapDetectionDC) {
+    if ((rand()%20)+p->trapDetection+1 >= trapDetectionDC) {
         printf("You've spotted a trap! You avoid it with ease.\n");
         //add experience?
     }
-    else if ((rand()%20)+p->dodge+1 >= trapDodgeDC){
+    else if ((rand()%20)+10 >= trapDodgeDC){
         printf("You set off a trap but quickly dodge, avoiding harm!\n");
     }
     else {
