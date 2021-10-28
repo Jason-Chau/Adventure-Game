@@ -12,27 +12,60 @@ Room* current_room = NULL;
 Stats *Test1 = NULL;
 INVENTORY *inv = NULL;
 
-void Combat(Stats* p, Mob* m) {
+void Combat(Stats* p, Mob* m, INVENTORY* inv) {
     //make sure you #include <time.h> 
     srand((int)time(0));
     printf("Combat begins! Enemies: %s\n", m->name);
-
+    //char space[2] = " ";
+    //scanf("%s", space);
     while(p->currentHP > 0 && m->currentHP > 0) {
-        printf("Player turn. Choose an action (attack)\n");
-        char pAction[50];
-        scanf("%s", pAction);
-        if(strcmp(pAction, "a") == 0) {
-        // player attacking
-            if(((rand()%20)+6) > m->armorClass-1) {
-                m->currentHP -= p->strength;
-                printf("You hit %s for %d damage!\n", m->name, p->strength);
-                if (m->currentHP <= 0) {
+        
+        while(1) {
+            printf("Player turn. Choose an action (a, c)\n");
+            //char pAction[50];
+            char c;
+            scanf(" %c",&c);
+            
+            //scanf("%[^\n]%*c", pAction);
+            //printf("%c\n", c);
+            if(c == 'a') {
+            // player attacking
+                printf("TEST MESSAGE\n");
+                if(((rand()%20)+6) > m->armorClass-1) {
+                    m->currentHP -= p->strength;
+                    printf("You hit %s for %d damage!\n", m->name, p->strength);
+                }
+                else {
+                    printf("You miss %s!\n", m->name);
+                }
+                break;
+            }
+            else if (c == 'c') {
+                char iName[50];
+                printf("Which consumable would you like to consume? You have:\n");
+                DisplayConsumables(inv);
+
+                scanf("%[^\n]%*c", iName);
+                printf("ITEM SELECTED: %s\n", iName);
+                
+                CONSUMABLE* c;
+                c = FindConsumable(inv, iName);
+                if (strcmp(c->name, iName)==0) {
+                    consumeItem(p, c, inv);
                     break;
                 }
+                else{
+                    printf("Item not found.\n");
+                    break;
+                }
+                
+                
             }
-            else {
-                printf("You miss %s!\n", m->name);
-            }
+            printf("Invalid Command, try again.\n");
+            break;
+        }
+        if (m->currentHP <= 0) {
+            break;
         }
 
         // monster attacking
@@ -51,7 +84,7 @@ void Combat(Stats* p, Mob* m) {
     }
     else {
         printf("You defeated the %s!\n");
-        //DropLoot(m, p->inventory);
+        DropLoot(m, m->loot, inv);
     }
     
 }
@@ -101,10 +134,12 @@ void Exit() {
 void Seek_Encounter(){
     srand((int)time(0));
     int x = rand() % 3;
+    Mob* m = NULL;
     switch(x)
     {
         case 0:
-            //Combat(Test1,Mob);
+            m = CreateGoblin();
+            Combat(Test1, m, inv);
         break;
         case 1:
             Trap(Test1);
@@ -114,7 +149,8 @@ void Seek_Encounter(){
     switch(x)
     {
         case 0:
-            //Combat(Test1,Mob);
+            m = CreateGoblin();
+            Combat(Test1, m, inv);
         break;
         case 1:
             Trap(Test1);

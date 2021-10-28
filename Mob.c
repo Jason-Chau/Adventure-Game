@@ -26,8 +26,8 @@ Mob* CreateGoblin() {
     WEAPON *Dagger = initWeapon("Dagger", 0, 0, 5);
     AddWeapon(Dagger, mInv);
     Mob* m;
-    m = CreateMob("Goblin", 20, 13, 5, 5, 30, mInv);
-    DisplayInventory(m->loot);
+    m = CreateMob("Goblin", 20, 10, 5, 5, 30, mInv);
+    //DisplayInventory(m->loot);
     return m;
 }
 
