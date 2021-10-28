@@ -18,7 +18,7 @@ void print_menu(){
     printf("Press (u) to unequip weapon|| ");
     printf("Press (o) to unequip armor||\n");
     printf("Press (c) to use consumable|| ");
-    printf("Press (t) to detect traps");
+    printf("Press (t) to detect traps"\n);
 }
 
 int main() {
