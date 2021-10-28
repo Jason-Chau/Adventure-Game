@@ -3,6 +3,19 @@
 #include <stdlib.h>
 #include "Weapons.h"
 #include "enumClasses.h"
+#include "Armors.h"
+#include "Consumables.h"
+
+struct INVENTORY_STRUCT;
+typedef struct INVENTORY_STRUCT INVENTORY;
+void RemoveItem(char *name, int type, INVENTORY *inv);
+void RemoveWeapon(WEAPON* weapons[50], int target);
+void RemoveWeapon(WEAPON* weapons[50], int target);
+void RemoveArmor(ARMOR* armors[50], int target);
+void RemoveConsumable(CONSUMABLE* consumables[50], int target);
+void AddWeapon(WEAPON* w, INVENTORY* inventory);
+void AddArmor(ARMOR* a, INVENTORY* inventory);
+void AddConsumable(CONSUMABLE* c, INVENTORY* inventory);
 
 int weaponAttached = 0;
 
@@ -30,13 +43,13 @@ void printWeapon(WEAPON *w) {
     // Need to dynamically print the required stat (DEX / STR / INT) depending on the classes, and additional stats too.
 }
 
-void wearWeapon(WEAPON *w, Stats *s) {
+void wearWeapon(WEAPON *w, Stats *s, INVENTORY *inv) {
     checkWeaponRequirement(w, s);
     printf("********************************\n");
     printf("Putting on \"%s\"...\n", w->name);
     printf("********************************\n");
 
-    //RemoveItem(w->name, w->type, inv);
+    RemoveItem(w->name, w->type, inv);
     weaponAttached = 1;
     s->strength += w->add_STR;
 
