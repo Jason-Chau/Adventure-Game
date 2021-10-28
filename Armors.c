@@ -1,9 +1,21 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-//#include "characterStats.h"
+#include "Weapons.h"
 #include "Armors.h"
 #include "enumClasses.h"
+#include "Consumables.h"
+
+struct INVENTORY_STRUCT;
+typedef struct INVENTORY_STRUCT INVENTORY;
+void RemoveItem(char *name, int type, INVENTORY *inv);
+void RemoveWeapon(WEAPON* weapons[50], int target);
+void RemoveWeapon(WEAPON* weapons[50], int target);
+void RemoveArmor(ARMOR* armors[50], int target);
+void RemoveConsumable(CONSUMABLE* consumables[50], int target);
+void AddWeapon(WEAPON* w, INVENTORY* inventory);
+void AddArmor(ARMOR* a, INVENTORY* inventory);
+void AddConsumable(CONSUMABLE* c, INVENTORY* inventory);
 
 int armorAttached = 0;
 
@@ -28,17 +40,18 @@ void printArmor(ARMOR *a) {
     printf("********************************\n");
 }
 
-void wearArmor(ARMOR *a, Stats *s) {
+void wearArmor(ARMOR *a, Stats *s, INVENTORY *inv) {
     checkArmorRequirement(a, s);
     printf("********************************\n");
     printf("Putting on \"%s\"...\n", a->name);
     printf("********************************\n");
 
+    RemoveItem(a->name, a->type, inv);
     armorAttached = 1;
     s->armorClass += a->add_AC;
 }
 
-void swapArmor(ARMOR *old, ARMOR *new, Stats *s) {
+void swapArmor(ARMOR *old, ARMOR *new, Stats *s, INVENTORY *inv) {
     if(!armorAttached) {
         printf("****************************************\n");
         printf("You don't have \"%s\" on !\n", old->name);
@@ -51,12 +64,14 @@ void swapArmor(ARMOR *old, ARMOR *new, Stats *s) {
         printf("Swapping from \"%s\" to \"%s\"...\n", old->name, new->name);
         printf("**************************************************\n");
 
+        RemoveItem(new->name, new->type, inv);
+        AddArmor(old, inv);
         s->armorClass -= old->add_AC;
         s->armorClass += new->add_AC;
     }
 }
 
-void detachArmor(ARMOR *a, Stats *s) {
+void detachArmor(ARMOR *a, Stats *s, INVENTORY *inv) {
     if(!armorAttached) {
         printf("****************************************\n");
         printf("You don't have \"%s\" on !\n", a->name);
@@ -65,6 +80,7 @@ void detachArmor(ARMOR *a, Stats *s) {
         return ;
     }
     armorAttached = 0;
+    AddArmor(a, inv);
     printf("****************************\n");
     printf("Detaching \"%s\"...\n", a->name);
     printf("****************************\n");

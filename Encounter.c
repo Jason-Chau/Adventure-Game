@@ -15,7 +15,7 @@ void Combat(Stats* p, Mob* m) {
         printf("Player turn. Choose an action (attack)\n");
         char pAction[50];
         scanf("%s", pAction);
-        if(strcmp(pAction, "attack") = 0) {
+        if(strcmp(pAction, "attack") == 0) {
         // player attacking
             if(((rand()%20)+p->hit) > m->armorClass-1) {
                 m->currentHP -= p->damage;
@@ -45,21 +45,21 @@ void Combat(Stats* p, Mob* m) {
     }
     else {
         printf("You defeated the %s!\n");
-        DropLoot(m, p->inventory);
+        //DropLoot(m, p->inventory);
     }
     
 }
 
-void Trap(Player* p) {
+void Trap(Stats* p) {
     //its harder to spot traps than to dodge them once set off
     int trapDetectionDC = 12 + rand()%8 + 1;
     int trapDodgeDC = 6 + rand()%10 + 1;
     //trap spotted?
-    if ((rand()%20)+p->perception+1 >= trapDetectionDC) {
+    if ((rand()%20)+p->trapDetection+1 >= trapDetectionDC) {
         printf("You've spotted a trap! You avoid it with ease.\n");
         //add experience?
     }
-    else if ((rand()%20)+p->dodge+1 >= trapDodgeDC){
+    else if ((rand()%20)+10 >= trapDodgeDC){
         printf("You set off a trap but quickly dodge, avoiding harm!\n");
     }
     else {

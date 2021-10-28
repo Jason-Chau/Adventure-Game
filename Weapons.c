@@ -3,9 +3,20 @@
 #include <stdlib.h>
 #include "Weapons.h"
 #include "enumClasses.h"
+#include "Armors.h"
+#include "Consumables.h"
+
+struct INVENTORY_STRUCT;
+typedef struct INVENTORY_STRUCT INVENTORY;
+void RemoveItem(char *name, int type, INVENTORY *inv);
+void RemoveWeapon(WEAPON* weapons[50], int target);
+void RemoveArmor(ARMOR* armors[50], int target);
+void RemoveConsumable(CONSUMABLE* consumables[50], int target);
+void AddWeapon(WEAPON* w, INVENTORY* inventory);
+void AddArmor(ARMOR* a, INVENTORY* inventory);
+void AddConsumable(CONSUMABLE* c, INVENTORY* inventory);
 
 int weaponAttached = 0;
-
 
 WEAPON* initWeapon(char *name, char *class,int type, int required_STR, int add_STR) {
     WEAPON* w = malloc(sizeof(WEAPON));
@@ -15,13 +26,11 @@ WEAPON* initWeapon(char *name, char *class,int type, int required_STR, int add_S
     w->required_STR = required_STR;
     w->add_STR = add_STR;
     return w;
-
 }
 
-void printWeapon(WEAPON *w) {
+void printWeapon(WEAPON* w) {
     printf("********************************\n");
     printf("Name: \t\t\t%s\n", w->name);
-    printf("Class: \t\t\t%s\n", w->class);
     printf("Type: \t\t\t%s\n", w->type);
     printf("Required Strength: \t%d\n", w->required_STR);
     printf("+ Strength: \t\t%d\n\n", w->add_STR);
@@ -30,19 +39,19 @@ void printWeapon(WEAPON *w) {
     // Need to dynamically print the required stat (DEX / STR / INT) depending on the classes, and additional stats too.
 }
 
-void wearWeapon(WEAPON *w, Stats *s) {
+void wearWeapon(WEAPON *w, Stats *s, INVENTORY *inv) {
     checkWeaponRequirement(w, s);
     printf("********************************\n");
     printf("Putting on \"%s\"...\n", w->name);
     printf("********************************\n");
 
-    //RemoveItem(w->name, w->type, inv);
+    RemoveItem(w->name, w->type, inv);
     weaponAttached = 1;
     s->strength += w->add_STR;
 
 }
 
-void swapWeapon(WEAPON *old, WEAPON *new, Stats *s) {
+void swapWeapon(WEAPON *old, WEAPON *new, Stats *s, INVENTORY *inv) {
     if(!weaponAttached) {
         printf("****************************************\n");
         printf("You don't have \"%s\" on !\n", old->name);
@@ -55,14 +64,14 @@ void swapWeapon(WEAPON *old, WEAPON *new, Stats *s) {
         printf("Swapping from \"%s\" to \"%s\"...\n", old->name, new->name);
         printf("**************************************************\n");
 
-        //RemoveItem(new->name, new->type, inv);
-        //AddWeapon(old, inv);
+        RemoveItem(new->name, new->type, inv);
+        AddWeapon(old, inv);
         s->strength -= old->add_STR;
         s->strength += new->add_STR;
     }
 }
 
-void detachWeapon(WEAPON *w, Stats *s) {
+void detachWeapon(WEAPON *w, Stats *s, INVENTORY *inv) {
     if(!weaponAttached) {
         printf("****************************************\n");
         printf("You don't have \"%s\" on !\n", w->name);
@@ -71,7 +80,7 @@ void detachWeapon(WEAPON *w, Stats *s) {
         return ;
     }
     weaponAttached = 0;
-    //AddWeapon(w, inv);
+    AddWeapon(w, inv);
     printf("****************************\n");
     printf("Detaching \"%s\"...\n", w->name);
     printf("****************************\n");
