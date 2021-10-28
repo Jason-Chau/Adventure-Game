@@ -10,10 +10,11 @@ typedef struct Mob_struct {
     int hit;
     int damage;
     int currentHP;
-    //struct Inventory_struct* loot;
+    struct INVENTORY_STRUCT* loot;
 } Mob;
 
 
 Mob* CreateMob(char name[50], int hitPoints, int armorClass, int hit, int damage, int currentHP, INVENTORY* inventory);
-
+Mob* CreateGoblin();
+void DropLoot(Mob* m, INVENTORY* loot, INVENTORY* inventory);
 #endif

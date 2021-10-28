@@ -39,10 +39,11 @@ void Combat(Stats* p, Mob* m, INVENTORY* inv) {
     printf("Combat begins! Enemies: %s\n", m->name);
 
     while(p->currentHP > 0 && m->currentHP > 0) {
-        printf("Player turn. Choose an action (attack, consume)\n");
-        char pAction[50];
-        scanf("%[^\n]%*c", pAction);
+        
         while(1) {
+            printf("Player turn. Choose an action (attack, consume)\n");
+            char pAction[50];
+            scanf("%[^\n]%*c", pAction);
             if(strcmp(pAction, "attack") == 0) {
             // player attacking
                 if(((rand()%20)+6) > m->armorClass-1) {
@@ -56,16 +57,14 @@ void Combat(Stats* p, Mob* m, INVENTORY* inv) {
             }
             else if (strcmp(pAction, "consume") == 0) {
                 char iName[50];
-
-                printf("ITEM SELECTED: %s\n", iName);
                 printf("Which consumable would you like to consume? You have:\n");
                 DisplayConsumables(inv);
+
                 scanf("%[^\n]%*c", iName);
                 printf("ITEM SELECTED: %s\n", iName);
                 
                 CONSUMABLE* c;
                 c = FindConsumable(inv, iName);
-
                 if (strcmp(c->name, iName)==0) {
                     consumeItem(p, c, inv);
                     break;
@@ -77,8 +76,7 @@ void Combat(Stats* p, Mob* m, INVENTORY* inv) {
                 
                 
             }
-            printf("No command\n");
-            break;
+            printf("Invalid Command, try again.\n");
         }
         if (m->currentHP <= 0) {
             break;
@@ -100,21 +98,24 @@ void Combat(Stats* p, Mob* m, INVENTORY* inv) {
     }
     else {
         printf("You defeated the %s!\n");
-        //DropLoot(m, p->inventory);
+        DropLoot(m, m->loot, inv);
     }
     
 }
 
 int main() {
+    
     srand((int)time(0));
     Stats *Test1 = newCharacter(Warrior, "First Character");
     DisplayStats(Test1);
 
-    INVENTORY* mInv;
-    mInv = (INVENTORY*)malloc(sizeof(INVENTORY));
+    //INVENTORY* mInv;
+    //mInv = (INVENTORY*)malloc(sizeof(INVENTORY));
+    printf("mob test\n");
     Mob* m;
-    m = CreateMob("Test Mob", 50, 15, 20, 5, 50, mInv);
-
+    m = CreateGoblin();
+    //m = CreateMob("Test Mob", 50, 15, 20, 5, 50, mInv);
+    
     INVENTORY *inv = (INVENTORY*) malloc(sizeof(INVENTORY));
     
     CreateInventory(inv);
@@ -126,10 +127,13 @@ int main() {
     wearWeapon(LumberAxe, Test1, inv);
     DisplayInventory(inv);
     DisplayStats(Test1);
-
     
+    //DisplayInventory(m->loot);
     
     Combat(Test1, m, inv);
+    DisplayInventory(inv);
+
+    
     /*
 
     printf("enter input2\n");
