@@ -3,18 +3,20 @@
 #include <stdlib.h>
 #include "Weapons.h"
 #include "enumClasses.h"
-#include "Inventory.h"
+#include "Armors.h"
+#include "Consumables.h"
+
+struct INVENTORY_STRUCT;
+typedef struct INVENTORY_STRUCT INVENTORY;
+void RemoveItem(char *name, int type, INVENTORY *inv);
+void RemoveWeapon(WEAPON* weapons[50], int target);
+void RemoveArmor(ARMOR* armors[50], int target);
+void RemoveConsumable(CONSUMABLE* consumables[50], int target);
+void AddWeapon(WEAPON* w, INVENTORY* inventory);
+void AddArmor(ARMOR* a, INVENTORY* inventory);
+void AddConsumable(CONSUMABLE* c, INVENTORY* inventory);
 
 int weaponAttached = 0;
-
-WEAPON* initWeapon(char *name, char *required_Class, int type, int required_STR, int add_STR) {
-    WEAPON* w= (WEAPON*)malloc(sizeof(WEAPON));
-    strcpy(w->name, name);
-    //strcpy(w->required_Class, required_Class);
-    w->type = type;
-    w->required_STR = required_STR;
-    w->add_STR = add_STR;
-    return w;
 
 WEAPON* initWeapon(char *name, char *class,int type, int required_STR, int add_STR) {
     WEAPON* w = malloc(sizeof(WEAPON));
@@ -29,7 +31,6 @@ WEAPON* initWeapon(char *name, char *class,int type, int required_STR, int add_S
 void printWeapon(WEAPON* w) {
     printf("********************************\n");
     printf("Name: \t\t\t%s\n", w->name);
-    printf("Class: \t\t\t%s\n", w->required_Class);
     printf("Type: \t\t\t%s\n", w->type);
     printf("Required Strength: \t%d\n", w->required_STR);
     printf("+ Strength: \t\t%d\n\n", w->add_STR);
@@ -38,13 +39,13 @@ void printWeapon(WEAPON* w) {
     // Need to dynamically print the required stat (DEX / STR / INT) depending on the classes, and additional stats too.
 }
 
-void wearWeapon(WEAPON *w, Stats *s, INVENTORY* inv) {
+void wearWeapon(WEAPON *w, Stats *s, INVENTORY *inv) {
     checkWeaponRequirement(w, s);
     printf("********************************\n");
     printf("Putting on \"%s\"...\n", w->name);
     printf("********************************\n");
 
-    //RemoveItem(w->name, w->type, inv);
+    RemoveItem(w->name, w->type, inv);
     weaponAttached = 1;
     s->strength += w->add_STR;
 
