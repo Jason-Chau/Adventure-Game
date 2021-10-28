@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include "enumClasses.h"
+//#include "characterStats.h"
 #include "Armors.h"
+#include "enumClasses.h"
 
 int armorAttached = 0;
 
+
 ARMOR* initArmor(char *name, char *class, int type, int required_STR, int add_AC) {
-    ARMOR* a;
+    ARMOR* a = malloc(sizeof(ARMOR));
     strcpy(a->name, name);
     strcpy(a->class, class);
     a->type = type;
@@ -16,13 +18,13 @@ ARMOR* initArmor(char *name, char *class, int type, int required_STR, int add_AC
     return a;
 }
 
-void printArmor(ARMOR a) {
+void printArmor(ARMOR *a) {
     printf("********************************\n");
-    printf("Name: \t\t\t%s\n", a.name);
-    printf("Class: \t\t\t%s\n", a.class);
-    printf("Type: \t\t\t%s\n", a.type);
-    printf("Required Strength: \t%d\n", a.required_STR);
-    printf("+ Armor Class: \t\t%d\n\n", a.add_AC);
+    printf("Name: \t\t\t%s\n", a->name);
+    printf("Class: \t\t\t%s\n", a->class);
+    printf("Type: \t\t\t%s\n", a->type);
+    printf("Required Strength: \t%d\n", a->required_STR);
+    printf("+ Armor Class: \t\t%d\n\n", a->add_AC);
     printf("********************************\n");
 }
 

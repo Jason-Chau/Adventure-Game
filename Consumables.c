@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "Consumables.h"
-#include "Inventory.h"
-#include "enumClasses.h"
+//#include "characterStats.h"
 //#include "Inventory.h"
+#include "enumClasses.h"
 
-CONSUMABLE *initConsumables(char *name, int type, int amountHPHeal) {
-    CONSUMABLE *c;
+CONSUMABLE* initConsumables(char *name, int type, int amountHPHeal) {
+    CONSUMABLE* c;
+    c = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
     strcpy(c->name, name);
     c->type = type;
     c->amountHPHeal = amountHPHeal;
@@ -31,7 +32,9 @@ void consumeItem(Stats *s, CONSUMABLE *c) {
         printf("Consuming potion \"%s\"..\nCurrent HP: %d", c->name, s->currentHP);
         s->currentHP += c->amountHPHeal;
         printf(" -> %d\n", s->currentHP);
-    //RemoveItem(c.name, c.type, inv);
+    }
+
+    //RemoveItem(c.name, c.type, inventory);
 }
 
 // Inventory updateInven() {

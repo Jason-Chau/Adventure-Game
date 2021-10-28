@@ -3,12 +3,11 @@
 #include <stdlib.h>
 #include "Weapons.h"
 #include "enumClasses.h"
-//#include "Inventory.h"
 
 int weaponAttached = 0;
 
 
-WEAPON* initWeapon(char *name, char *class, int type, int required_STR, int add_STR) {
+WEAPON* initWeapon(char *name, char *class,int type, int required_STR, int add_STR) {
     WEAPON* w = malloc(sizeof(WEAPON));
     strcpy(w->name, name);
     strcpy(w->class, class);
@@ -23,7 +22,7 @@ void printWeapon(WEAPON *w) {
     printf("********************************\n");
     printf("Name: \t\t\t%s\n", w->name);
     printf("Class: \t\t\t%s\n", w->class);
-    printf("Type: \t\t\t%d\n", w->type);
+    printf("Type: \t\t\t%s\n", w->type);
     printf("Required Strength: \t%d\n", w->required_STR);
     printf("+ Strength: \t\t%d\n\n", w->add_STR);
     printf("********************************\n");

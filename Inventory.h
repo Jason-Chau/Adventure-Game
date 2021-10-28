@@ -5,14 +5,14 @@
 #include "Armors.h"
 #include "Consumables.h"
 
-typedef struct Inventory_struct {
-    struct WEAPON* invWeapon[50];
-    struct ARMOR* invArmor[50];
-    struct CONSUMABLE* invConsumable[50];
+typedef struct INVENTORY_STRUCT {
+    struct WEAPON_STRUCT* invWeapon[50];
+    struct ARMOR_STRUCT* invArmor[50];
+    struct CONSUMABLE_STRUCT* invConsumable[50];
 } INVENTORY;
 
-void CreateInventory(INVENTORY* inventory, WEAPON* weapons[50], ARMOR* armors[50], CONSUMABLE* consumables[50]);
-void DisplayInventory(WEAPON* weapons[50], ARMOR* armors[50], CONSUMABLE* consumables[50]);
+void CreateInventory(INVENTORY* inventory);
+void DisplayInventory(INVENTORY* inventory);
 void AddWeapon(WEAPON* w, INVENTORY* inventory);
 void AddArmor(ARMOR* a, INVENTORY* inventory);
 void AddConsumable(CONSUMABLE* c, INVENTORY* inventory);

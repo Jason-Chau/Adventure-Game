@@ -12,4 +12,5 @@ typedef struct CONSUMABLE_STRUCT {
 
 CONSUMABLE* initConsumables(char *name, int type, int amountHPHeal);
 void consumeItem(Stats *s, CONSUMABLE *c);
+//Stats consumeItem(Stats s, CONSUMABLE c);
 #endif

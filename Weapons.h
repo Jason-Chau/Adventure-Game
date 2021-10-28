@@ -1,8 +1,11 @@
+//#include "characterStats.h"
+#include "enumClasses.h"
+
 #ifndef WEAPONS_H
 #define WEAPONS_H
 
 #include "enumClasses.h"
-#include "Inventory.h"
+//#include "Inventory.h"
 
 typedef struct WEAPON_STRUCT {
     char name[30];

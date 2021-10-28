@@ -2,14 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "Encounter.h"
-#include "Mob.h"
+#include "Encounter.c"
+#include "Mob.c"
+#include "characterStats.c"
 
-void CreateEncounter() {
+//void CreateEncounter() {}
 
-}
-
-void Combat(Player* p, Mob* m) {
+void Combat(Stats* p, Mob* m) {
     printf("Combat begins! Enemies: %s\n", m->name);
 
     while(p->currentHP > 0 && m->currentHP > 0) {
