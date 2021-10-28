@@ -25,7 +25,8 @@ Stats* newCharacter(Classes class, char name[50]) {
       newCharacter->dexterity = 10;
       newCharacter->intelligence = 5;
       newCharacter->class = Warrior;
-      newCharacter->trapDetection = 0.5 * newCharacter->dexterity;
+      newCharacter->trapDetection = 0.5 * newCharacter->intelligence;
+      newCharacter->dodgeChance = 0.5 * newCharacter->dexterity;
       strcpy(newCharacter->className, "Warrior");
       break;
     }
@@ -37,7 +38,8 @@ Stats* newCharacter(Classes class, char name[50]) {
       newCharacter->dexterity = 5;
       newCharacter->intelligence = 20;
       newCharacter->class = Mage;
-      newCharacter->trapDetection = 0.5 * newCharacter->dexterity;
+      newCharacter->trapDetection = 0.5 * newCharacter->intelligence;
+      newCharacter->dodgeChance = 0.5 * newCharacter->dexterity;
       strcpy(newCharacter->className, "Mage");
       break;
     }
@@ -49,7 +51,8 @@ Stats* newCharacter(Classes class, char name[50]) {
       newCharacter->dexterity = 15;
       newCharacter->intelligence = 10;
       newCharacter->class = Thief;
-      newCharacter->trapDetection = 0.5 * newCharacter->dexterity;
+      newCharacter->trapDetection = 0.5 * newCharacter->intelligence;
+      newCharacter->dodgeChance = 0.5 * newCharacter->dexterity;
       strcpy(newCharacter->className, "Thief");
       break;
     }
