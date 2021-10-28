@@ -14,11 +14,24 @@ Mob* CreateMob(char name[50], int hitPoints, int armorClass, int hit, int damage
     m->hit = hit;
     m->damage = damage;
     m->currentHP = currentHP;
-    //m->loot = inventory;
+    m->loot = inventory;
     return m;
 }
-/*
-void DropLoot(Mob m, INVENTORY* loot, INVENTORY* inventory) {
+
+
+Mob* CreateGoblin() {
+    INVENTORY* mInv;
+    mInv = (INVENTORY*)malloc(sizeof(INVENTORY));
+    CreateInventory(mInv);
+    WEAPON *Dagger = initWeapon("Dagger", 0, 0, 5);
+    AddWeapon(Dagger, mInv);
+    Mob* m;
+    m = CreateMob("Goblin", 20, 13, 5, 5, 30, mInv);
+    DisplayInventory(m->loot);
+    return m;
+}
+
+void DropLoot(Mob* m, INVENTORY* loot, INVENTORY* inventory) {
     int i = 0;
     printf("Loot dropped! You got: \n");
     //weapons
@@ -48,4 +61,3 @@ void DropLoot(Mob m, INVENTORY* loot, INVENTORY* inventory) {
         c = loot->invConsumable[i];
     }
 }
-*/

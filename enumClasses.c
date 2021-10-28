@@ -62,11 +62,6 @@ Stats* newCharacter(Classes class, char name[50]) {
       strcpy(newCharacter->className, "Thief");
       break;
     }
-    default: {
-      newCharacter->hitPoints = 10;
-      newCharacter->currentHP = 10;
-      break;
-    }
   }
   return(newCharacter);
 }
