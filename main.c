@@ -272,7 +272,7 @@ int main() {
     char userNameInput[50];
 
     printf("Enter the name of your character:\n");
-    scanf("%s", userNameInput);
+    scanf("%[^\n]%*c", userNameInput);
     printf("Enter your class, 0 = Warrior, 1 = Mage, 2 = Thief:\n");
     scanf("%d", &userClassInput);
     //*Test1 = newCharacter(userClassInput, userNameInput); 
