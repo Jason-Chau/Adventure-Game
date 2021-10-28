@@ -180,3 +180,14 @@ void Print_Full_Map(Map* m){
         printf("\n\n");
     }
 }
+
+void Look_Around(Room* r){
+    if(r->N_Room != NULL)
+        printf("There is a path to the North\n");
+    if(r->E_Room != NULL)
+        printf("There is a path to the East\n");
+    if(r->W_Room != NULL)
+        printf("There is a path to the West\n");
+    if(r->S_Room != NULL)
+        printf("There is a path to the South\n"); 
+}

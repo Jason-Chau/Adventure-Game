@@ -12,31 +12,6 @@ Room* current_room = NULL;
 Stats *Test1 = NULL;
 INVENTORY *inv = NULL;
 
-//function for deciding if there will be an encounter
-void Seek_Encounter(){
-    srand((int)time(0));
-    int x = rand() % 3;
-    switch(x)
-    {
-        case 0:
-            //Combat(Test1,Mob);
-        break;
-        case 1:
-            Trap(Test1);
-        break;
-    }
-    x = rand() % 2;
-    switch(x)
-    {
-        case 0:
-            //Combat(Test1,Mob);
-        break;
-        case 1:
-            Trap(Test1);
-        break;
-    }
-}
-
 void Combat(Stats* p, Mob* m) {
     //make sure you #include <time.h> 
     srand((int)time(0));
@@ -122,6 +97,31 @@ void Exit() {
     printf("You found the exit door and escape the dungeon!\n");
 }
 
+//function for deciding if there will be an encounter
+void Seek_Encounter(){
+    srand((int)time(0));
+    int x = rand() % 3;
+    switch(x)
+    {
+        case 0:
+            //Combat(Test1,Mob);
+        break;
+        case 1:
+            Trap(Test1);
+        break;
+    }
+    x = rand() % 2;
+    switch(x)
+    {
+        case 0:
+            //Combat(Test1,Mob);
+        break;
+        case 1:
+            Trap(Test1);
+        break;
+    }
+}
+
 Room* Move_Rooms(char c, Room* c_room){
     switch(c)
     {
@@ -196,7 +196,7 @@ void menu(char c){
                 if(strcmp(weapon,inv->invWeapon[i]->name)==0) //tries to find weapon in inv
                 {
                     WEAPON * w = inv->invWeapon[i];
-                    wearWeapon(Test1,w,inv);
+                    wearWeapon(w,Test1,inv);
                 }
             }
         break;
@@ -209,17 +209,17 @@ void menu(char c){
                 if(strcmp(armor,inv->invArmor[i]->name)==0)  //tries to find armor in inv
                 {
                     ARMOR * a = inv->invArmor[i];
-                    wearArmor(Test1,a,inv);
+                    wearArmor(a,Test1,inv);
                 }
             }
         break;
         case 'h': //fix me
             printf("Please enter the name of a weapon from your inventory to equip: ");
-            char weapon[50];
-            scanf("%s",weapon);
+            char weapon2[50];
+            scanf("%s",weapon2);
             for(int i = 0; i < 50; i++)
             {
-                if(strcmp(weapon,inv->invWeapon[i]->name)==0)  //tries to find weapon in inv
+                if(strcmp(weapon2,inv->invWeapon[i]->name)==0)  //tries to find weapon in inv
                 {
                     WEAPON * w = inv->invWeapon[i];
                     //WEAPON * w2 = current weapon;
@@ -229,11 +229,11 @@ void menu(char c){
         break;
         case 'n': //fix me
             printf("Please enter the name of an armor from your inventory to equip: ");
-            char armor[50];
-            scanf("%s",armor);
+            char armor2[50];
+            scanf("%s",armor2);
             for(int i = 0; i < 50; i++)
             {
-                if(strcmp(armor,inv->invArmor[i]->name)==0) //tries to find armor in inv
+                if(strcmp(armor2,inv->invArmor[i]->name)==0) //tries to find armor in inv
                 {
                     ARMOR * a = inv->invArmor[i];
                     //ARMOR * a2 = current armor;
@@ -327,4 +327,4 @@ int main() {
         printf("Enter your new choice: \n");
         scanf(" %c",&c);
     } 
-}
+}}

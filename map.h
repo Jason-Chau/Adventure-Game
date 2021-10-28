@@ -24,5 +24,6 @@ void CreateTestMap(Map* m);
 Room* CreateRoom();
 void Connect_Rooms(Room* r1, Room* r2, int direction); 
 void Print_Full_Map(Map* m); 
+void Look_Around(Room* r);
 
 #endif 
