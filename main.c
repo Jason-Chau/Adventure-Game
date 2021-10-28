@@ -278,10 +278,6 @@ int main() {
     scanf("%d", &userClassInput);
     Test1 = newCharacter(userClassInput, userNameInput); 
     DisplayStats(Test1);
-
-    Test1 = newCharacter(Warrior, "First Character"); 
-    if (userClassInput != 1 || userClassInput != 2 || userClassInput != 3) {
-    //*Test1 = newCharacter(userClassInput, userNameInput); 
     
     if (userClassInput < 0 || userClassInput > 2) {
         printf("Invalid Input\n");
@@ -289,15 +285,8 @@ int main() {
     }
     Stats *Test1 = newCharacter(userClassInput, userNameInput); 
     DisplayStats(Test1);
-    //DisplayStats(Test1);
 
     print_menu();
-
-    // Stats *Test2 = newCharacter(Mage, "Second Character");
-    // DisplayStats(Test2);
-
-    // Stats *Test3 = newCharacter(Thief, "Third Character");
-    // DisplayStats(Test3);
 
     inv = (INVENTORY*) malloc(sizeof(INVENTORY));
     
