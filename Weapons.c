@@ -55,7 +55,7 @@ void wearWeapon(WEAPON *w, Stats *s, INVENTORY *inv) {
 
 }
 
-void swapWeapon(WEAPON *old, WEAPON *new, Stats *s) {
+void swapWeapon(WEAPON *old, WEAPON *new, Stats *s, INVENTORY *inv) {
     if(!weaponAttached) {
         printf("****************************************\n");
         printf("You don't have \"%s\" on !\n", old->name);
@@ -68,14 +68,14 @@ void swapWeapon(WEAPON *old, WEAPON *new, Stats *s) {
         printf("Swapping from \"%s\" to \"%s\"...\n", old->name, new->name);
         printf("**************************************************\n");
 
-        //RemoveItem(new->name, new->type, inv);
-        //AddWeapon(old, inv);
+        RemoveItem(new->name, new->type, inv);
+        AddWeapon(old, inv);
         s->strength -= old->add_STR;
         s->strength += new->add_STR;
     }
 }
 
-void detachWeapon(WEAPON *w, Stats *s) {
+void detachWeapon(WEAPON *w, Stats *s, INVENTORY *inv) {
     if(!weaponAttached) {
         printf("****************************************\n");
         printf("You don't have \"%s\" on !\n", w->name);
@@ -84,7 +84,7 @@ void detachWeapon(WEAPON *w, Stats *s) {
         return ;
     }
     weaponAttached = 0;
-    //AddWeapon(w, inv);
+    AddWeapon(w, inv);
     printf("****************************\n");
     printf("Detaching \"%s\"...\n", w->name);
     printf("****************************\n");
