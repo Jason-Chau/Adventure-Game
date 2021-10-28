@@ -80,8 +80,6 @@ void Combat(Stats* p, Mob* m, INVENTORY* inv) {
     }
     else {
         printf("You defeated the %s!\n");
-        printf("TEST MESSAGE:\n");
-        DisplayInventory(inv);
         DropLoot(m, m->loot, inv);
     }
     
