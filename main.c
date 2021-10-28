@@ -3,14 +3,12 @@
 #include <string.h>
 //#include "characterStats.h"
 #include "enumClasses.h"
+#include "map.h"
 
+Room* current_room=NULL; 
+ 
 int main() {
-
-    Stats *Test1 = newCharacter(Warrior, "First Character");
-    DisplayStats(Test1);
-
-int main() {
-    //Stats *Test = newCharacter(Warrior, "First Character");
+    //Stats *Test = newCharacter(Warrior, "First Character"); 
     //DisplayStats(Test);
     char c;
     Map* map; 
