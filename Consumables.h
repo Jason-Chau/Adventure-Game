@@ -1,4 +1,6 @@
 
+#include "enumClasses.h"
+
 #ifndef CONSUMABLES_H
 #define CONSUMABLES_H
 
@@ -8,6 +10,7 @@ typedef struct CONSUMABLE_STRUCT {
     int amountHPHeal;
 } CONSUMABLE;
 
-CONSUMABLE initConsumables(char *name, int type, int amountHPHeal);
-Stats consumeItem(Stats s, CONSUMABLE c);
+CONSUMABLE* initConsumables(char *name, int type, int amountHPHeal);
+void consumeItem(Stats *s, CONSUMABLE *c);
+//Stats consumeItem(Stats s, CONSUMABLE c);
 #endif

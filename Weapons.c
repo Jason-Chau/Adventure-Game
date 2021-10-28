@@ -2,28 +2,29 @@
 #include <string.h>
 #include <stdlib.h>
 #include "Weapons.h"
-#include "characterStats.h"
+#include "enumClasses.h"
 
 int weaponAttached = 0;
 
-WEAPON initWeapon(char *name, char *required_Class, int type, int required_STR, int add_STR) {
-    WEAPON w;
-    strcpy(w.name, name);
-    strcpy(w.required_Class, required_Class);
-    w.type = type;
-    w.required_STR = required_STR;
-    w.add_STR = add_STR;
+
+WEAPON* initWeapon(char *name, char *class,int type, int required_STR, int add_STR) {
+    WEAPON* w = malloc(sizeof(WEAPON));
+    strcpy(w->name, name);
+    strcpy(w->class, class);
+    w->type = type;
+    w->required_STR = required_STR;
+    w->add_STR = add_STR;
     return w;
 
 }
 
-void printWeapon(WEAPON w) {
+void printWeapon(WEAPON *w) {
     printf("********************************\n");
-    printf("Name: \t\t\t%s\n", w.name);
-    printf("Class: \t\t\t%s\n", w.required_Class);
-    printf("Type: \t\t\t%s\n", w.type);
-    printf("Required Strength: \t%d\n", w.required_STR);
-    printf("+ Strength: \t\t%d\n\n", w.add_STR);
+    printf("Name: \t\t\t%s\n", w->name);
+    printf("Class: \t\t\t%s\n", w->class);
+    printf("Type: \t\t\t%s\n", w->type);
+    printf("Required Strength: \t%d\n", w->required_STR);
+    printf("+ Strength: \t\t%d\n\n", w->add_STR);
     printf("********************************\n");
 
     // Need to dynamically print the required stat (DEX / STR / INT) depending on the classes, and additional stats too.
@@ -35,6 +36,7 @@ void wearWeapon(WEAPON *w, Stats *s) {
     printf("Putting on \"%s\"...\n", w->name);
     printf("********************************\n");
 
+    //RemoveItem(w->name, w->type, inv);
     weaponAttached = 1;
     s->strength += w->add_STR;
 
@@ -53,6 +55,8 @@ void swapWeapon(WEAPON *old, WEAPON *new, Stats *s) {
         printf("Swapping from \"%s\" to \"%s\"...\n", old->name, new->name);
         printf("**************************************************\n");
 
+        //RemoveItem(new->name, new->type, inv);
+        //AddWeapon(old, inv);
         s->strength -= old->add_STR;
         s->strength += new->add_STR;
     }
@@ -67,6 +71,7 @@ void detachWeapon(WEAPON *w, Stats *s) {
         return ;
     }
     weaponAttached = 0;
+    //AddWeapon(w, inv);
     printf("****************************\n");
     printf("Detaching \"%s\"...\n", w->name);
     printf("****************************\n");

@@ -4,9 +4,10 @@
 typedef struct Encounter_struct {
     char encounterType[50];
     
-} Encounter
+} Encounter;
+
 
 void CreateEncounter();
-
+void Combat(Stats* p, Mob* m);
 
 #endif
