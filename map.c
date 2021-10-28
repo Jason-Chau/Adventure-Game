@@ -13,14 +13,13 @@ void CreateRandomMap(Map* m){
     srand((unsigned) time(&t));  
     Room* room = CreateRoom(); 
     m->rooms[0] = room;  //starting room  
-    int i = 0;
+    int i = 1;
     room = m->rooms[0];     
     int count = 0;
 
-    while(i < num_rooms-1) //only makes number of rooms in num_rooms
+    while(i < num_rooms) //only makes number of rooms in num_rooms
     {
         //Room* room = m->rooms[i]; //adds on to the last added room
-        count = 0;
         for(int j = 0; j < 4; j++)
         {
             int x = rand() % 4;
@@ -28,52 +27,48 @@ void CreateRandomMap(Map* m){
                 case 0: //North
                     if(room->N_Room == NULL) 
                     {
-                        if(i < num_rooms-1) 
+                        if(i < num_rooms) 
                         {
                             Room* room1 = CreateRoom(); //creates new room
                             m->rooms[i] = room1; 
                             Connect_Rooms(room, room1,x); 
                             i++; //increases current room count expidite exiting loop
-                            count++; //counts the number of side rooms
                         }
                     }
                     break;
                 case 1: //West
                     if(room->W_Room == NULL)
                     {
-                        if(i < num_rooms-1)
+                        if(i < num_rooms)
                         {
                             Room* room1 = CreateRoom();
                             m->rooms[i] = room1;
                             Connect_Rooms(room, room1,x);
                             i++;
-                            count++;
                         }
                     }
                     break;
                 case 2: //East
                     if(room->E_Room == NULL)
                     {
-                        if(i < num_rooms-1)
+                        if(i < num_rooms)
                         {
                             Room* room1 = CreateRoom();
                             m->rooms[i] = room1;
                             Connect_Rooms(room, room1,x);
                             i++;
-                            count++;
                         }
                     }
                     break;
                 case 3: //South
                     if(room->S_Room == NULL)
                     {
-                        if(i < num_rooms-1)
+                        if(i < num_rooms)
                         {
                             Room* room1 = CreateRoom();
                             m->rooms[i] = room1;
                             Connect_Rooms(room, room1,x);
                             i++;
-                            count++;
                         }
                     }
                     break;

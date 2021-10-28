@@ -125,28 +125,28 @@ void Seek_Encounter(){
 Room* Move_Rooms(char c, Room* c_room){
     switch(c)
     {
-        case 'N':
+        case 'n':
         if(c_room->N_Room != NULL)
         {
             c_room = c_room->N_Room;
             Seek_Encounter();
         }
         break;
-        case 'S':
+        case 's':
         if(c_room->S_Room != NULL)
         {
             c_room = c_room->S_Room;
             Seek_Encounter();
         }
         break;
-        case 'E':
+        case 'e':
         if(c_room->E_Room != NULL)
         {
             c_room = c_room->E_Room;
             Seek_Encounter();
         }
         break;
-        case 'W':
+        case 'w':
         if(c_room->W_Room != NULL)
         {
             c_room = c_room->W_Room;
@@ -176,8 +176,9 @@ void menu(char c){
     {
         case 'm':
             Look_Around(current_room); //function to look at possible room options
-            printf("Please enter a direction in which you wish to proceed(N S E W): ");
+            printf("Please enter a direction in which you wish to proceed(n s e w): ");
             char direction;
+            scanf(" %c",&direction);
             current_room = Move_Rooms(direction,current_room); //goes to desired room or doesnt go anywhere if NULL direction
             Look_Around(current_room); //looks around new room
         break;
@@ -275,7 +276,7 @@ int main() {
     scanf("%[^\n]%*c", userNameInput);
     printf("Enter your class, 0 = Warrior, 1 = Mage, 2 = Thief:\n");
     scanf("%d", &userClassInput);
-    //*Test1 = newCharacter(userClassInput, userNameInput); 
+    Test1 = newCharacter(userClassInput, userNameInput); 
     DisplayStats(Test1);
 
     Test1 = newCharacter(Warrior, "First Character"); 
@@ -309,7 +310,7 @@ int main() {
     Map* map; 
     map = (Map*)malloc(num_rooms * sizeof(Room*)); //allocating memory for all the rooms
     CreateRandomMap(map); //creates a random map
-    Print_Full_Map(map); //prints it, will comment out for real version
+    //Print_Full_Map(map); //prints it, will comment out for real version
     printf("Enter your menu selection: ");
     current_room = map->rooms[0]; //sets current room to the first one in array
     //Look_Around(r);
@@ -323,7 +324,6 @@ int main() {
             Exit();
             break;
         }
-        Look_Around(current_room); //function to look at possible room options
         printf("Enter your new choice: \n");
         scanf(" %c",&c);
     } 
