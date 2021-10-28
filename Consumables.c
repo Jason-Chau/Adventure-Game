@@ -2,9 +2,19 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "Consumables.h"
-//#include "characterStats.h"
-//#include "Inventory.h"
 #include "enumClasses.h"
+#include "Weapons.h"
+#include "Armors.h"
+
+struct INVENTORY_STRUCT;
+typedef struct INVENTORY_STRUCT INVENTORY;
+void RemoveItem(char *name, int type, INVENTORY *inv);
+void RemoveWeapon(WEAPON* weapons[50], int target);
+void RemoveArmor(ARMOR* armors[50], int target);
+void RemoveConsumable(CONSUMABLE* consumables[50], int target);
+void AddWeapon(WEAPON* w, INVENTORY* inventory);
+void AddArmor(ARMOR* a, INVENTORY* inventory);
+void AddConsumable(CONSUMABLE* c, INVENTORY* inventory);
 
 CONSUMABLE* initConsumables(char *name, int type, int amountHPHeal) {
     CONSUMABLE* c;
@@ -17,7 +27,7 @@ CONSUMABLE* initConsumables(char *name, int type, int amountHPHeal) {
 
 // Heal HP when item is consumed
 
-void consumeItem(Stats *s, CONSUMABLE *c) {
+void consumeItem(Stats *s, CONSUMABLE *c, INVENTORY *inv) {
 
     if(s->currentHP == s->hitPoints) {
         printf("You already have full HP\n");
@@ -27,14 +37,17 @@ void consumeItem(Stats *s, CONSUMABLE *c) {
         printf("Consuming potion \"%s\"..\nCurrent HP: %d", c->name, s->currentHP);
         s->currentHP = s->hitPoints;
         printf(" -> %d\n", s->currentHP);
+        RemoveItem(c->name, c->type, inv);
+
     }
     else {
         printf("Consuming potion \"%s\"..\nCurrent HP: %d", c->name, s->currentHP);
         s->currentHP += c->amountHPHeal;
         printf(" -> %d\n", s->currentHP);
+        RemoveItem(c->name, c->type, inv);
+
     }
 
-    //RemoveItem(c.name, c.type, inventory);
 }
 
 // Inventory updateInven() {
