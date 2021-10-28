@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include "Weapons.h"
 #include "enumClasses.h"
+#include "Inventory.h"
 
 int weaponAttached = 0;
 
@@ -15,7 +16,6 @@ WEAPON* initWeapon(char *name, char *class,int type, int required_STR, int add_S
     w->required_STR = required_STR;
     w->add_STR = add_STR;
     return w;
-
 }
 
 void printWeapon(WEAPON *w) {
@@ -30,7 +30,7 @@ void printWeapon(WEAPON *w) {
     // Need to dynamically print the required stat (DEX / STR / INT) depending on the classes, and additional stats too.
 }
 
-void wearWeapon(WEAPON *w, Stats *s) {
+void wearWeapon(WEAPON *w, Stats *s, INVENTORY* inv) {
     checkWeaponRequirement(w, s);
     printf("********************************\n");
     printf("Putting on \"%s\"...\n", w->name);

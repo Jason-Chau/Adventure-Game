@@ -1,8 +1,12 @@
 //#include "characterStats.h"
-#include "enumClasses.h"
+
 
 #ifndef WEAPONS_H
 #define WEAPONS_H
+
+#include "enumClasses.h"
+#include "Inventory.h"
+
 
 typedef struct WEAPON_STRUCT {
     char name[30];
@@ -14,7 +18,7 @@ typedef struct WEAPON_STRUCT {
 
 WEAPON* initWeapon(char *name,  char *class, int type, int required_STR, int add_STR);
 void printWeapon(WEAPON *w);
-void wearWeapon(WEAPON *w, Stats *s);
+void wearWeapon(WEAPON *w, Stats *s, INVENTORY* inv);
 void swapWeapon(WEAPON *w1, WEAPON *w2, Stats *s);
 void detachWeapon(WEAPON *w, Stats *s);
 int checkWeaponRequirement(WEAPON *w, Stats *s);

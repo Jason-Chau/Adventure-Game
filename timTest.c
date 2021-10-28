@@ -5,7 +5,7 @@
 //#include "Weapons.h"
 //#include "Armors.h"
 //#include "Consumables.h"
-//#include "Inventory.h"
+#include "Inventory.h"
 #include "Mob.h"
 //#include "Map.h"
 #include "enumClasses.h"
@@ -63,9 +63,9 @@ int main() {
     WEAPON *GodButcher = initWeapon("God Butcher", "Warrior", 0, 10, 5);
     WEAPON *LumberAxe = initWeapon("Lumber Axe", "Warrior", 0, 10, 15);
     printWeapon(GodButcher);
-    wearWeapon(GodButcher, Test);
+    //wearWeapon(GodButcher, Test);
     DisplayStats(Test);
-    swapWeapon(GodButcher, LumberAxe, Test);
+    //swapWeapon(GodButcher, LumberAxe, Test);
     DisplayStats(Test);
 
     INVENTORY* inv;
@@ -73,7 +73,7 @@ int main() {
     CreateInventory(inv);
     AddWeapon(GodButcher, inv);
     DisplayInventory(inv);
-    //Combat(Test, m);
+    Combat(Test, m);
 
     /*
     printf("test\n");

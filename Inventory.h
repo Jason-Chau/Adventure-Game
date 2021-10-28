@@ -1,5 +1,6 @@
-#ifndef INVENTORY_H_
-#define INVENTORY_H_
+
+#ifndef INVENTORY_H
+#define INVENTORY_H
 
 #include "Weapons.h"
 #include "Armors.h"
