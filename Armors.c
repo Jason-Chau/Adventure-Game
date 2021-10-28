@@ -41,7 +41,8 @@ void printArmor(ARMOR *a) {
 }
 
 void wearArmor(ARMOR *a, Stats *s, INVENTORY *inv) {
-    checkArmorRequirement(a, s);
+    if(checkArmorRequirement(a, s))
+    {
     printf("********************************\n");
     printf("Putting on \"%s\"...\n", a->name);
     printf("********************************\n");
@@ -49,6 +50,7 @@ void wearArmor(ARMOR *a, Stats *s, INVENTORY *inv) {
     RemoveItem(a->name, a->type, inv);
     armorAttached = 1;
     s->armorClass += a->add_AC;
+    }
 }
 
 void swapArmor(ARMOR *old, ARMOR *new, Stats *s, INVENTORY *inv) {
