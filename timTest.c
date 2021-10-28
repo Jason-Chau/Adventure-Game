@@ -5,7 +5,7 @@
 //#include "Weapons.h"
 //#include "Armors.h"
 //#include "Consumables.h"
-//#include "Inventory.h"
+#include "Inventory.h"
 #include "Mob.h"
 //#include "Map.h"
 #include "enumClasses.h"
@@ -53,6 +53,21 @@ void Combat(Stats* p, Mob* m) {
 }
 
 int main() {
+    
+    Stats *Test1 = newCharacter(Warrior, "First Character");
+    DisplayStats(Test1);
+
+    INVENTORY *inv = (INVENTORY*) malloc(sizeof(INVENTORY));
+    
+    CreateInventory(inv);
+    WEAPON *LumberAxe = initWeapon("Lumber Axe", "Warriors", 0, 10, 20);
+    AddWeapon(LumberAxe, inv);
+    wearWeapon(LumberAxe, Test1, inv);
+    DisplayInventory(inv);
+
+    
+    
+    /*
     INVENTORY* mInv;
     mInv = (INVENTORY*)malloc(sizeof(INVENTORY));
     Mob* m;
@@ -63,9 +78,9 @@ int main() {
     WEAPON *GodButcher = initWeapon("God Butcher", "Warrior", 0, 10, 5);
     WEAPON *LumberAxe = initWeapon("Lumber Axe", "Warrior", 0, 10, 15);
     printWeapon(GodButcher);
-    wearWeapon(GodButcher, Test);
+    //wearWeapon(GodButcher, Test);
     DisplayStats(Test);
-    swapWeapon(GodButcher, LumberAxe, Test);
+    //swapWeapon(GodButcher, LumberAxe, Test);
     DisplayStats(Test);
 
     INVENTORY* inv;
@@ -73,7 +88,8 @@ int main() {
     CreateInventory(inv);
     AddWeapon(GodButcher, inv);
     DisplayInventory(inv);
-    //Combat(Test, m);
+    Combat(Test, m);
+    */
 
     /*
     printf("test\n");

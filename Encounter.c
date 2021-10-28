@@ -15,11 +15,11 @@ void Combat(Stats* p, Mob* m) {
         printf("Player turn. Choose an action (attack)\n");
         char pAction[50];
         scanf("%s", pAction);
-        if(strcmp(pAction, "attack") = 0) {
+        if(strcmp(pAction, "attack") == 0) {
         // player attacking
-            if(((rand()%20)+p->hit) > m->armorClass-1) {
-                m->currentHP -= p->damage;
-                printf("You hit %s for %d damage!\n", m->name, p->damage);
+            if(((rand()%20)+6) > m->armorClass-1) {
+                m->currentHP -= p->strength;
+                printf("You hit %s for %d damage!\n", m->name, p->strength);
                 if (m->currentHP <= 0) {
                     break;
                 }
@@ -45,7 +45,7 @@ void Combat(Stats* p, Mob* m) {
     }
     else {
         printf("You defeated the %s!\n");
-        DropLoot(m, p->inventory);
+        //DropLoot(m, p->inventory);
     }
     
 }
