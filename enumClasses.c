@@ -59,8 +59,6 @@ Stats* newCharacter(Classes class, char name[50]) {
     default: {
       newCharacter->hitPoints = 10;
       newCharacter->currentHP = 10;
-
-      newCharacter->mana = 0;
       break;
     }
   }
