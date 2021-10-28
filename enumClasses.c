@@ -88,5 +88,6 @@ void DisplayStats(Stats* target)  {
   printf("DEX: %d\n", target->dexterity);
   printf("INT: %d\n", target->intelligence);
   printf("Trap Detection Level: %.1lf\n", target->trapDetection);
+  printf ("Dodge Chance: %.1lf\n", target->dodgeChance);
   printf("\n");
 }
