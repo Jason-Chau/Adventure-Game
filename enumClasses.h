@@ -13,6 +13,7 @@ typedef enum Classes  {
 typedef struct characterStats {
   char name[50];
   Classes class;
+  char className[50];
   int health;
   int mana;
   int hitPoints;
