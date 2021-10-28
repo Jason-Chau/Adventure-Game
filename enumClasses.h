@@ -24,6 +24,8 @@ typedef struct characterStats {
   int intelligence;
   int damage;
   int hit;
+  char currentArmor[50];
+  char currentWeapon[50];
   double trapDetection;
   double dodgeChance;
 } Stats;

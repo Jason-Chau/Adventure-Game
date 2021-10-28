@@ -312,15 +312,13 @@ int main() {
     scanf("%[^\n]%*c", userNameInput);
     printf("Enter your class, 0 = Warrior, 1 = Mage, 2 = Thief:\n");
     scanf("%d", &userClassInput);
-    Test1 = newCharacter(userClassInput, userNameInput); 
-    DisplayStats(Test1);
-    if (userClassInput != 1 || userClassInput != 2 || userClassInput != 3) {
-    //*Test1 = newCharacter(userClassInput, userNameInput); 
-    
     if (userClassInput < 0 || userClassInput > 2) {
         printf("Invalid Input\n");
         return 0;
     }
+    Test1 = newCharacter(userClassInput, userNameInput); 
+    DisplayStats(Test1);
+    
     //DisplayStats(Test1);
 
     print_menu();
@@ -355,4 +353,4 @@ int main() {
         printf("Enter your new choice: \n");
         scanf(" %c",&c);
     } 
-}}
+}
