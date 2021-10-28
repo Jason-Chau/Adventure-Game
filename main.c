@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <ctype.h>
 #include "enumClasses.h"
 #include "Weapons.h"
 #include "Inventory.h"
@@ -29,15 +28,9 @@ int main() {
     scanf("%s", userNameInput);
     printf("Enter your class, 0 = Warrior, 1 = Mage, 2 = Thief:\n");
     scanf("%d", &userClassInput);
-    if (userClassInput != 1 || userClassInput != 2 || userClassInput != 3) {
+    if (userClassInput < 0 || userClassInput > 2) {
         printf("Invalid Input\n");
-        scanf("%d", &userClassInput);
-        return (0);
-    }
-    else if (isdigit(userClassInput) == 0) {
-        printf("Invalid Input.\n");
-        scanf("%d", &userClassInput);
-        return (0);
+        return 0;
     }
     Stats *Test1 = newCharacter(userClassInput, userNameInput); 
     DisplayStats(Test1);
