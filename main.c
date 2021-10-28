@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "characterStats.h"
+#include <ctype.h>
 #include "enumClasses.h"
 #include "Weapons.h"
 #include "Inventory.h"
@@ -26,17 +26,18 @@ int main() {
     char userNameInput[50];
 
     printf("Enter the name of your character:\n");
-    scanf("%[^\n]%*c", userNameInput);
+    scanf("%s", userNameInput);
     printf("Enter your class, 0 = Warrior, 1 = Mage, 2 = Thief:\n");
     scanf("%d", &userClassInput);
-    while (userClassInput < 0 || userClassInput > 2) {
-        if (userClassInput != 0 || userClassInput != 1 || userClassInput != 2) {
-            printf("Invalid Input. Try Again:\n");
-            scanf("%d", &userClassInput);
-        }
-        else {
-            break;
-        }
+    if (userClassInput != 1 || userClassInput != 2 || userClassInput != 3) {
+        printf("Invalid Input\n");
+        scanf("%d", &userClassInput);
+        return (0);
+    }
+    else if (isdigit(userClassInput) == 0) {
+        printf("Invalid Input.\n");
+        scanf("%d", &userClassInput);
+        return (0);
     }
     Stats *Test1 = newCharacter(userClassInput, userNameInput); 
     DisplayStats(Test1);
