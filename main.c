@@ -22,6 +22,16 @@ void print_menu(){
 }
 
 int main() {
+    int userClassInput;
+    char userNameInput[50];
+
+    printf("Enter the name of your character:\n");
+    fgets(userNameInput, 50, stdin);
+    scanf("%[^\n]%*c", userNameInput);
+    printf("Enter your class, 0 = Warrior, 1 = Mage, 2 = Thief:\n");
+    scanf("%d", &userClassInput);
+    Stats *Test1 = newCharacter(userClassInput, userNameInput); 
+    DisplayStats(Test1);
 
     Stats *Test1 = newCharacter(Warrior, "First Character");
     //DisplayStats(Test1);
