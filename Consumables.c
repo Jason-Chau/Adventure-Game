@@ -8,6 +8,8 @@
 
 struct INVENTORY_STRUCT;
 typedef struct INVENTORY_STRUCT INVENTORY;
+void DisplayConsumables(INVENTORY* inventory);
+CONSUMABLE* FindConsumable(INVENTORY* inventory, char itemName[50]);
 void RemoveItem(char *name, int type, INVENTORY *inv);
 void RemoveWeapon(WEAPON* weapons[50], int target);
 void RemoveArmor(ARMOR* armors[50], int target);

@@ -70,6 +70,35 @@ void DisplayInventory(INVENTORY* inventory) {
     
 }
 
+void DisplayConsumables(INVENTORY* inventory) {
+    int i=0;
+    CONSUMABLE* c = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
+    c = inventory->invConsumable[0];
+    printf("Consumables:\n");
+    while(strcmp(c->name, "")!=0) {
+        printf("%s\n", c->name);
+        ++i;
+        c = inventory->invConsumable[i];
+    }
+    
+}
+
+CONSUMABLE* FindConsumable(INVENTORY* inventory, char itemName[50]) {
+    int i=0;
+    
+    CONSUMABLE* c = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
+    c = inventory->invConsumable[0];
+    while(strcmp(c->name, "")!=0) {
+        if (strcmp(c->name, itemName)==0) {
+            return c;
+        }
+        ++i;
+        c = inventory->invConsumable[i];
+    }
+    c = inventory->invConsumable[49];
+    return c;
+}
+
 void AddWeapon(WEAPON* w, INVENTORY* inventory) {
     WEAPON* wep = (WEAPON*)malloc(sizeof(WEAPON));
     for(int i = 0; i<50; ++i) {

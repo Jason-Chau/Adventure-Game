@@ -281,6 +281,8 @@ int main() {
 
     Test1 = newCharacter(Warrior, "First Character"); 
     if (userClassInput != 1 || userClassInput != 2 || userClassInput != 3) {
+    //*Test1 = newCharacter(userClassInput, userNameInput); 
+    
     if (userClassInput < 0 || userClassInput > 2) {
         printf("Invalid Input\n");
         return 0;
@@ -327,4 +329,4 @@ int main() {
         printf("Enter your new choice: \n");
         scanf(" %c",&c);
     } 
-}}
+}
