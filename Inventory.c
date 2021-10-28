@@ -99,6 +99,34 @@ void DisplayInventory(INVENTORY* inventory) {
     
 }
 
+
+
+void DisplayWeapons(INVENTORY* inventory) {
+    int i=0;
+    WEAPON* w = (WEAPON*)malloc(sizeof(WEAPON));
+    w = inventory->invWeapon[0];
+    printf("Consumables:\n");
+    while(strcmp(w->name, "")!=0) {
+        printf("%s\n", w->name);
+        ++i;
+        w = inventory->invWeapon[i];
+    }
+    
+}
+
+void DisplayArmor(INVENTORY* inventory) {
+    int i=0;
+    ARMOR* a = (ARMOR*)malloc(sizeof(ARMOR));
+    a = inventory->invArmor[0];
+    printf("Consumables:\n");
+    while(strcmp(a->name, "")!=0) {
+        printf("%s\n", a->name);
+        ++i;
+        a = inventory->invArmor[i];
+    }
+    
+}
+
 void DisplayConsumables(INVENTORY* inventory) {
     int i=0;
     CONSUMABLE* c = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
@@ -112,9 +140,38 @@ void DisplayConsumables(INVENTORY* inventory) {
     
 }
 
+WEAPON* FindWeapon(INVENTORY* inventory, char itemName[50]) {
+    int i=0;
+    WEAPON* w = (WEAPON*)malloc(sizeof(WEAPON));
+    w = inventory->invWeapon[0];
+    while(strcmp(w->name, "")!=0) {
+        if (strcmp(w->name, itemName)==0) {
+            return w;
+        }
+        ++i;
+        w = inventory->invWeapon[i];
+    }
+    w = inventory->invWeapon[49];
+    return w;
+}
+
+ARMOR* FindArmor(INVENTORY* inventory, char itemName[50]) {
+    int i=0;
+    ARMOR* a = (ARMOR*)malloc(sizeof(ARMOR));
+    a = inventory->invArmor[0];
+    while(strcmp(a->name, "")!=0) {
+        if (strcmp(a->name, itemName)==0) {
+            return a;
+        }
+        ++i;
+        a = inventory->invArmor[i];
+    }
+    a = inventory->invArmor[49];
+    return a;
+}
+
 CONSUMABLE* FindConsumable(INVENTORY* inventory, char itemName[50]) {
     int i=0;
-    
     CONSUMABLE* c = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
     c = inventory->invConsumable[0];
     while(strcmp(c->name, "")!=0) {

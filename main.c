@@ -289,12 +289,6 @@ int main() {
 
     print_menu();
 
-    // Stats *Test2 = newCharacter(Mage, "Second Character");
-    // DisplayStats(Test2);
-
-    // Stats *Test3 = newCharacter(Thief, "Third Character");
-    // DisplayStats(Test3);
-
     inv = (INVENTORY*) malloc(sizeof(INVENTORY));
     
     CreateInventory(inv);
