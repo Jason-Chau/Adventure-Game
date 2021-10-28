@@ -81,6 +81,7 @@ void CreateRandomMap(Map* m){
         }
         room = m->rooms[rand() % i];//chooses the new room based off of the last created rooms
     }
+    m->rooms[i-1]->final = true;
 }
 
 
@@ -91,6 +92,7 @@ void CreateTestMap(Map* m){
     Room* r3 = CreateRoom();
     Room* r4 = CreateRoom();
     Room* r5 = CreateRoom();
+    r5->final = true;
     m->rooms[0] = r1; 
     m->rooms[1] = r2;
     m->rooms[2] = r3;
@@ -136,6 +138,7 @@ Room* CreateRoom()
     r->W_Room = NULL;
     r->E_Room = NULL;
     r->S_Room = NULL;
+    r->final = false;
     return r;
 }
 

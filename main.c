@@ -1,33 +1,157 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "enumClasses.h"
 #include "Weapons.h"
 #include "Inventory.h"
 #include "map.h"
+#include "Mob.h"
 //#include "Encounter.c"
 Room* current_room = NULL;
 Stats *Test1 = NULL;
 INVENTORY *inv = NULL;
+
+//function for deciding if there will be an encounter
+void Seek_Encounter(){
+    srand((int)time(0));
+    int x = rand() % 3;
+    switch(x)
+    {
+        case 0:
+            //Combat(Test1,Mob);
+        break;
+        case 1:
+            Trap(Test1);
+        break;
+    }
+    x = rand() % 2;
+    switch(x)
+    {
+        case 0:
+            //Combat(Test1,Mob);
+        break;
+        case 1:
+            Trap(Test1);
+        break;
+    }
+}
+
+void Combat(Stats* p, Mob* m) {
+    //make sure you #include <time.h> 
+    srand((int)time(0));
+    printf("Combat begins! Enemies: %s\n", m->name);
+
+    while(p->currentHP > 0 && m->currentHP > 0) {
+        printf("Player turn. Choose an action (attack)\n");
+        char pAction[50];
+        scanf("%s", pAction);
+        if(strcmp(pAction, "a") == 0) {
+        // player attacking
+            if(((rand()%20)+6) > m->armorClass-1) {
+                m->currentHP -= p->strength;
+                printf("You hit %s for %d damage!\n", m->name, p->strength);
+                if (m->currentHP <= 0) {
+                    break;
+                }
+            }
+            else {
+                printf("You miss %s!\n", m->name);
+            }
+        }
+
+        // monster attacking
+        if(((rand()%20)+m->hit) > p->armorClass-1) {
+            p->currentHP -= m->damage;
+            printf("%s hits you for %d damage! You have %d hp left.\n", m->name, m->damage, p->currentHP);
+        }
+        else {
+            printf("You avoid %s's attack!\n", m->name);
+        }
+    }
+
+    if (p->currentHP <= 0) {
+        printf("You lost the fight and are now dead. :( \n");
+        //call some sort of function that runs on player death
+    }
+    else {
+        printf("You defeated the %s!\n");
+        //DropLoot(m, p->inventory);
+    }
+    
+}
+
+void Trap(Stats* p) {
+    //make sure you #include <time.h> 
+    srand((int)time(0));
+    int trapDetectionDC = 12 + rand()%8 + 1;
+    int trapDodgeDC = 8 + rand()%10 + 1;
+    //trap spotted?
+    if ((rand()%20)+p->trapDetection+1 >= trapDetectionDC) {
+        printf("You've spotted a trap! You avoid it with ease.\n");
+        //add experience?
+    }
+    else if ((rand()%20)+2 >= trapDodgeDC){
+        printf("You set off a trap but quickly dodge, avoiding harm!\n");
+    }
+    else {
+        //can change the way trap damage is calculated later (probably based on level), for now its 1-10 damage
+        int d = (rand() % 9) + 1;
+        p->currentHP -= d;
+        printf("You set off a trap and take %d damage. Ouch!\n", d);
+    }
+}
+
+/*
+void Loot(Stats* p, char lootTable[50], int numDrops) {
+    //read in the lootTable from file or hard code it
+    printf("You stumble upon treasures, loot to your heart's content! You find:\n");
+    char loot[numDrops];
+    if(int i=0; i < numDrops; ++i) {
+        //drops numDrops number of random items from the given loot table. Player can type the item's drop number in to take it,
+        //or #all to take all loot dropped.
+        loot[i] = lootTable[rand()%50];
+        printf("%s\n", loot[i]);
+        //needs to add item in loot to inventory based on the name of the item
+        //p->INVENTORY += loot[i];
+    }
+}
+ */
+void Exit() {
+    // Player escapes the dungeon and wins or moves onto next floor
+    printf("You found the exit door and escape the dungeon!\n");
+}
 
 Room* Move_Rooms(char c, Room* c_room){
     switch(c)
     {
         case 'N':
         if(c_room->N_Room != NULL)
+        {
             c_room = c_room->N_Room;
+            Seek_Encounter();
+        }
         break;
         case 'S':
         if(c_room->S_Room != NULL)
+        {
             c_room = c_room->S_Room;
+            Seek_Encounter();
+        }
         break;
         case 'E':
         if(c_room->E_Room != NULL)
+        {
             c_room = c_room->E_Room;
+            Seek_Encounter();
+        }
         break;
         case 'W':
         if(c_room->W_Room != NULL)
+        {
             c_room = c_room->W_Room;
+            Seek_Encounter();
+        }
         break;
     }
     return c_room;
@@ -194,6 +318,11 @@ int main() {
     {
         menu(c); //execute menu
         //print menu
+        if(current_room->final == true)
+        {
+            Exit();
+            break;
+        }
         Look_Around(current_room); //function to look at possible room options
         printf("Enter your new choice: \n");
         scanf(" %c",&c);

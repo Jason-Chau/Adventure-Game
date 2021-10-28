@@ -12,6 +12,7 @@ typedef struct Room_Struct{
     struct Room_Struct* W_Room;
     struct Room_Struct* E_Room;
     struct Room_Struct* S_Room;
+    bool final;
 }Room;
 
 typedef struct Map_Struct{
