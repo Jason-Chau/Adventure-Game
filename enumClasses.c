@@ -27,6 +27,8 @@ Stats* newCharacter(Classes class, char name[50]) {
       newCharacter->class = Warrior;
       newCharacter->trapDetection = 0.5 * newCharacter->intelligence;
       newCharacter->dodgeChance = 0.5 * newCharacter->dexterity;
+      strcpy(newCharacter->currentArmor, "");
+      strcpy(newCharacter->currentWeapon, "");
       strcpy(newCharacter->className, "Warrior");
       break;
     }
@@ -40,6 +42,8 @@ Stats* newCharacter(Classes class, char name[50]) {
       newCharacter->class = Mage;
       newCharacter->trapDetection = 0.5 * newCharacter->intelligence;
       newCharacter->dodgeChance = 0.5 * newCharacter->dexterity;
+      strcpy(newCharacter->currentArmor, "");
+      strcpy(newCharacter->currentWeapon, "");
       strcpy(newCharacter->className, "Mage");
       break;
     }
@@ -53,6 +57,8 @@ Stats* newCharacter(Classes class, char name[50]) {
       newCharacter->class = Thief;
       newCharacter->trapDetection = 0.5 * newCharacter->intelligence;
       newCharacter->dodgeChance = 0.5 * newCharacter->dexterity;
+      strcpy(newCharacter->currentArmor, "");
+      strcpy(newCharacter->currentWeapon, "");
       strcpy(newCharacter->className, "Thief");
       break;
     }
@@ -78,6 +84,7 @@ int SetName(Stats* target, char name[50]) {
 }
 
 void DisplayStats(Stats* target)  {
+  printf("\n**************************************************");
   printf("\nName: %s\n", target->name);
   printf("Class: %s\n", target->className);
   printf("HP: %d / %d\n", target->currentHP, target->hitPoints);
@@ -85,7 +92,9 @@ void DisplayStats(Stats* target)  {
   printf("STR: %d\n", target->strength);
   printf("DEX: %d\n", target->dexterity);
   printf("INT: %d\n", target->intelligence);
+  printf("Armor Equipped: %s\n", target->currentArmor);
+  printf("Weapon Equipped: %s\n", target->currentWeapon);
   printf("Trap Detection Level: %.1lf\n", target->trapDetection);
   printf ("Dodge Chance: %.1lf\n", target->dodgeChance);
-  printf("\n");
+  printf("**************************************************\n\n");
 }
