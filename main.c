@@ -22,15 +22,11 @@ void Combat(Stats* p, Mob* m, INVENTORY* inv) {
         
         while(1) {
             printf("Player turn. Choose an action (a, c)\n");
-            //char pAction[50];
             char c;
             scanf(" %c",&c);
-            
-            //scanf("%[^\n]%*c", pAction);
-            //printf("%c\n", c);
+
             if(c == 'a') {
             // player attacking
-                printf("TEST MESSAGE\n");
                 if(((rand()%20)+6) > m->armorClass-1) {
                     m->currentHP -= p->strength;
                     printf("You hit %s for %d damage!\n", m->name, p->strength);
@@ -45,7 +41,7 @@ void Combat(Stats* p, Mob* m, INVENTORY* inv) {
                 printf("Which consumable would you like to consume? You have:\n");
                 DisplayConsumables(inv);
 
-                scanf("%[^\n]%*c", iName);
+                scanf(" %[^\n]%*c", iName);
                 printf("ITEM SELECTED: %s\n", iName);
                 
                 CONSUMABLE* c;
@@ -84,6 +80,8 @@ void Combat(Stats* p, Mob* m, INVENTORY* inv) {
     }
     else {
         printf("You defeated the %s!\n");
+        printf("TEST MESSAGE:\n");
+        DisplayInventory(inv);
         DropLoot(m, m->loot, inv);
     }
     
@@ -99,12 +97,12 @@ void Trap(Stats* p) {
         printf("You've spotted a trap! You avoid it with ease.\n");
         //add experience?
     }
-    else if ((rand()%20)+2 >= trapDodgeDC){
+    else if ((rand()%20)+p->dodgeChance >= trapDodgeDC){
         printf("You set off a trap but quickly dodge, avoiding harm!\n");
     }
     else {
         //can change the way trap damage is calculated later (probably based on level), for now its 1-10 damage
-        int d = (rand() % 9) + 1;
+        int d = (rand() % 10) + 1;
         p->currentHP -= d;
         printf("You set off a trap and take %d damage. Ouch!\n", d);
     }
@@ -326,6 +324,37 @@ int main() {
     inv = (INVENTORY*) malloc(sizeof(INVENTORY));
     
     CreateInventory(inv);
+
+    WEAPON* bow = (WEAPON*)malloc(sizeof(WEAPON));
+    bow = initWeapon("Bow", 0, 7, 8);
+    AddWeapon(bow, inv);
+    ARMOR* leather = (ARMOR*)malloc(sizeof(ARMOR));
+    leather = initArmor("Leather", 1, 11, 11);
+    AddArmor(leather, inv);
+    CONSUMABLE* bread = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
+    bread = initConsumables("Bread", 2, 5);
+    AddConsumable(bread, inv);
+
+    WEAPON* axe = (WEAPON*)malloc(sizeof(WEAPON));
+    axe = initWeapon("Axe",  0, 14, 12);
+    AddWeapon(axe, inv);
+    ARMOR* chainmail = (ARMOR*)malloc(sizeof(ARMOR));
+    chainmail = initArmor("Chainmail", 1, 16, 15);
+    AddArmor(chainmail, inv);
+    CONSUMABLE* potion = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
+    potion = initConsumables("Potion", 2, 12);
+    AddConsumable(potion, inv);
+    
+    WEAPON* sword = (WEAPON*)malloc(sizeof(WEAPON));
+    sword = initWeapon("Sword", 0, 10, 11);
+    AddWeapon(sword, inv);
+    ARMOR* platemail = (ARMOR*)malloc(sizeof(ARMOR));
+    platemail = initArmor("Platemail", 1,18, 17);
+    AddArmor(platemail, inv);
+    CONSUMABLE* steak = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
+    steak = initConsumables("Steak", 2, 15);
+    AddConsumable(steak, inv);
+    
     // WEAPON *LumberAxe = initWeapon("Lumber Axe", "Warriors", 0, 10, 20);
     // AddWeapon(LumberAxe, inv);
     // //wearWeapon(LumberAxe, Test1, inv);
