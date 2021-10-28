@@ -20,10 +20,9 @@ void AddConsumable(CONSUMABLE* c, INVENTORY* inventory);
 int armorAttached = 0;
 
 
-ARMOR* initArmor(char *name, char *class, int type, int required_STR, int add_AC) {
+ARMOR* initArmor(char *name, int type, int required_STR, int add_AC) {
     ARMOR* a = malloc(sizeof(ARMOR));
     strcpy(a->name, name);
-    strcpy(a->class, class);
     a->type = type;
     a->required_STR = required_STR;
     a->add_AC = add_AC;
@@ -33,7 +32,6 @@ ARMOR* initArmor(char *name, char *class, int type, int required_STR, int add_AC
 void printArmor(ARMOR *a) {
     printf("********************************\n");
     printf("Name: \t\t\t%s\n", a->name);
-    printf("Class: \t\t\t%s\n", a->class);
     printf("Type: \t\t\t%s\n", a->type);
     printf("Required Strength: \t%d\n", a->required_STR);
     printf("+ Armor Class: \t\t%d\n\n", a->add_AC);
