@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//#include "characterStats.h"
+#include <ctype.h>
 #include "enumClasses.h"
 #include "Weapons.h"
 #include "Inventory.h"
@@ -45,7 +45,7 @@ void print_menu(){
     printf("Press (u) to unequip weapon|| ");
     printf("Press (o) to unequip armor||\n");
     printf("Press (c) to use consumable|| ");
-    printf("Press (t) to detect traps");
+    printf("Press (t) to detect traps\n");
 }
 
 void menu(char c){
@@ -133,7 +133,7 @@ void menu(char c){
                 if(strcmp(armor,inv->invConsumable[i]->name)==0) //tries to find consumable in inv?
                 {
                     CONSUMABLE * c = inv->invConsumable[i];
-                    consumeItem(Test1,c); //problem, how is it connected to inventory?
+                    //consumeItem(Test1,c); //problem, how is it connected to inventory?
                 }
             }
         break;
@@ -149,14 +149,25 @@ int main() {
     char userNameInput[50];
 
     printf("Enter the name of your character:\n");
-    fgets(userNameInput, 50, stdin);
-    scanf("%[^\n]%*c", userNameInput);
+    scanf("%s", userNameInput);
     printf("Enter your class, 0 = Warrior, 1 = Mage, 2 = Thief:\n");
     scanf("%d", &userClassInput);
     //*Test1 = newCharacter(userClassInput, userNameInput); 
     DisplayStats(Test1);
 
     Test1 = newCharacter(Warrior, "First Character"); 
+    if (userClassInput != 1 || userClassInput != 2 || userClassInput != 3) {
+        printf("Invalid Input\n");
+        scanf("%d", &userClassInput);
+        return (0);
+    }
+    else if (isdigit(userClassInput) == 0) {
+        printf("Invalid Input.\n");
+        scanf("%d", &userClassInput);
+        return (0);
+    }
+    Stats *Test1 = newCharacter(userClassInput, userNameInput); 
+    DisplayStats(Test1);
     //DisplayStats(Test1);
 
     print_menu();

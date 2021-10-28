@@ -9,17 +9,19 @@
 //void CreateEncounter() {}
 
 void Combat(Stats* p, Mob* m) {
+    //make sure you #include <time.h> 
+    srand((int)time(0));
     printf("Combat begins! Enemies: %s\n", m->name);
 
     while(p->currentHP > 0 && m->currentHP > 0) {
         printf("Player turn. Choose an action (attack)\n");
         char pAction[50];
         scanf("%s", pAction);
-        if(strcmp(pAction, "attack") == 0) {
+        if(strcmp(pAction, "a") == 0) {
         // player attacking
-            if(((rand()%20)+p->hit) > m->armorClass-1) {
-                m->currentHP -= p->damage;
-                printf("You hit %s for %d damage!\n", m->name, p->damage);
+            if(((rand()%20)+6) > m->armorClass-1) {
+                m->currentHP -= p->strength;
+                printf("You hit %s for %d damage!\n", m->name, p->strength);
                 if (m->currentHP <= 0) {
                     break;
                 }
@@ -50,23 +52,24 @@ void Combat(Stats* p, Mob* m) {
     
 }
 
-void Trap(Stats* p) {
-    //its harder to spot traps than to dodge them once set off
+oid Trap(Stats* p) {
+    //make sure you #include <time.h> 
+    srand((int)time(0));
     int trapDetectionDC = 12 + rand()%8 + 1;
-    int trapDodgeDC = 6 + rand()%10 + 1;
+    int trapDodgeDC = 8 + rand()%10 + 1;
     //trap spotted?
     if ((rand()%20)+p->trapDetection+1 >= trapDetectionDC) {
         printf("You've spotted a trap! You avoid it with ease.\n");
         //add experience?
     }
-    else if ((rand()%20)+10 >= trapDodgeDC){
+    else if ((rand()%20)+2 >= trapDodgeDC){
         printf("You set off a trap but quickly dodge, avoiding harm!\n");
     }
     else {
         //can change the way trap damage is calculated later (probably based on level), for now its 1-10 damage
         int d = (rand() % 9) + 1;
         p->currentHP -= d;
-        printf("You set off a trap and take %d damage. Ouch!\n", %d);
+        printf("You set off a trap and take %d damage. Ouch!\n", d);
     }
 }
 

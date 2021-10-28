@@ -59,8 +59,6 @@ Stats* newCharacter(Classes class, char name[50]) {
     default: {
       newCharacter->hitPoints = 10;
       newCharacter->currentHP = 10;
-
-      newCharacter->mana = 0;
       break;
     }
   }
@@ -88,5 +86,6 @@ void DisplayStats(Stats* target)  {
   printf("DEX: %d\n", target->dexterity);
   printf("INT: %d\n", target->intelligence);
   printf("Trap Detection Level: %.1lf\n", target->trapDetection);
+  printf ("Dodge Chance: %.1lf\n", target->dodgeChance);
   printf("\n");
 }
