@@ -326,7 +326,7 @@ int main() {
         return 0;
     }
     Test1 = newCharacter(userClassInput, userNameInput); 
-    printf("Enter difficulty 'e' = Easy, 'n = Normal, 'h' = Hard:\n");
+    printf("Enter difficulty 'e' = Easy, 'n' = Normal, 'h' = Hard:\n");
     scanf(" %c", &difficulty);
     DisplayStats(Test1);
     
