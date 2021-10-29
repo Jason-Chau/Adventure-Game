@@ -13,11 +13,8 @@ Stats *Test1 = NULL;
 INVENTORY *inv = NULL;
 
 void Combat(Stats* p, Mob* m, INVENTORY* inv) {
-    //make sure you #include <time.h> 
     srand((int)time(0));
     printf("Combat begins! Enemies: %s\n", m->name);
-    //char space[2] = " ";
-    //scanf("%s", space);
     while(p->currentHP > 0 && m->currentHP > 0) {
         
         while(1) {
@@ -298,7 +295,6 @@ int main() {
     Test1 = newCharacter(userClassInput, userNameInput); 
     DisplayStats(Test1);
     
-    //DisplayStats(Test1);
 
     print_menu();
 
@@ -310,7 +306,7 @@ int main() {
     bow = initWeapon("Bow", 0, 7, 8);
     AddWeapon(bow, inv);
     ARMOR* leather = (ARMOR*)malloc(sizeof(ARMOR));
-    leather = initArmor("Leather", 1, 11, 11);
+    leather = initArmor("Leather", 1, 11, 2);
     AddArmor(leather, inv);
     CONSUMABLE* bread = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
     bread = initConsumables("Bread", 2, 5);
@@ -320,7 +316,7 @@ int main() {
     axe = initWeapon("Axe",  0, 14, 12);
     AddWeapon(axe, inv);
     ARMOR* chainmail = (ARMOR*)malloc(sizeof(ARMOR));
-    chainmail = initArmor("Chainmail", 1, 16, 15);
+    chainmail = initArmor("Chainmail", 1, 16, 5);
     AddArmor(chainmail, inv);
     CONSUMABLE* potion = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
     potion = initConsumables("Potion", 2, 12);
@@ -330,16 +326,12 @@ int main() {
     sword = initWeapon("Sword", 0, 10, 11);
     AddWeapon(sword, inv);
     ARMOR* platemail = (ARMOR*)malloc(sizeof(ARMOR));
-    platemail = initArmor("Platemail", 1,18, 17);
+    platemail = initArmor("Platemail", 1,18, 8);
     AddArmor(platemail, inv);
     CONSUMABLE* steak = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
     steak = initConsumables("Steak", 2, 15);
     AddConsumable(steak, inv);
     
-    // WEAPON *LumberAxe = initWeapon("Lumber Axe", "Warriors", 0, 10, 20);
-    // AddWeapon(LumberAxe, inv);
-    // //wearWeapon(LumberAxe, Test1, inv);
-    // DisplayInventory(inv);
 
       
     char c;

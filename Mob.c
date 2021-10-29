@@ -31,7 +31,6 @@ Mob* CreateGoblin() {
     Mob* m;
     m = CreateMob("Goblin", 20, 15, 5, 5, 30, mInv);
     
-    //DisplayInventory(m->loot);
     return m;
 }
 
@@ -47,7 +46,6 @@ Mob* CreateOgre() {
     Mob* m;
     m = CreateMob("Ogre", 50, 18, 8, 15, 80, mInv);
     
-    //DisplayInventory(m->loot);
     return m;
 }
 
@@ -56,7 +54,6 @@ void DropLoot(Mob* m, INVENTORY* loot, INVENTORY* inventory) {
     printf("Loot dropped! You got: \n");
     //weapons
     WEAPON* w = loot->invWeapon[0];
-    //printf("TEST MESSAGE: %s END TEST", w->name);
     while(strcmp(w->name, "") != 0) {
         AddWeapon(w, inventory);
         printf("%s\n", w->name);

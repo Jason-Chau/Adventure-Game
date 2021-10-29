@@ -24,7 +24,7 @@ Stats* newCharacter(Classes class, char name[50]) {
     case Warrior: {
       newCharacter->hitPoints = 100;
       newCharacter->currentHP = 100;
-      newCharacter->armorClass = 20;
+      newCharacter->armorClass = 12;
       newCharacter->strength = 20;
       newCharacter->dexterity = 10;
       newCharacter->intelligence = 5;
