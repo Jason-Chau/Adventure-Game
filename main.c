@@ -11,6 +11,7 @@
 Room* current_room = NULL;
 Stats *Test1 = NULL;
 INVENTORY *inv = NULL;
+char difficulty = 'n';
 
 void Combat(Stats* p, Mob* m, INVENTORY* inv) {
     srand((int)time(0));
@@ -128,11 +129,11 @@ void Seek_Encounter(){
         case 0:
             
             if (y == 0) {
-                m = CreateGoblin();
+                m = CreateGoblin(difficulty);
                 Combat(Test1, m, inv);
             }
             else {
-                m = CreateOgre();
+                m = CreateOgre(difficulty);
                 Combat(Test1, m, inv);
             }
             
@@ -149,11 +150,11 @@ void Seek_Encounter(){
     {
         case 0:
             if (z == 0) {
-                m2 = CreateGoblin();
+                m2 = CreateGoblin(difficulty);
                 Combat(Test1, m2, inv);
             }
             else {
-                m2 = CreateOgre();
+                m2 = CreateOgre(difficulty);
                 Combat(Test1, m2, inv);
             }
         break;
@@ -307,6 +308,8 @@ int main() {
         return 0;
     }
     Test1 = newCharacter(userClassInput, userNameInput); 
+    printf("Enter difficulty 'e' = Easy, 'n = Normal, 'h' = Hard:\n");
+    scanf(" %c", &difficulty);
     DisplayStats(Test1);
     
 

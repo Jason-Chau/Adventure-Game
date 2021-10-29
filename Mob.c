@@ -20,7 +20,7 @@ Mob* CreateMob(char name[50], int hitPoints, int armorClass, int hit, int damage
 }
 
 
-Mob* CreateGoblin() {
+Mob* CreateGoblin(char mod) {
 
     INVENTORY* mInv;
     mInv = (INVENTORY*)malloc(sizeof(INVENTORY));
@@ -34,13 +34,26 @@ Mob* CreateGoblin() {
     WEAPON *Dagger = initWeapon("Dagger", 0, 0, 5);
     AddWeapon(Dagger, mInv);
     
+    int health = 20;
+    int hit = 5;
+    if(mod == 'e')
+    {
+        health /= 2;
+        hit /= 2;
+    }
+    else if(mod == 'h')
+    {
+        health *= 2;
+        hit *= 2;
+    }
+
     Mob* m;
-    m = CreateMob("Goblin", 20, 15, 5, 5, 30, mInv);
+    m = CreateMob("Goblin", health, 15, hit, 5, health, mInv);
     
     return m;
 }
 
-Mob* CreateOgre() {
+Mob* CreateOgre(char mod) {
 
     INVENTORY* mInv;
     mInv = (INVENTORY*)malloc(sizeof(INVENTORY));
@@ -51,9 +64,22 @@ Mob* CreateOgre() {
 
     WEAPON *Club = initWeapon("Club", 0, 15, 8);
     AddWeapon(Club, mInv);
+
+    int health = 80;
+    int hit = 15;
+    if(mod == 'e')
+    {
+        health /= 2;
+        hit /= 2;
+    }
+    else if(mod == 'h')
+    {
+        health *= 2;
+        hit *= 2;
+    }
     
     Mob* m;
-    m = CreateMob("Ogre", 50, 18, 8, 15, 80, mInv);
+    m = CreateMob("Ogre", health, 18, hit, 15, health, mInv);
     
     return m;
 }
