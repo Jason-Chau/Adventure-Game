@@ -38,8 +38,6 @@ Stats* newCharacter(Classes class, char name[50]) {
       
       a = initArmor("Clothes", 1, 0, 5);
       newCharacter->currentArmor = a;
-      //strcpy(newCharacter->currentArmor, "");
-      //strcpy(newCharacter->currentWeapon, "");
       strcpy(newCharacter->className, "Warrior");
       break;
     }
@@ -53,8 +51,13 @@ Stats* newCharacter(Classes class, char name[50]) {
       newCharacter->class = Mage;
       newCharacter->trapDetection = 0.5 * newCharacter->intelligence;
       newCharacter->dodgeChance = 0.5 * newCharacter->dexterity;
-      //strcpy(newCharacter->currentArmor, "");
-      //strcpy(newCharacter->currentWeapon, "");
+      newCharacter->hit = newCharacter->strength / 2;
+
+      w = initWeapon("Fists", 0, 0, 5);
+      newCharacter->currentWeapon = w;
+      
+      a = initArmor("Clothes", 1, 0, 5);
+      newCharacter->currentArmor = a;
       strcpy(newCharacter->className, "Mage");
       break;
     }
@@ -68,8 +71,13 @@ Stats* newCharacter(Classes class, char name[50]) {
       newCharacter->class = Thief;
       newCharacter->trapDetection = 0.5 * newCharacter->intelligence;
       newCharacter->dodgeChance = 0.5 * newCharacter->dexterity;
-      //strcpy(newCharacter->currentArmor, "");
-      //strcpy(newCharacter->currentWeapon, "");
+      newCharacter->hit = newCharacter->strength / 2;
+
+      w = initWeapon("Fists", 0, 0, 5);
+      newCharacter->currentWeapon = w;
+      
+      a = initArmor("Clothes", 1, 0, 5);
+      newCharacter->currentArmor = a;
       strcpy(newCharacter->className, "Thief");
       break;
     }
