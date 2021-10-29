@@ -34,7 +34,7 @@ Mob* CreateGoblin(char mod) {
     WEAPON *Dagger = initWeapon("Dagger", 0, 0, 5);
     AddWeapon(Dagger, mInv);
     
-    int health = 20;
+    int health = 30;
     int hit = 5;
     if(mod == 'e')
     {
@@ -53,6 +53,39 @@ Mob* CreateGoblin(char mod) {
     return m;
 }
 
+Mob* CreateBandit(char mod) {
+
+    INVENTORY* mInv;
+    mInv = (INVENTORY*)malloc(sizeof(INVENTORY));
+    CreateInventory(mInv);
+
+    srand((int)time(0));
+    if ((rand()%2) == 0) {
+        CONSUMABLE* GreaterPotion = initConsumables("Greater Potion", 2, 50);
+        AddConsumable(GreaterPotion, mInv);
+    }
+    WEAPON *silverDagger = initWeapon("Silvered Dagger", 0, 0, 10);
+    AddWeapon(silverDagger, mInv);
+
+    int health = 45;
+    int hit = 6;
+    if(mod == 'e')
+    {
+        health /= 2;
+        hit /= 2;
+    }
+    else if(mod == 'h')
+    {
+        health *= 2;
+        hit *= 2;
+    }
+    
+    Mob* m;
+    m = CreateMob("Bandit", health, 18, hit, 8, health, mInv);
+    
+    return m;
+}
+
 Mob* CreateOgre(char mod) {
 
     INVENTORY* mInv;
@@ -62,7 +95,7 @@ Mob* CreateOgre(char mod) {
     CONSUMABLE* OgreLeg = initConsumables("Ogre Leg", 2, 30);
     AddConsumable(OgreLeg, mInv);
 
-    WEAPON *Club = initWeapon("Club", 0, 15, 8);
+    WEAPON *Club = initWeapon("Club", 0, 15, 14);
     AddWeapon(Club, mInv);
 
     int health = 80;

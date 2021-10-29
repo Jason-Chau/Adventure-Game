@@ -36,7 +36,7 @@ WEAPON* initWeapon(char *name, int type, int required_STR, int add_STR) {
 void printWeapon(WEAPON* w) {
     printf("********************************\n");
     printf("Name: \t\t\t%s\n", w->name);
-    printf("Type: \t\t\t%s\n", w->type);
+    //printf("Type: \t\t\t%s\n", w->type);
     printf("Required Strength: \t%d\n", w->required_STR);
     printf("+ Strength: \t\t%d\n\n", w->add_STR);
     printf("********************************\n");

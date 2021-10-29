@@ -102,7 +102,15 @@ void Trap(Stats* p) {
     }
     else {
         //can change the way trap damage is calculated later (probably based on level), for now its 1-10 damage
-        int d = (rand() % 10) + 1;
+        int d = (rand() % 10) + 2;
+        if(difficulty == 'e')
+        {
+            d /=2;
+        }
+        else if(difficulty == 'h')
+        {
+            d *= 2;
+        }
         p->currentHP -= d;
         printf("\nYou set off a trap and take %d damage. Ouch!\n", d);
     }
@@ -120,8 +128,8 @@ void Exit(Stats* p) {
 void Seek_Encounter(){
     srand((int)time(0));
     int x = rand() % 3;
-    int y = rand() % 2;
-    int z = rand() % 2;
+    int y = rand() % 3;
+    int z = rand() % 3;
     Mob* m = NULL;
     Mob* m2 = NULL;
     switch(x)
@@ -130,6 +138,10 @@ void Seek_Encounter(){
             
             if (y == 0) {
                 m = CreateGoblin(difficulty);
+                Combat(Test1, m, inv);
+            }
+            else if (y == 1) {
+                m = CreateBandit(difficulty);
                 Combat(Test1, m, inv);
             }
             else {
@@ -151,6 +163,10 @@ void Seek_Encounter(){
         case 0:
             if (z == 0) {
                 m2 = CreateGoblin(difficulty);
+                Combat(Test1, m2, inv);
+            }
+            else if (z == 1) {
+                m2 = CreateBandit(difficulty);
                 Combat(Test1, m2, inv);
             }
             else {
@@ -250,6 +266,7 @@ void menu(char c){
             w = FindWeapon(inv, iName);
             if (strcmp(w->name, iName)==0) {
                 swapWeapon(Test1->currentWeapon, w, Test1, inv);
+                printWeapon(Test1->currentWeapon);
             }
             else{
                 printf("Item not found.\n");
@@ -267,6 +284,7 @@ void menu(char c){
             a = FindArmor(inv, iName2);
             if (strcmp(a->name, iName2)==0) {
                 swapArmor(Test1->currentArmor, a, Test1, inv);
+                printArmor(Test1->currentArmor);
             }
             else{
                 printf("Item not found.\n");
@@ -330,7 +348,7 @@ int main() {
     AddConsumable(bread, inv);
 
     WEAPON* axe = (WEAPON*)malloc(sizeof(WEAPON));
-    axe = initWeapon("Axe",  0, 14, 12);
+    axe = initWeapon("Axe",  0, 14, 10);
     AddWeapon(axe, inv);
     ARMOR* chainmail = (ARMOR*)malloc(sizeof(ARMOR));
     chainmail = initArmor("Chainmail", 1, 16, 5);
