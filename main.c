@@ -18,7 +18,7 @@ void Combat(Stats* p, Mob* m, INVENTORY* inv) {
     while(p->currentHP > 0 && m->currentHP > 0) {
         
         while(1) {
-            printf("Player turn. Choose an action (a, c)\n");
+            printf("Player turn. Choose an action (a = attack, c = consume)\n");
             char c;
             scanf(" %c",&c);
 
@@ -34,6 +34,7 @@ void Combat(Stats* p, Mob* m, INVENTORY* inv) {
                 break;
             }
             else if (c == 'c') {
+            // player consuming item
                 char iName[50];
                 printf("Which consumable would you like to consume? You have:\n");
                 DisplayConsumables(inv);
@@ -57,6 +58,7 @@ void Combat(Stats* p, Mob* m, INVENTORY* inv) {
             printf("Invalid Command, try again.\n");
             break;
         }
+        //check if the monster is dead
         if (m->currentHP <= 0) {
             break;
         }
@@ -70,7 +72,7 @@ void Combat(Stats* p, Mob* m, INVENTORY* inv) {
             printf("You avoid %s's attack!\n", m->name);
         }
     }
-
+    //check if player is dead
     if (p->currentHP <= 0) {
         printf("You lost the fight and are now dead. :( \n");
         //call some sort of function that runs on player death
@@ -215,7 +217,6 @@ void menu(char c){
             char direction;
             scanf(" %c",&direction);
             current_room = Move_Rooms(direction,current_room); //goes to desired room or doesnt go anywhere if NULL direction
-            Look_Around(current_room); //looks around new room
         break;
         case 's':
             DisplayStats(Test1);
@@ -352,7 +353,14 @@ int main() {
             Exit();
             break;
         }
-        printf("Enter your new choice: \n");
-        scanf(" %c",&c);
+        //check to see if player is alive
+        if (Test1->currentHP > 0) {
+            printf("Enter your new choice: \n");
+            scanf(" %c",&c);
+        }
+        else {
+            break;
+        }
+        
     } 
 }

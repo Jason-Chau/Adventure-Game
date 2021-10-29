@@ -52,6 +52,9 @@ Mob* CreateOgre() {
 void DropLoot(Mob* m, INVENTORY* loot, INVENTORY* inventory) {
     int i = 0;
     printf("Loot dropped! You got: \n");
+    //checking each inventory array (weapons, armor, consumables) and stopping
+    //as soon as we hit an empty slot (name = "")
+    
     //weapons
     WEAPON* w = loot->invWeapon[0];
     while(strcmp(w->name, "") != 0) {
