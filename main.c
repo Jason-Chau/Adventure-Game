@@ -77,7 +77,7 @@ void Combat(Stats* p, Mob* m, INVENTORY* inv) {
     if (p->currentHP <= 0) {
         printf("\nYou lost the fight and are now dead. :( \n\n");
         //call some sort of function that runs on player death
-        return 0;
+        return;
     }
     else {
         printf("\nYou defeated the %s!\n", m->name);
@@ -204,12 +204,12 @@ Room* Move_Rooms(char c, Room* c_room){
 }
 
 void print_menu(){
-    printf("\nPress (m) for Movement || ");
-    printf("Press (s) for Stats || ");
-    printf("Press (i) to display inventory ||\n");
-    printf("Press (w) to swap weapon || ");
-    printf("Press (a) to swap armor || ");
-    printf("Press (c) to use consumable ||\n");
+    printf("\nPress (m) for Movement\t\t||");
+    printf("\tPress (s) for Stats\t||");
+    printf("\tPress (i) to display inventory\t\n");
+    printf("Press (w) to swap weapon\t|| ");
+    printf("\tPress (a) to swap armor\t|| ");
+    printf("\tPress (c) to use consumable\t\n");
     printf("*** Press (q) to quit ***\n");
 }
 
