@@ -14,11 +14,11 @@ INVENTORY *inv = NULL;
 
 void Combat(Stats* p, Mob* m, INVENTORY* inv) {
     srand((int)time(0));
-    printf("Combat begins! Enemies: %s\n", m->name);
+    printf("\nCombat begins! Enemies: %s\n", m->name);
     while(p->currentHP > 0 && m->currentHP > 0) {
         
         while(1) {
-            printf("Player turn. Choose an action (a = attack, c = consume): ");
+            printf("\nPlayer turn. Choose an action (a = attack, c = consume): ");
             char c;
             scanf(" %c",&c);
             printf("\n");
@@ -75,11 +75,12 @@ void Combat(Stats* p, Mob* m, INVENTORY* inv) {
     }
     //check if player is dead
     if (p->currentHP <= 0) {
-        printf("You lost the fight and are now dead. :( \n");
+        printf("\nYou lost the fight and are now dead. :( \n\n");
         //call some sort of function that runs on player death
+        return 0;
     }
     else {
-        printf("You defeated the %s!\n");
+        printf("\nYou defeated the %s!\n", m->name);
         DropLoot(m, m->loot, inv);
     }
     
@@ -92,24 +93,26 @@ void Trap(Stats* p) {
     int trapDodgeDC = 8 + rand()%10 + 1;
     //trap spotted?
     if ((rand()%20)+p->trapDetection+1 >= trapDetectionDC) {
-        printf("You've spotted a trap! You avoid it with ease.\n");
+        printf("\nYou've spotted a trap! You avoid it with ease.\n");
         //add experience?
     }
     else if ((rand()%20)+p->dodgeChance >= trapDodgeDC){
-        printf("You set off a trap but quickly dodge, avoiding harm!\n");
+        printf("\nYou set off a trap but quickly dodge, avoiding harm!\n");
     }
     else {
         //can change the way trap damage is calculated later (probably based on level), for now its 1-10 damage
         int d = (rand() % 10) + 1;
         p->currentHP -= d;
-        printf("You set off a trap and take %d damage. Ouch!\n", d);
+        printf("\nYou set off a trap and take %d damage. Ouch!\n", d);
     }
 }
 
 
-void Exit() {
+void Exit(Stats* p) {
     // Player escapes the dungeon and wins or moves onto next floor
-    printf("You found the exit door and escape the dungeon!\n");
+    if (p->currentHP >= 0) {
+        printf("You found the exit door and escaped the dungeon!\n\n");
+    }
 }
 
 //function for deciding if there will be an encounter
@@ -201,7 +204,7 @@ Room* Move_Rooms(char c, Room* c_room){
 }
 
 void print_menu(){
-    printf("Press (m) for Movement || ");
+    printf("\nPress (m) for Movement || ");
     printf("Press (s) for Stats || ");
     printf("Press (i) to display inventory ||\n");
     printf("Press (w) to swap weapon || ");
@@ -219,7 +222,6 @@ void menu(char c){
             printf("Please enter a direction in which you wish to proceed(n s e w): ");
             char direction;
             scanf(" %c",&direction);
-            printf("\n");
             current_room = Move_Rooms(direction,current_room); //goes to desired room or doesnt go anywhere if NULL direction
         break;
         case 's':
@@ -315,7 +317,7 @@ int main() {
     leather = initArmor("Leather", 1, 11, 2);
     AddArmor(leather, inv);
     CONSUMABLE* bread = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
-    bread = initConsumables("Bread", 2, 10);
+    bread = initConsumables("Bread", 2, 5);
     AddConsumable(bread, inv);
 
     WEAPON* axe = (WEAPON*)malloc(sizeof(WEAPON));
@@ -325,7 +327,7 @@ int main() {
     chainmail = initArmor("Chainmail", 1, 16, 5);
     AddArmor(chainmail, inv);
     CONSUMABLE* potion = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
-    potion = initConsumables("Potion", 2, 25);
+    potion = initConsumables("Potion", 2, 12);
     AddConsumable(potion, inv);
     
     WEAPON* sword = (WEAPON*)malloc(sizeof(WEAPON));
@@ -357,7 +359,7 @@ int main() {
         if(current_room->final == true)
         {
             printf("\n");
-            Exit();
+            Exit(Test1);
             break;
         }
         //check to see if player is alive
