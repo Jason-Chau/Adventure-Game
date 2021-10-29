@@ -27,7 +27,7 @@ void Combat(Stats* p, Mob* m, INVENTORY* inv) {
 
             if(c == 'a') {
             // player attacking
-                if(((rand()%20)+6) > m->armorClass-1) {
+                if(((rand()%20)+p->hit) > m->armorClass-1) {
                     m->currentHP -= p->strength;
                     printf("You hit %s for %d damage!\n", m->name, p->strength);
                 }

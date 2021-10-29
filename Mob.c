@@ -29,7 +29,7 @@ Mob* CreateGoblin() {
     AddWeapon(Dagger, mInv);
     
     Mob* m;
-    m = CreateMob("Goblin", 20, 10, 5, 5, 30, mInv);
+    m = CreateMob("Goblin", 20, 15, 5, 5, 30, mInv);
     
     //DisplayInventory(m->loot);
     return m;
@@ -45,7 +45,7 @@ Mob* CreateOgre() {
     AddWeapon(Club, mInv);
     
     Mob* m;
-    m = CreateMob("Ogre", 50, 12, 8, 15, 80, mInv);
+    m = CreateMob("Ogre", 50, 18, 8, 15, 80, mInv);
     
     //DisplayInventory(m->loot);
     return m;

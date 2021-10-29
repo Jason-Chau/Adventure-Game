@@ -31,6 +31,7 @@ Stats* newCharacter(Classes class, char name[50]) {
       newCharacter->class = Warrior;
       newCharacter->trapDetection = 0.5 * newCharacter->intelligence;
       newCharacter->dodgeChance = 0.5 * newCharacter->dexterity;
+      newCharacter->hit = newCharacter->strength / 2;
       
       w = initWeapon("Fists", 0, 0, 5);
       newCharacter->currentWeapon = w;
@@ -97,6 +98,7 @@ void DisplayStats(Stats* target)  {
   printf("STR: %d\n", target->strength);
   printf("DEX: %d\n", target->dexterity);
   printf("INT: %d\n", target->intelligence);
+  printf("HIT BONUS: %d\n", target->hit);
   printf("Armor Equipped: %s\n", target->currentArmor);
   printf("Weapon Equipped: %s\n", target->currentWeapon);
   printf("Trap Detection Level: %.1lf\n", target->trapDetection);

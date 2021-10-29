@@ -74,6 +74,7 @@ void swapWeapon(WEAPON *old, WEAPON *new, Stats *s, INVENTORY *inv) {
         AddWeapon(old, inv);
         s->strength -= old->add_STR;
         s->strength += new->add_STR;
+        s->hit = s->strength / 2;
     }
 }
 
