@@ -205,10 +205,10 @@ Room* Move_Rooms(char c, Room* c_room){
 
 void print_menu(){
     printf("\nPress (m) for Movement\t\t||");
-    printf("\tPress (s) for Stats\t||");
+    printf("\tPress (s) for Stats\t\t||");
     printf("\tPress (i) to display inventory\t\n");
     printf("Press (w) to swap weapon\t|| ");
-    printf("\tPress (a) to swap armor\t|| ");
+    printf("\tPress (a) to swap armor\t\t|| ");
     printf("\tPress (c) to use consumable\t\n");
     printf("*** Press (q) to quit ***\n");
 }
