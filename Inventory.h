@@ -15,7 +15,11 @@ typedef struct INVENTORY_STRUCT {
 void CreateInventory(INVENTORY* inventory);
 void DisplayInventory(INVENTORY* inventory);
 void DisplayConsumables(INVENTORY* inventory);
+void DisplayWeapons(INVENTORY* inventory);
+void DisplayArmor(INVENTORY* inventory);
 CONSUMABLE* FindConsumable(INVENTORY* inventory, char itemName[50]);
+WEAPON* FindWeapon(INVENTORY* inventory, char itemName[50]);
+ARMOR* FindArmor(INVENTORY* inventory, char itemName[50]);
 void AddWeapon(WEAPON* w, INVENTORY* inventory);
 void AddArmor(ARMOR* a, INVENTORY* inventory);
 void AddConsumable(CONSUMABLE* c, INVENTORY* inventory);

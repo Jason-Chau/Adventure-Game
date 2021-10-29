@@ -221,31 +221,41 @@ void menu(char c){
             DisplayInventory(inv);
         break;
         case 'e':
-            printf("Please enter the name of a weapon from your inventory to equip: ");
-            char weapon[50];
-            scanf("%s",weapon);
-            for(int i = 0; i < 50; i++)
-            {
-                if(strcmp(weapon,inv->invWeapon[i]->name)==0) //tries to find weapon in inv
-                {
-                    WEAPON * w = inv->invWeapon[i];
-                    wearWeapon(w,Test1,inv);
-                }
+            //swap weapon
+            printf("Which weapon would you like to equip? You have:\n");
+            DisplayWeapons(inv);
+            char iName[50];
+            scanf(" %[^\n]%*c", iName);
+            printf("ITEM SELECTED: %s\n", iName);
+                
+            WEAPON* w;
+            w = FindWeapon(inv, iName);
+            if (strcmp(w->name, iName)==0) {
+                swapWeapon(Test1->currentWeapon, w, Test1, inv);
             }
+            else{
+                printf("Item not found.\n");
+            }
+            
         break;
         case 'a':
-            printf("Please enter the name of an armor from your inventory to equip: ");
-            char armor[50];
-            scanf("%s",armor);
-            for(int i = 0; i < 50; i++)
-            {
-                if(strcmp(armor,inv->invArmor[i]->name)==0)  //tries to find armor in inv
-                {
-                    ARMOR * a = inv->invArmor[i];
-                    wearArmor(a,Test1,inv);
-                }
+            printf("Which armor would you like to equip? You have:\n");
+            DisplayArmor(inv);
+            char iName2[50];
+            scanf(" %[^\n]%*c", iName2);
+            printf("ITEM SELECTED: %s\n", iName2);
+                
+            ARMOR* a;
+            a = FindArmor(inv, iName2);
+            if (strcmp(a->name, iName2)==0) {
+                swapArmor(Test1->currentArmor, a, Test1, inv);
             }
+            else{
+                printf("Item not found.\n");
+            }
+            
         break;
+        /*
         case 'h': //fix me
             printf("Please enter the name of a weapon from your inventory to equip: ");
             char weapon2[50];
@@ -274,6 +284,7 @@ void menu(char c){
                 }
             }
         break;
+        */
         case 'u':
         //fix dont know how to set up, how do you know whats equiped?
         break;
@@ -286,7 +297,7 @@ void menu(char c){
             scanf("%s",food);
             for(int i = 0; i < 50; i++)
             {
-                if(strcmp(armor,inv->invConsumable[i]->name)==0) //tries to find consumable in inv?
+                if(strcmp(food,inv->invConsumable[i]->name)==0) //tries to find consumable in inv?
                 {
                     CONSUMABLE * c = inv->invConsumable[i];
                     //consumeItem(Test1,c); //problem, how is it connected to inventory?

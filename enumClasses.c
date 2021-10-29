@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "enumClasses.h"
+#include "Weapons.h"
+#include "Armors.h"
 
 // Creates player and sets class.
 Stats* newCharacter(Classes class, char name[50]) {
@@ -15,6 +17,8 @@ Stats* newCharacter(Classes class, char name[50]) {
   CreateInventory(inv);
   */
   Stats s;
+  WEAPON* w = (WEAPON*)malloc(sizeof(WEAPON));
+  ARMOR* a = (ARMOR*)malloc(sizeof(ARMOR));
   // Assign stats based on the given class.
   switch(class) {
     case Warrior: {
@@ -27,8 +31,14 @@ Stats* newCharacter(Classes class, char name[50]) {
       newCharacter->class = Warrior;
       newCharacter->trapDetection = 0.5 * newCharacter->intelligence;
       newCharacter->dodgeChance = 0.5 * newCharacter->dexterity;
-      strcpy(newCharacter->currentArmor, "");
-      strcpy(newCharacter->currentWeapon, "");
+      
+      w = initWeapon("Fists", 0, 0, 5);
+      newCharacter->currentWeapon = w;
+      
+      a = initArmor("Clothes", 1, 0, 5);
+      newCharacter->currentArmor = a;
+      //strcpy(newCharacter->currentArmor, "");
+      //strcpy(newCharacter->currentWeapon, "");
       strcpy(newCharacter->className, "Warrior");
       break;
     }
@@ -42,8 +52,8 @@ Stats* newCharacter(Classes class, char name[50]) {
       newCharacter->class = Mage;
       newCharacter->trapDetection = 0.5 * newCharacter->intelligence;
       newCharacter->dodgeChance = 0.5 * newCharacter->dexterity;
-      strcpy(newCharacter->currentArmor, "");
-      strcpy(newCharacter->currentWeapon, "");
+      //strcpy(newCharacter->currentArmor, "");
+      //strcpy(newCharacter->currentWeapon, "");
       strcpy(newCharacter->className, "Mage");
       break;
     }
@@ -57,8 +67,8 @@ Stats* newCharacter(Classes class, char name[50]) {
       newCharacter->class = Thief;
       newCharacter->trapDetection = 0.5 * newCharacter->intelligence;
       newCharacter->dodgeChance = 0.5 * newCharacter->dexterity;
-      strcpy(newCharacter->currentArmor, "");
-      strcpy(newCharacter->currentWeapon, "");
+      //strcpy(newCharacter->currentArmor, "");
+      //strcpy(newCharacter->currentWeapon, "");
       strcpy(newCharacter->className, "Thief");
       break;
     }

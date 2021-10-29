@@ -2,6 +2,8 @@
 #define ENUM_CLASSES_H
 
 //#include "Inventory.h"
+#include "Weapons.h"
+#include "Armors.h"
 
 //Enumerated classes that is called
 typedef enum Classes  {
@@ -24,8 +26,8 @@ typedef struct characterStats {
   int intelligence;
   int damage;
   int hit;
-  char currentArmor[50];
-  char currentWeapon[50];
+  struct WEAPON_STRUCT* currentWeapon;
+  struct ARMOR_STRUCT* currentArmor;
   double trapDetection;
   double dodgeChance;
 } Stats;
