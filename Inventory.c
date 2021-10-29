@@ -46,8 +46,7 @@ void DisplayInventory(INVENTORY* inventory) {
         a = inventory->invArmor[i];
     }
     i=0;
-
-    
+    printf("\n");
     CONSUMABLE* c = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
     c = inventory->invConsumable[0];
     printf("Consumables:\n");
