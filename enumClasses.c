@@ -98,18 +98,18 @@ int SetName(Stats* target, char name[50]) {
 }
 
 void DisplayStats(Stats* target)  {
-  printf("\n**************************************************");
-  printf("\nName: %s\n", target->name);
-  printf("Class: %s\n", target->className);
-  printf("HP: %d / %d\n", target->currentHP, target->hitPoints);
-  printf("AC: %d\n", target->armorClass);
-  printf("STR: %d\n", target->strength);
-  printf("DEX: %d\n", target->dexterity);
-  printf("INT: %d\n", target->intelligence);
-  printf("HIT BONUS: %d\n", target->hit);
-  printf("Armor Equipped: %s\n", target->currentArmor);
-  printf("Weapon Equipped: %s\n", target->currentWeapon);
-  printf("Trap Detection Level: %.1lf\n", target->trapDetection);
-  printf ("Dodge Chance: %.1lf\n", target->dodgeChance);
-  printf("**************************************************\n\n");
+  printf("\n************************************");
+  printf("\n\tName: %s\n", target->name);
+  printf("\tClass: %s\n", target->className);
+  printf("\tHP: %d / %d\n", target->currentHP, target->hitPoints);
+  printf("\tAC: %d\n", target->armorClass);
+  printf("\tSTR: %d\n", target->strength);
+  printf("\tDEX: %d\n", target->dexterity);
+  printf("\tINT: %d\n", target->intelligence);
+  printf("\tHIT BONUS: %d\n", target->hit);
+  printf("\tArmor Equipped: %s\n", target->currentArmor);
+  printf("\tWeapon Equipped: %s\n", target->currentWeapon);
+  printf("\tTrap Detection Level: %.1lf\n", target->trapDetection);
+  printf("\tDodge Chance: %.1lf\n", target->dodgeChance);
+  printf("************************************\n");
 }
