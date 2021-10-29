@@ -316,6 +316,7 @@ void menu(char c){
 int main() {
     int userClassInput;
     char userNameInput[50];
+    printf("WELCOME TO THE DUNGEON GAME!\n\n");
 
     printf("Enter the name of your character:\n");
     scanf("%[^\n]%*c", userNameInput);
