@@ -35,7 +35,27 @@ Mob* CreateGoblin() {
     AddWeapon(Dagger, mInv);
     
     Mob* m;
-    m = CreateMob("Goblin", 20, 15, 5, 5, 30, mInv);
+    m = CreateMob("Goblin", 30, 15, 5, 5, 30, mInv);
+    
+    return m;
+}
+
+Mob* CreateBandit() {
+
+    INVENTORY* mInv;
+    mInv = (INVENTORY*)malloc(sizeof(INVENTORY));
+    CreateInventory(mInv);
+
+    srand((int)time(0));
+    if ((rand()%2) == 0) {
+        CONSUMABLE* GreaterPotion = initConsumables("Greater Potion", 2, 50);
+        AddConsumable(GreaterPotion, mInv);
+    }
+    WEAPON *silverDagger = initWeapon("Silvered Dagger", 0, 0, 10);
+    AddWeapon(silverDagger, mInv);
+    
+    Mob* m;
+    m = CreateMob("Bandit", 45, 18, 6, 8, 45, mInv);
     
     return m;
 }
@@ -49,11 +69,11 @@ Mob* CreateOgre() {
     CONSUMABLE* OgreLeg = initConsumables("Ogre Leg", 2, 30);
     AddConsumable(OgreLeg, mInv);
 
-    WEAPON *Club = initWeapon("Club", 0, 15, 8);
+    WEAPON *Club = initWeapon("Club", 0, 15, 14);
     AddWeapon(Club, mInv);
     
     Mob* m;
-    m = CreateMob("Ogre", 50, 18, 8, 15, 80, mInv);
+    m = CreateMob("Ogre", 80, 18, 8, 15, 80, mInv);
     
     return m;
 }

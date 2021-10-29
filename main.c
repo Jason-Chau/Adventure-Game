@@ -119,8 +119,8 @@ void Exit(Stats* p) {
 void Seek_Encounter(){
     srand((int)time(0));
     int x = rand() % 3;
-    int y = rand() % 2;
-    int z = rand() % 2;
+    int y = rand() % 3;
+    int z = rand() % 3;
     Mob* m = NULL;
     Mob* m2 = NULL;
     switch(x)
@@ -129,6 +129,10 @@ void Seek_Encounter(){
             
             if (y == 0) {
                 m = CreateGoblin();
+                Combat(Test1, m, inv);
+            }
+            else if (y == 1) {
+                m = CreateBandit();
                 Combat(Test1, m, inv);
             }
             else {
@@ -150,6 +154,10 @@ void Seek_Encounter(){
         case 0:
             if (z == 0) {
                 m2 = CreateGoblin();
+                Combat(Test1, m2, inv);
+            }
+            else if (z == 1) {
+                m2 = CreateBandit();
                 Combat(Test1, m2, inv);
             }
             else {
@@ -327,7 +335,7 @@ int main() {
     AddConsumable(bread, inv);
 
     WEAPON* axe = (WEAPON*)malloc(sizeof(WEAPON));
-    axe = initWeapon("Axe",  0, 14, 12);
+    axe = initWeapon("Axe",  0, 14, 10);
     AddWeapon(axe, inv);
     ARMOR* chainmail = (ARMOR*)malloc(sizeof(ARMOR));
     chainmail = initArmor("Chainmail", 1, 16, 5);
