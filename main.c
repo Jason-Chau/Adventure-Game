@@ -315,7 +315,7 @@ int main() {
     leather = initArmor("Leather", 1, 11, 2);
     AddArmor(leather, inv);
     CONSUMABLE* bread = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
-    bread = initConsumables("Bread", 2, 5);
+    bread = initConsumables("Bread", 2, 10);
     AddConsumable(bread, inv);
 
     WEAPON* axe = (WEAPON*)malloc(sizeof(WEAPON));
@@ -325,7 +325,7 @@ int main() {
     chainmail = initArmor("Chainmail", 1, 16, 5);
     AddArmor(chainmail, inv);
     CONSUMABLE* potion = (CONSUMABLE*)malloc(sizeof(CONSUMABLE));
-    potion = initConsumables("Potion", 2, 12);
+    potion = initConsumables("Potion", 2, 25);
     AddConsumable(potion, inv);
     
     WEAPON* sword = (WEAPON*)malloc(sizeof(WEAPON));

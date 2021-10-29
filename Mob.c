@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "Mob.h"
 #include "Inventory.h"
@@ -25,6 +26,11 @@ Mob* CreateGoblin() {
     mInv = (INVENTORY*)malloc(sizeof(INVENTORY));
     CreateInventory(mInv);
 
+    srand((int)time(0));
+    if ((rand()%2) == 0) {
+        CONSUMABLE* ChickenNug = initConsumables("Chicken Nugget", 2, 10);
+        AddConsumable(ChickenNug, mInv);
+    }
     WEAPON *Dagger = initWeapon("Dagger", 0, 0, 5);
     AddWeapon(Dagger, mInv);
     
@@ -39,6 +45,9 @@ Mob* CreateOgre() {
     INVENTORY* mInv;
     mInv = (INVENTORY*)malloc(sizeof(INVENTORY));
     CreateInventory(mInv);
+
+    CONSUMABLE* OgreLeg = initConsumables("Ogre Leg", 2, 30);
+    AddConsumable(OgreLeg, mInv);
 
     WEAPON *Club = initWeapon("Club", 0, 15, 8);
     AddWeapon(Club, mInv);
