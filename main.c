@@ -77,7 +77,6 @@ void Combat(Stats* p, Mob* m, INVENTORY* inv) {
     //check if player is dead
     if (p->currentHP <= 0) {
         printf("\nYou lost the fight and are now dead. :( \n\n");
-        //call some sort of function that runs on player death
         return;
     }
     else {
@@ -88,7 +87,6 @@ void Combat(Stats* p, Mob* m, INVENTORY* inv) {
 }
 
 void Trap(Stats* p) {
-    //make sure you #include <time.h> 
     srand((int)time(0));
     int trapDetectionDC = 12 + rand()%8 + 1;
     int trapDodgeDC = 8 + rand()%10 + 1;
@@ -101,7 +99,7 @@ void Trap(Stats* p) {
         printf("\nYou set off a trap but quickly dodge, avoiding harm!\n");
     }
     else {
-        //can change the way trap damage is calculated later (probably based on level), for now its 1-10 damage
+        //traps deal 2-11 damage, scaling with difficulty
         int d = (rand() % 10) + 2;
         if(difficulty == 'e')
         {
