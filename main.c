@@ -18,9 +18,10 @@ void Combat(Stats* p, Mob* m, INVENTORY* inv) {
     while(p->currentHP > 0 && m->currentHP > 0) {
         
         while(1) {
-            printf("Player turn. Choose an action (a = attack, c = consume)\n");
+            printf("Player turn. Choose an action (a = attack, c = consume): ");
             char c;
             scanf(" %c",&c);
+            printf("\n");
 
             if(c == 'a') {
             // player attacking
@@ -214,9 +215,11 @@ void menu(char c){
     {
         case 'm':
             Look_Around(current_room); //function to look at possible room options
+            printf("\n");
             printf("Please enter a direction in which you wish to proceed(n s e w): ");
             char direction;
             scanf(" %c",&direction);
+            printf("\n");
             current_room = Move_Rooms(direction,current_room); //goes to desired room or doesnt go anywhere if NULL direction
         break;
         case 's':
@@ -224,6 +227,7 @@ void menu(char c){
         break;
         case 'i':
             DisplayInventory(inv);
+            printf("\n");
         break;
         case 'w':
             //swap weapon
@@ -345,6 +349,7 @@ int main() {
     current_room = map->rooms[0]; //sets current room to the first one in array
     //Look_Around(r);
     scanf(" %c",&c);
+    printf("\n");
     while(c != 'q')
     {
         menu(c); //execute menu
@@ -358,8 +363,9 @@ int main() {
         //check to see if player is alive
         if (Test1->currentHP > 0) {
             print_menu();
-            printf("Enter your new choice: \n");
+            printf("Enter your new choice: ");
             scanf(" %c",&c);
+            printf("\n");
         }
         else {
             break;
