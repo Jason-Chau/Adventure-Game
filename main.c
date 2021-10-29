@@ -355,6 +355,7 @@ int main() {
         }
         //check to see if player is alive
         if (Test1->currentHP > 0) {
+            print_menu();
             printf("Enter your new choice: \n");
             scanf(" %c",&c);
         }
