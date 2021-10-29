@@ -257,6 +257,7 @@ void menu(char c){
             w = FindWeapon(inv, iName);
             if (strcmp(w->name, iName)==0) {
                 swapWeapon(Test1->currentWeapon, w, Test1, inv);
+                printWeapon(Test1->currentWeapon);
             }
             else{
                 printf("Item not found.\n");
@@ -274,6 +275,7 @@ void menu(char c){
             a = FindArmor(inv, iName2);
             if (strcmp(a->name, iName2)==0) {
                 swapArmor(Test1->currentArmor, a, Test1, inv);
+                printArmor(Test1->currentArmor);
             }
             else{
                 printf("Item not found.\n");
