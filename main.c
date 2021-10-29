@@ -9,7 +9,7 @@
 #include "Mob.h"
 //#include "Encounter.c"
 Room* current_room = NULL;
-Stats *Test1 = NULL;
+Stats *character = NULL;
 INVENTORY *inv = NULL;
 char difficulty = 'n';
 
@@ -136,24 +136,24 @@ void Seek_Encounter(){
             
             if (y == 0) {
                 m = CreateGoblin(difficulty);
-                Combat(Test1, m, inv);
+                Combat(character, m, inv);
             }
             else if (y == 1) {
                 m = CreateBandit(difficulty);
-                Combat(Test1, m, inv);
+                Combat(character, m, inv);
             }
             else {
                 m = CreateOgre(difficulty);
-                Combat(Test1, m, inv);
+                Combat(character, m, inv);
             }
             
         break;
         case 1:
-            Trap(Test1);
+            Trap(character);
         break;
     }
     x = rand() % 2;
-    if (Test1->currentHP <= 0) {
+    if (character->currentHP <= 0) {
         exit(1);
     }
     switch(x)
@@ -161,22 +161,22 @@ void Seek_Encounter(){
         case 0:
             if (z == 0) {
                 m2 = CreateGoblin(difficulty);
-                Combat(Test1, m2, inv);
+                Combat(character, m2, inv);
             }
             else if (z == 1) {
                 m2 = CreateBandit(difficulty);
-                Combat(Test1, m2, inv);
+                Combat(character, m2, inv);
             }
             else {
                 m2 = CreateOgre(difficulty);
-                Combat(Test1, m2, inv);
+                Combat(character, m2, inv);
             }
         break;
         case 1:
-            Trap(Test1);
+            Trap(character);
         break;
     }
-    if (Test1->currentHP <= 0) {
+    if (character->currentHP <= 0) {
         exit(1);
     }
 }
@@ -246,7 +246,7 @@ void menu(char c){
             current_room = Move_Rooms(direction,current_room); //goes to desired room or doesnt go anywhere if NULL direction
         break;
         case 's':
-            DisplayStats(Test1);
+            DisplayStats(character);
         break;
         case 'i':
             DisplayInventory(inv);
@@ -263,8 +263,8 @@ void menu(char c){
             WEAPON* w;
             w = FindWeapon(inv, iName);
             if (strcmp(w->name, iName)==0) {
-                swapWeapon(Test1->currentWeapon, w, Test1, inv);
-                printWeapon(Test1->currentWeapon);
+                swapWeapon(character->currentWeapon, w, character, inv);
+                printWeapon(character->currentWeapon);
             }
             else{
                 printf("Item not found.\n");
@@ -281,8 +281,8 @@ void menu(char c){
             ARMOR* a;
             a = FindArmor(inv, iName2);
             if (strcmp(a->name, iName2)==0) {
-                swapArmor(Test1->currentArmor, a, Test1, inv);
-                printArmor(Test1->currentArmor);
+                swapArmor(character->currentArmor, a, character, inv);
+                printArmor(character->currentArmor);
             }
             else{
                 printf("Item not found.\n");
@@ -301,7 +301,7 @@ void menu(char c){
             CONSUMABLE* c;
             c = FindConsumable(inv, iName3);
             if (strcmp(c->name, iName3)==0) {
-                consumeItem(Test1, c, inv);
+                consumeItem(character, c, inv);
             }
             else{
                 printf("Item not found.\n");
@@ -314,6 +314,7 @@ void menu(char c){
 int main() {
     int userClassInput;
     char userNameInput[50];
+    printf("WELCOME TO THE DUNGEON GAME!\n\n");
 
     printf("Enter the name of your character:\n");
     scanf("%[^\n]%*c", userNameInput);
@@ -323,10 +324,10 @@ int main() {
         printf("Invalid Input\n");
         return 0;
     }
-    Test1 = newCharacter(userClassInput, userNameInput); 
+    character = newCharacter(userClassInput, userNameInput); 
     printf("Enter difficulty 'e' = Easy, 'n' = Normal, 'h' = Hard:\n");
     scanf(" %c", &difficulty);
-    DisplayStats(Test1);
+    DisplayStats(character);
     
 
     print_menu();
@@ -384,11 +385,11 @@ int main() {
         if(current_room->final == true)
         {
             printf("\n");
-            Exit(Test1);
+            Exit(character);
             break;
         }
         //check to see if player is alive
-        if (Test1->currentHP > 0) {
+        if (character->currentHP > 0) {
             print_menu();
             printf("Enter your new choice: ");
             scanf(" %c",&c);
@@ -400,7 +401,7 @@ int main() {
     } 
     
     free(map);
-    free(Test1->currentWeapon);
-    free(Test1->currentArmor);
+    free(character->currentWeapon);
+    free(character->currentArmor);
     free(inv);
 }
