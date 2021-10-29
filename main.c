@@ -142,6 +142,9 @@ void Seek_Encounter(){
         break;
     }
     x = rand() % 2;
+    if (Test1->currentHP <= 0) {
+        exit(1);
+    }
     switch(x)
     {
         case 0:
@@ -157,6 +160,9 @@ void Seek_Encounter(){
         case 1:
             Trap(Test1);
         break;
+    }
+    if (Test1->currentHP <= 0) {
+        exit(1);
     }
 }
 
