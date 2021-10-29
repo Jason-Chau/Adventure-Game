@@ -107,7 +107,7 @@ void DisplayWeapons(INVENTORY* inventory) {
     int i=0;
     WEAPON* w = (WEAPON*)malloc(sizeof(WEAPON));
     w = inventory->invWeapon[0];
-    printf("Consumables:\n");
+    printf("Weapons:\n");
     while(strcmp(w->name, "")!=0) {
         printf("%s\n", w->name);
         ++i;
@@ -120,7 +120,7 @@ void DisplayArmor(INVENTORY* inventory) {
     int i=0;
     ARMOR* a = (ARMOR*)malloc(sizeof(ARMOR));
     a = inventory->invArmor[0];
-    printf("Consumables:\n");
+    printf("Armors:\n");
     while(strcmp(a->name, "")!=0) {
         printf("%s\n", a->name);
         ++i;

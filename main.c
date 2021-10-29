@@ -192,15 +192,10 @@ Room* Move_Rooms(char c, Room* c_room){
 void print_menu(){
     printf("Press (m) for Movement || ");
     printf("Press (s) for Stats || ");
-    printf("Press (i) to display inventory||\n");
-    printf("Press (e) to equip a weapon|| ");
-    printf("Press (a) to equip armor|| ");
-    printf("Press (h) to swap weapon||\n");
-    printf("Press (n) to swap armor|| ");
-    printf("Press (u) to unequip weapon|| ");
-    printf("Press (o) to unequip armor||\n");
-    printf("Press (c) to use consumable|| ");
-    printf("Press (t) to detect traps\n");
+    printf("Press (i) to display inventory ||\n");
+    printf("Press (w) to swap weapon || ");
+    printf("Press (a) to swap armor || ");
+    printf("Press (c) to use consumable ||\n");
 }
 
 void menu(char c){
@@ -220,7 +215,7 @@ void menu(char c){
         case 'i':
             DisplayInventory(inv);
         break;
-        case 'e':
+        case 'w':
             //swap weapon
             printf("Which weapon would you like to equip? You have:\n");
             DisplayWeapons(inv);
@@ -255,57 +250,23 @@ void menu(char c){
             }
             
         break;
-        /*
-        case 'h': //fix me
-            printf("Please enter the name of a weapon from your inventory to equip: ");
-            char weapon2[50];
-            scanf("%s",weapon2);
-            for(int i = 0; i < 50; i++)
-            {
-                if(strcmp(weapon2,inv->invWeapon[i]->name)==0)  //tries to find weapon in inv
-                {
-                    WEAPON * w = inv->invWeapon[i];
-                    //WEAPON * w2 = current weapon;
-                    //swapWeapon(w,w2,Test1,inv);
-                }
-            }
-        break;
-        case 'n': //fix me
-            printf("Please enter the name of an armor from your inventory to equip: ");
-            char armor2[50];
-            scanf("%s",armor2);
-            for(int i = 0; i < 50; i++)
-            {
-                if(strcmp(armor2,inv->invArmor[i]->name)==0) //tries to find armor in inv
-                {
-                    ARMOR * a = inv->invArmor[i];
-                    //ARMOR * a2 = current armor;
-                    //swapArmor(a,a2,Test1,inv);
-                }
-            }
-        break;
-        */
-        case 'u':
-        //fix dont know how to set up, how do you know whats equiped?
-        break;
-        case 'o':
-        //fix dont know how to set up, how do you know whats equiped?
-        break;
         case 'c': //fix me
-            printf("Please enter the name of the consumable from your inventory to eat: ");
-            char food[50];
-            scanf("%s",food);
-            for(int i = 0; i < 50; i++)
-            {
-                if(strcmp(food,inv->invConsumable[i]->name)==0) //tries to find consumable in inv?
-                {
-                    CONSUMABLE * c = inv->invConsumable[i];
-                    //consumeItem(Test1,c); //problem, how is it connected to inventory?
-                }
+            
+            printf("Which consumable would you like to consume? You have:\n");
+            DisplayConsumables(inv);
+            char iName3[50];
+
+            scanf(" %[^\n]%*c", iName3);
+            printf("ITEM SELECTED: %s\n", iName3);
+                
+            CONSUMABLE* c;
+            c = FindConsumable(inv, iName3);
+            if (strcmp(c->name, iName3)==0) {
+                consumeItem(Test1, c, inv);
             }
-        break;
-        case 't':
-        //fix dont know how to set up
+            else{
+                printf("Item not found.\n");
+            }
         break;
     }
 
