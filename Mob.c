@@ -35,6 +35,22 @@ Mob* CreateGoblin() {
     return m;
 }
 
+Mob* CreateOgre() {
+
+    INVENTORY* mInv;
+    mInv = (INVENTORY*)malloc(sizeof(INVENTORY));
+    CreateInventory(mInv);
+
+    WEAPON *Club = initWeapon("Club", 0, 15, 8);
+    AddWeapon(Club, mInv);
+    
+    Mob* m;
+    m = CreateMob("Ogre", 50, 12, 8, 15, 80, mInv);
+    
+    //DisplayInventory(m->loot);
+    return m;
+}
+
 void DropLoot(Mob* m, INVENTORY* loot, INVENTORY* inventory) {
     int i = 0;
     printf("Loot dropped! You got: \n");

@@ -106,21 +106,7 @@ void Trap(Stats* p) {
     }
 }
 
-/*
-void Loot(Stats* p, char lootTable[50], int numDrops) {
-    //read in the lootTable from file or hard code it
-    printf("You stumble upon treasures, loot to your heart's content! You find:\n");
-    char loot[numDrops];
-    if(int i=0; i < numDrops; ++i) {
-        //drops numDrops number of random items from the given loot table. Player can type the item's drop number in to take it,
-        //or #all to take all loot dropped.
-        loot[i] = lootTable[rand()%50];
-        printf("%s\n", loot[i]);
-        //needs to add item in loot to inventory based on the name of the item
-        //p->INVENTORY += loot[i];
-    }
-}
- */
+
 void Exit() {
     // Player escapes the dungeon and wins or moves onto next floor
     printf("You found the exit door and escape the dungeon!\n");
@@ -130,12 +116,23 @@ void Exit() {
 void Seek_Encounter(){
     srand((int)time(0));
     int x = rand() % 3;
+    int y = rand() % 2;
+    int z = rand() % 2;
     Mob* m = NULL;
+    Mob* m2 = NULL;
     switch(x)
     {
         case 0:
-            m = CreateGoblin();
-            Combat(Test1, m, inv);
+            
+            if (y == 0) {
+                m = CreateGoblin();
+                Combat(Test1, m, inv);
+            }
+            else {
+                m = CreateOgre();
+                Combat(Test1, m, inv);
+            }
+            
         break;
         case 1:
             Trap(Test1);
@@ -145,8 +142,14 @@ void Seek_Encounter(){
     switch(x)
     {
         case 0:
-            m = CreateGoblin();
-            Combat(Test1, m, inv);
+            if (z == 0) {
+                m2 = CreateGoblin();
+                Combat(Test1, m2, inv);
+            }
+            else {
+                m2 = CreateOgre();
+                Combat(Test1, m2, inv);
+            }
         break;
         case 1:
             Trap(Test1);
