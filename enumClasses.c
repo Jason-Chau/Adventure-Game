@@ -102,6 +102,6 @@ void DisplayStats(Stats* target)  {
   printf("\tArmor Equipped: %s\n", target->currentArmor);
   printf("\tWeapon Equipped: %s\n", target->currentWeapon);
   printf("\tTrap Detection Level: %.1lf\n", target->trapDetection);
-  printf ("\tDodge Chance: %.1lf\n", target->dodgeChance);
+  printf("\tDodge Chance: %.1lf\n", target->dodgeChance);
   printf("************************************\n");
 }
