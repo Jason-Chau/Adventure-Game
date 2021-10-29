@@ -31,7 +31,7 @@ void DisplayInventory(INVENTORY* inventory) {
     WEAPON* w = (WEAPON*)malloc(sizeof(WEAPON));
     w = inventory->invWeapon[0]; 
     while(strcmp(w->name, "")!=0) {
-        printf("%s\n", w->name);
+        printf("\t- %s\n", w->name);
         ++i;
         w = inventory->invWeapon[i];
     }
@@ -41,7 +41,7 @@ void DisplayInventory(INVENTORY* inventory) {
     a = inventory->invArmor[0];
     printf("Armor:\n");
     while(strcmp(a->name, "")!=0) {
-        printf("%s\n", a->name);
+        printf("\t- %s\n", a->name);
         ++i;
         a = inventory->invArmor[i];
     }
@@ -52,7 +52,7 @@ void DisplayInventory(INVENTORY* inventory) {
     c = inventory->invConsumable[0];
     printf("Consumables:\n");
     while(strcmp(c->name, "")!=0) {
-        printf("%s\n", c->name);
+        printf("\t- %s\n", c->name);
         ++i;
         c = inventory->invConsumable[i];
     }
@@ -67,7 +67,7 @@ void DisplayWeapons(INVENTORY* inventory) {
     w = inventory->invWeapon[0];
     printf("Weapons:\n");
     while(strcmp(w->name, "")!=0) {
-        printf("%s\n", w->name);
+        printf("\t- %s\n", w->name);
         ++i;
         w = inventory->invWeapon[i];
     }
@@ -80,7 +80,7 @@ void DisplayArmor(INVENTORY* inventory) {
     a = inventory->invArmor[0];
     printf("Armors:\n");
     while(strcmp(a->name, "")!=0) {
-        printf("%s\n", a->name);
+        printf("\t- %s\n", a->name);
         ++i;
         a = inventory->invArmor[i];
     }
@@ -93,7 +93,7 @@ void DisplayConsumables(INVENTORY* inventory) {
     c = inventory->invConsumable[0];
     printf("Consumables:\n");
     while(strcmp(c->name, "")!=0) {
-        printf("%s\n", c->name);
+        printf("\t- %s\n", c->name);
         ++i;
         c = inventory->invConsumable[i];
     }
