@@ -206,6 +206,7 @@ void print_menu(){
     printf("Press (w) to swap weapon || ");
     printf("Press (a) to swap armor || ");
     printf("Press (c) to use consumable ||\n");
+    printf("*** Press (q) to quit ***\n");
 }
 
 void menu(char c){
@@ -350,6 +351,7 @@ int main() {
         //print menu
         if(current_room->final == true)
         {
+            printf("\n");
             Exit();
             break;
         }
@@ -361,7 +363,11 @@ int main() {
         }
         else {
             break;
-        }
-        
+        }  
     } 
+    
+    free(map);
+    free(Test1->currentWeapon);
+    free(Test1->currentArmor);
+    free(inv);
 }
