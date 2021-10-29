@@ -160,29 +160,37 @@ Room* Move_Rooms(char c, Room* c_room){
         case 'n':
         if(c_room->N_Room != NULL)
         {
+            c_room->explored = true;
             c_room = c_room->N_Room;
-            Seek_Encounter();
+            if(!c_room->explored)
+                Seek_Encounter();
         }
         break;
         case 's':
         if(c_room->S_Room != NULL)
         {
+            c_room->explored = true;
             c_room = c_room->S_Room;
-            Seek_Encounter();
+            if(!c_room->explored)
+                Seek_Encounter();
         }
         break;
         case 'e':
         if(c_room->E_Room != NULL)
         {
+            c_room->explored = true;
             c_room = c_room->E_Room;
-            Seek_Encounter();
+            if(!c_room->explored)
+                Seek_Encounter();
         }
         break;
         case 'w':
         if(c_room->W_Room != NULL)
         {
+            c_room->explored = true;
             c_room = c_room->W_Room;
-            Seek_Encounter();
+            if(!c_room->explored)
+                Seek_Encounter();
         }
         break;
     }
