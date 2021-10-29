@@ -35,6 +35,7 @@ void DisplayInventory(INVENTORY* inventory) {
         ++i;
         w = inventory->invWeapon[i];
     }
+    printf("\n");
     i=0;
     ARMOR* a = (ARMOR*)malloc(sizeof(ARMOR));
     a = inventory->invArmor[0];
